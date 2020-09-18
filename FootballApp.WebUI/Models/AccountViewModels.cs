@@ -63,7 +63,15 @@ namespace FootballApp.WebUI.Models
     }
 
     public class RegisterViewModel
-    {
+    {   
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+        
+        [Required]
+        [Display(Name = "Surname")]
+        public string Surname { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

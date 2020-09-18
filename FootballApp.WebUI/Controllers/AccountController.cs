@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FootballApp.WebUI.Models;
 using FootballApp.Domain.Models;
+using System.IO;
 
 namespace FootballApp.WebUI.Controllers
 {
@@ -148,11 +149,21 @@ namespace FootballApp.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                byte[] imageData = null;
+                if (file != null)
+                {
+                    using (BinaryReader br = new BinaryReader(file.InputStream))
+                    {
+                        imageData = br.ReadBytes(file.ContentLength);
+                    }
+
+                }
+                var user = new ApplicationUser {Name=model.Name,Surname=model.Surname, UserName = model.Email, Email = model.Email };
+                user.ProfilePicture = imageData;
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
