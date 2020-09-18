@@ -55,10 +55,21 @@ body {
 .register-form form{
     width: 400px;
 }
-.register-msg{
-    width: 400px;
-    height: 70px;
-    text-align: center;
+.register-msg {
+    padding-top: 1rem;
+    font-size: 1.3rem;
+    color: #B9BBBE;
+}
+
+.register-msg a {
+    font-size: 1.3rem;
+    color: #B9BBBE;
+
+}
+
+.register-msg a:hover {
+    font-size: 1.3rem;
+    color: #727272;
 }
 .register-msg h1{
     color:white;
