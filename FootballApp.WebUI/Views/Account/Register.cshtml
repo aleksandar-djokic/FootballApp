@@ -23,8 +23,12 @@
                         <p>Please enter required credentials.</p>
 
                     </div>
-                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form",
-                        enctype = "multipart/form-data"}))
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new
+                    {
+                        @class = "form-horizontal",
+                        role = "form",
+                        enctype = "multipart/form-data"
+                    }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -83,7 +87,12 @@
                             <input class="register-button" type="submit" value="Register">
                         </div>
                     }
-                    
+                    <div class="register-msg">
+                        <p>
+                            @Html.ActionLink("Already have an account?", "Login")
+                        </p>
+                    </div>
+
                 </div>
 
 
