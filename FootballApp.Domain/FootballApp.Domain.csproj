@@ -83,6 +83,10 @@
     <Compile Include="Migrations\202009180959329_Init.Designer.cs">
       <DependentUpon>202009180959329_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009181002240_ExtendUserModel.cs" />
+    <Compile Include="Migrations\202009181002240_ExtendUserModel.Designer.cs">
+      <DependentUpon>202009181002240_ExtendUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009180959329_Init.resx">
       <DependentUpon>202009180959329_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009181002240_ExtendUserModel.resx">
+      <DependentUpon>202009181002240_ExtendUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
