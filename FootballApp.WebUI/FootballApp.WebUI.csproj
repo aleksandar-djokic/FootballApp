@@ -184,6 +184,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Css\Login\login.css" />
+    <Content Include="Content\Css\Register\register.css" />
     <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="favicon.ico" />
