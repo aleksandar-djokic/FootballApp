@@ -1,0 +1,143 @@
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing: inherit;
+}
+html{
+    font-family:sans-serif;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+body{
+    background-image: url("/Content/Images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.wrap-out {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+  
+.wrap-in {
+    display: table-cell;
+    vertical-align: middle;
+}
+.login{
+    padding: 50px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    min-height: 400px;
+    background-color:#36393F;
+    display: flex;
+    flex:auto;
+    -webkit-box-shadow: 0px 0px 24px 1px rgba(0,0,0,0.7);
+    -moz-box-shadow: 0px 0px 24px 1px rgba(0,0,0,0.7);
+    box-shadow: 0px 0px 24px 1px rgba(0,0,0,0.7);
+    
+}
+.login-form{
+    width: 450px;
+    height: 90%;
+    border-right: 1px solid white;
+    font-size: 1.3rem;
+    color:#B9BBBE;
+    
+    
+
+}
+.login-form form{
+    width: 400px;
+}
+.login-msg{
+    width: 450px;
+    height: 70px;
+    text-align: center;
+}
+.login-msg h1{
+    color:white;
+}
+.login-msg p{
+    font-size: 1.2rem;
+    color:#B9BBBE;
+}
+.text-error {
+    margin-bottom: 2px;
+    font-size: 1.3rem;
+    color: rgb(185, 22, 22) !important;
+}
+
+
+.login-label{
+    width: 400px;
+    color:#B9BBBE;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    padding-left: 5px;
+    text-transform: uppercase;
+}
+.login-input{
+    text-align: center;
+}
+.login-input input{
+    display: block;
+    position: relative;
+    margin: 5px auto;
+    height: 35px;
+    width:400px;
+    border-radius: 3px;
+    background-color:rgba(0, 0, 0, 0.1);
+    border-style:solid;
+    border-width: 1px;
+    border-color: black;
+    color:#B9BBBE;
+    padding: 10px;
+}
+.login-field{
+    margin: 0 auto;
+}
+.login-button-wrap{
+    margin-top: 10px;
+
+}
+.login-button{
+    width: 150px;
+    height: 40px;
+    font-size: 1.6rem;
+    color:white;
+    background-color: violet;
+    border-style:none;
+    border-radius:10px;
+}
+.login-button:hover{
+    background-color: rgb(224, 104, 224);
+}
+.logo{
+    width: 150px;
+}
+.login-brand{
+    padding-left:75px ;
+    padding-top: 50px;
+}
+.register-msg{
+    padding-top:1rem;
+    font-size: 1.3rem;
+    color:#B9BBBE;
+}
+.register-msg a {   
+    font-size =1.3rem;
+    color: #B9BBBE;
+}
+.register-msg a:hover {
+    font-size =1.3rem;
+    color:#727272;
+        
+ }
