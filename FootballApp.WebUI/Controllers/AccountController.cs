@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FootballApp.WebUI.Models;
+using FootballApp.Domain.Models;
 
 namespace FootballApp.WebUI.Controllers
 {

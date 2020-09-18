@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using FootballApp.WebUI.Models;
+using FootballApp.Domain.Models;
 
 namespace FootballApp.WebUI
 {
