@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using FootballApp.WebUI.CustomValidation;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace FootballApp.WebUI.Models
 {
@@ -71,6 +73,9 @@ namespace FootballApp.WebUI.Models
         [Required]
         [Display(Name = "Surname")]
         public string Surname { get; set; }
+
+        [ValidateImage(ErrorMessage = "Please select a PNG or JPEG image smaller than 4MB")]
+        public HttpPostedFileBase File { get; set; }
 
         [Required]
         [EmailAddress]
