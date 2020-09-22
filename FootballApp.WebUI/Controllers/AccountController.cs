@@ -149,21 +149,28 @@ namespace FootballApp.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase file)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
+                //Image Conversion
                 byte[] imageData = null;
-                if (file != null)
+                 
+                if (model.File != null)
                 {
-                    using (BinaryReader br = new BinaryReader(file.InputStream))
+                    
+                   
+                   using(BinaryReader br= new BinaryReader(model.File.InputStream))
                     {
-                        imageData = br.ReadBytes(file.ContentLength);
+                        model.File.InputStream.Position = 0;
+                        imageData = br.ReadBytes(model.File.ContentLength);
                     }
 
+                    
+
                 }
-                var user = new ApplicationUser {Name=model.Name,Surname=model.Surname, UserName = model.Email, Email = model.Email };
-                user.ProfilePicture = imageData;
+                var user = new ApplicationUser {Name=model.Name,Surname=model.Surname, UserName = model.Email, Email = model.Email,ProfilePicture=imageData};
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
