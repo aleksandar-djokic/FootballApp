@@ -13,15 +13,6 @@ namespace FootballApp.Domain.Models
         [Display(Name = "ProfilePicture")]
         public byte[] ProfilePicture { get; set; }
 
-        [Required]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-
-        [Required]
-        [Display(Name = "Surname")]
-        public string Surname { get; set; }
-
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

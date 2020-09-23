@@ -67,12 +67,10 @@ namespace FootballApp.WebUI.Models
     public class RegisterViewModel
     {   
         [Required]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-        
-        [Required]
-        [Display(Name = "Surname")]
-        public string Surname { get; set; }
+        [MaxLength(50,ErrorMessage ="Username must be under 50 characters long.")]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
+       
 
         [ValidateImage(ErrorMessage = "Please select a PNG or JPEG image smaller than 4MB")]
         public HttpPostedFileBase File { get; set; }

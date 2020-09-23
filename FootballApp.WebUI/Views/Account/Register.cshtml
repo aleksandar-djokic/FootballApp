@@ -18,7 +18,7 @@
                     <img class="logo" src="~/Content/Images/logo.png">
                 </div>
                 <div class="register-form">
-                    <div class="register-msg">
+                    <div class="register-welcomemsg">
                         <h1>Register</h1>
                         <p>Please enter required credentials.</p>
 
@@ -35,20 +35,13 @@
                         @Html.ValidationSummary("", new { @class = "text-error" })
                         <div class="register-field">
                             <div class="register-label">
-                                @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                                @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
                             </div>
                             <div class="register-input">
-                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                             </div>
                         </div>
-                        <div class="register-field">
-                            <div class="register-label">
-                                @Html.LabelFor(m => m.Surname, new { @class = "col-md-2 control-label" })
-                            </div>
-                            <div class="register-input">
-                                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
-                            </div>
-                        </div>
+                        
                         <div class="register-field">
                             <div class="register-label">
                                 <label for="Password">Image</label>

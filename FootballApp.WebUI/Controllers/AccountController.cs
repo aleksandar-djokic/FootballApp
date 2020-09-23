@@ -169,7 +169,7 @@ namespace FootballApp.WebUI.Controllers
                     
 
                 }
-                var user = new ApplicationUser {Name=model.Name,Surname=model.Surname, UserName = model.Email, Email = model.Email,ProfilePicture=imageData};
+                var user = new ApplicationUser {UserName = model.UserName, Email = model.Email,ProfilePicture=imageData};
                 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

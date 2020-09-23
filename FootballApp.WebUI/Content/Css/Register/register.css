@@ -55,11 +55,17 @@ body {
 .register-form form{
     width: 400px;
 }
+.register-welcomemsg {
+    margin:0 auto;
+    text-align:center;
+    color: white;
+}
 .register-msg {
     padding-top: 1rem;
     font-size: 1.3rem;
     color: #B9BBBE;
 }
+
 
 .register-msg a {
     font-size: 1.3rem;
