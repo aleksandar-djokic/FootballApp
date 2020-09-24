@@ -75,6 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ITeamRepository.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\TeamRepository.cs" />
+    <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Migrations\202009180948434_InitialCreate.cs" />
     <Compile Include="Migrations\202009180948434_InitialCreate.Designer.cs">
       <DependentUpon>202009180948434_InitialCreate.cs</DependentUpon>
@@ -91,8 +95,13 @@
     <Compile Include="Migrations\202009220858298_EditUserModel.Designer.cs">
       <DependentUpon>202009220858298_EditUserModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009241152161_Team.cs" />
+    <Compile Include="Migrations\202009241152161_Team.Designer.cs">
+      <DependentUpon>202009241152161_Team.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +121,10 @@
     <EmbeddedResource Include="Migrations\202009220858298_EditUserModel.resx">
       <DependentUpon>202009220858298_EditUserModel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009241152161_Team.resx">
+      <DependentUpon>202009241152161_Team.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

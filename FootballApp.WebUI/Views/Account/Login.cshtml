@@ -29,13 +29,13 @@
 
                         <div class="login-field">
                             <div class="login-label">
-                                @Html.LabelFor(m => m.Email)
+                                @Html.LabelFor(m => m.UserName)
                             </div>
 
                             <div class="login-input">
 
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-error" })
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-error" })
                             </div>
                         </div>
                         <div class="login-field">

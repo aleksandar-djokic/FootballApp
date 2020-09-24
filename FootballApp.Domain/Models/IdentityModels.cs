@@ -33,5 +33,6 @@ namespace FootballApp.Domain.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Team> Teams { get; set; }
     }
 }

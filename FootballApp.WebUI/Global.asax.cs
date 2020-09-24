@@ -7,6 +7,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using FootballApp.Domain.Abstract;
+using FootballApp.Domain.Concrete;
 
 namespace FootballApp.WebUI
 {
@@ -18,7 +20,8 @@ namespace FootballApp.WebUI
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             //RegisterDependency
-            //builder.RegisterType<Product2Repository>().As<IProductRepository>();
+            builder.RegisterType<TeamRepository>().As<ITeamRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
