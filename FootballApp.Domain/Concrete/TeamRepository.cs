@@ -14,14 +14,17 @@ namespace FootballApp.Domain.Concrete
         
         public IEnumerable<Team> Teams { get { return context.Teams.ToList(); } }
 
-        public void AddMember(string UserId, int TeamId)
+        public void AddMember(string UserId, int TeamId,int RoleId)
         {
             ApplicationUser User = context.Users.First(x => x.Id == UserId);
             Team Team = context.Teams.First(x => x.Id == TeamId);
+            TeamRole Role = context.TeamRoles.First(x => x.Id == RoleId);
             TeamMembers newMember = new TeamMembers
             {
                 TeamId = TeamId,
                 UserId = UserId,
+                RoleId = RoleId,
+                TeamRole = Role,
                 Team=Team,
                 User=User
             };
@@ -29,6 +32,20 @@ namespace FootballApp.Domain.Concrete
             context.SaveChanges();
         }
 
+        public void AddRole(string Name, int TeamId, bool admin = false)
+        {
+            Team Team = context.Teams.FirstOrDefault(x => x.Id == TeamId);
+            TeamRole newRole = new TeamRole
+            {
+                Name = Name,
+                TeamId = TeamId,
+                Team = Team,
+                AdminPrivilege = admin
+            };
+            context.TeamRoles.Add(newRole);
+            context.SaveChanges();
+        }
+        //Creates Team
         public void Create(string Name, string Description, byte[] Image, string user)
         {
             ApplicationUser User = context.Users.First(x => x.Id == user);
@@ -41,7 +58,14 @@ namespace FootballApp.Domain.Concrete
             };
             context.Teams.Add(team);
             context.SaveChanges();
-            AddMember(user, team.Id);
+            AddRole("Owner", team.Id, true);
+            AddMember(user, team.Id,GetOwnerRoleId(team.Id));
+        }
+
+        public int GetOwnerRoleId(int TeamId)
+        {
+            TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId);
+            return TeamRole.Id;
         }
     }
 }

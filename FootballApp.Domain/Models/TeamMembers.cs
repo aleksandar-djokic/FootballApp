@@ -14,7 +14,10 @@ namespace FootballApp.Domain.Models
         public int TeamId { get; set; }
         [Column(Order = 1), Key, ForeignKey("User")]
         public string UserId { get; set; }
+        [ForeignKey("TeamRole")]
+        public int RoleId { get; set; }
 
+        public virtual TeamRole TeamRole { get; set; }
         public virtual Team Team { get; set; }
         public virtual ApplicationUser User { get; set; }
     }
