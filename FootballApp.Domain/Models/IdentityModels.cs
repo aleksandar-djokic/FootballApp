@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -33,5 +35,34 @@ namespace FootballApp.Domain.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamMembers> TeamMembers { get; set; }
+        public DbSet<TeamRole> TeamRoles { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder
+                .Entity<TeamRole>()
+                .Property(t => t.Name)
+                .IsRequired()
+                .HasMaxLength(60)
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(
+                        new IndexAttribute("RoleName_TeamId", 1) { IsUnique = true }));
+            modelBuilder
+                .Entity<TeamRole>()
+                .Property(t => t.TeamId)
+                .IsRequired()
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(
+                        new IndexAttribute("RoleName_TeamId", 2) { IsUnique = true }));
+
+        }
+
+
     }
 }

@@ -75,6 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ITeamRepository.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\TeamRepository.cs" />
+    <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Migrations\202009180948434_InitialCreate.cs" />
     <Compile Include="Migrations\202009180948434_InitialCreate.Designer.cs">
       <DependentUpon>202009180948434_InitialCreate.cs</DependentUpon>
@@ -91,8 +95,31 @@
     <Compile Include="Migrations\202009220858298_EditUserModel.Designer.cs">
       <DependentUpon>202009220858298_EditUserModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009241152161_Team.cs" />
+    <Compile Include="Migrations\202009241152161_Team.Designer.cs">
+      <DependentUpon>202009241152161_Team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009291004225_AddTeamMembers.cs" />
+    <Compile Include="Migrations\202009291004225_AddTeamMembers.Designer.cs">
+      <DependentUpon>202009291004225_AddTeamMembers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010011028029_TeamRoles.cs" />
+    <Compile Include="Migrations\202010011028029_TeamRoles.Designer.cs">
+      <DependentUpon>202010011028029_TeamRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010011104375_TeamMemberRoles.cs" />
+    <Compile Include="Migrations\202010011104375_TeamMemberRoles.Designer.cs">
+      <DependentUpon>202010011104375_TeamMemberRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010011232107_RoleTeamIdRelationship.cs" />
+    <Compile Include="Migrations\202010011232107_RoleTeamIdRelationship.Designer.cs">
+      <DependentUpon>202010011232107_RoleTeamIdRelationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamMembers.cs" />
+    <Compile Include="Models\TeamRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +139,22 @@
     <EmbeddedResource Include="Migrations\202009220858298_EditUserModel.resx">
       <DependentUpon>202009220858298_EditUserModel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009241152161_Team.resx">
+      <DependentUpon>202009241152161_Team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009291004225_AddTeamMembers.resx">
+      <DependentUpon>202009291004225_AddTeamMembers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010011028029_TeamRoles.resx">
+      <DependentUpon>202010011028029_TeamRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010011104375_TeamMemberRoles.resx">
+      <DependentUpon>202010011104375_TeamMemberRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010011232107_RoleTeamIdRelationship.resx">
+      <DependentUpon>202010011232107_RoleTeamIdRelationship.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
