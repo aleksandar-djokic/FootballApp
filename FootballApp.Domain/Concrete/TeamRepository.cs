@@ -62,6 +62,18 @@ namespace FootballApp.Domain.Concrete
             AddMember(user, team.Id,GetOwnerRoleId(team.Id));
         }
 
+        public void Edit(int TeamId,string Name, string Description, byte[] Image)
+        {
+            var team = context.Teams.First(x => x.Id == TeamId);
+            team.Name = Name;
+            team.Description = Description;
+            if(Image!= null)
+            {
+                team.Picture = Image;
+            }
+            context.SaveChanges();
+        }
+
         public int GetOwnerRoleId(int TeamId)
         {
             TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId);

@@ -11,6 +11,7 @@ namespace FootballApp.Domain.Abstract
     {
         IEnumerable<Team> Teams { get; }
         void Create(string Name,string Description,byte[] Image,string user);
+        void Edit(int TeamId,string Name, string Description, byte[] Image);
         void AddMember(string UserId, int TeamId,int RoleId);
 
         void AddRole(string Name, int TeamId, bool admin = false);

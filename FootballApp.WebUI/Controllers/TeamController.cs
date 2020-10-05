@@ -57,5 +57,43 @@ namespace FootballApp.WebUI.Controllers
           
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Edit(int TeamId)
+        {
+            var Team = teams.Teams.First(x => x.Id == TeamId);
+            TeamEditViewModel teamForEdit = new TeamEditViewModel()
+            {
+                Id=Team.Id,   
+                TeamName = Team.Name,
+                Description = Team.Description
+            };
+            return View(teamForEdit);
+        }
+        [HttpPost]
+        public ActionResult Edit(TeamEditViewModel team)
+        {
+            byte[] imageData = null;
+            if (ModelState.IsValid)
+            {
+                if (team.Picture != null)
+                {
+
+
+                    using (BinaryReader br = new BinaryReader(team.Picture.InputStream))
+                    {
+                        team.Picture.InputStream.Position = 0;
+                        imageData = br.ReadBytes(team.Picture.ContentLength);
+                    }
+
+
+
+                }
+                teams.Edit(team.Id, team.TeamName, team.Description, imageData);
+                return View();
+
+            }
+            return View();
+        }
     }
 }
