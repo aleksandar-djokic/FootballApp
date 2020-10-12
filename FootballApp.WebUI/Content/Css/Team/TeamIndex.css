@@ -1,0 +1,198 @@
+﻿body {
+}
+/*Teams view*/
+.teamlist {
+    width: 700px;
+    height: 90vh;
+    margin-top: 1rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 20px;
+    flex-shrink: 0;
+}
+.teamlist-team {
+    height: 10rem;
+    background-color: rgb(45 ,48, 50);
+    margin:1rem auto;
+    border-radius:10px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    padding:0 2rem 0 2rem;
+    justify-content:space-between;
+}
+.teamlist-data {
+    display: flex;
+    flex-direction: row;
+
+}
+.teamlist-info{
+    color:white;
+    font-size:1.3rem;
+}
+.teamlist-image{
+    width:100px;
+}
+.teamlist-image img{
+    border-radius:50%;
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    object-position:center;
+    
+}
+.teamlist-button {
+    background-color: rgb(255,115,250);
+    height: 50px;
+    width: 50px;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding:5px;
+    border-radius:5px;
+}
+.teamlist-name{
+    color:rgba(255,255,255,0.8);
+    font-size:1.6rem;
+}
+.teamlist-description {
+    margin-top:3px;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+}
+.create-button a{
+    text-decoration:none;
+    background-color:forestgreen;
+    color:white;
+    font-size:1.4rem;
+    padding:5px;
+    margin-left:2rem;
+}
+.teamindex-wrap{
+    display:flex;
+    flex-flow:row;
+    
+}
+.search-list-wrap {
+    flex-shrink: 0;
+    width: 600px;
+    height: 90vh;
+    margin-top: 1rem;
+    
+    padding: 20px;
+    background-color: rgb(51, 56 ,60);
+    margin-left: 5rem;
+}
+.search-bar{
+    margin:0 auto;
+    width:350px;
+    text-align:center;
+}
+.search-bar input {
+    position: relative;
+    margin: 5px auto;
+    height: 35px;
+    width: 250px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #B9BBBE;
+    padding: 10px;
+}
+/*Searchlist div*/
+    .search-bar button {
+        color:white;
+        height:33px;
+        width:70px;
+        background-color: rgb(255,115,250);
+        border-style: none;
+    }
+.search-list {
+    width: 500px;
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0 auto;
+    
+}
+.search-team {
+    height: 7rem;
+    background-color: rgb(45,48, 50);
+    margin: 1rem auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+}
+
+.searchteam-data {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchteam-info {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.searchteam-image {
+    width: 100px;
+}
+
+    .searchteam-image img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+.searchteam-button {
+    background-color: rgb(255,115,250);
+    height: 50px;
+    width: 50px;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.searchteam-name {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.4rem;
+}
+
+.searchteam-description {
+    margin-top: 3px;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+}
+
+/*custom scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    margin-left: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(45 ,48, 50);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(28 ,30, 31);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgb(24, 26, 27);
+        
+    }

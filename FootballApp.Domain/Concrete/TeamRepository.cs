@@ -79,5 +79,28 @@ namespace FootballApp.Domain.Concrete
             TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId);
             return TeamRole.Id;
         }
+
+        public IEnumerable<Team> GetTeamsByMember(string UserId)
+        {
+            var teams = (from t in context.Teams
+                         join tm in context.TeamMembers
+                         on t.Id equals tm.TeamId
+                         where tm.UserId == UserId
+                         select new
+                         {
+                             Id = t.Id,
+                             Name = t.Name,
+                             Description = t.Description,
+                             Picture = t.Picture
+
+
+                         }).ToList().Select(x => new Team {Id=x.Id,Name=x.Name,Description=x.Description,Picture=x.Picture }); 
+            return teams;
+        }
+        public IEnumerable<Team> SearchTeam(string Name)
+        {
+            var teams = context.Teams.Where(x => x.Name.Contains(Name));
+            return teams;
+        }
     }
 }

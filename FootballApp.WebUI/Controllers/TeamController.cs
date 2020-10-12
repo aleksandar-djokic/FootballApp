@@ -22,7 +22,21 @@ namespace FootballApp.WebUI.Controllers
         // GET: Team
         public ActionResult Index()
         {
-            return View();
+            var userid = User.Identity.GetUserId();
+            var membersTeams = teams.GetTeamsByMember(userid);
+            List<TeamsDisplayViewModel> result = new List<TeamsDisplayViewModel>();
+            foreach(var t in membersTeams)
+            {
+                string imagesource = "";
+                if (t.Picture != null)
+                {
+                    string imageBase64 = Convert.ToBase64String(t.Picture);
+                    imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+                   
+                }
+                result.Add(new TeamsDisplayViewModel { Id = t.Id, Name = t.Name, Description = t.Description, ImageSource = imagesource });
+            }
+            return View(result);
         }
         [HttpGet]
         public ActionResult Create()
@@ -62,7 +76,7 @@ namespace FootballApp.WebUI.Controllers
         public ActionResult Edit(int TeamId)
         {
             var Team = teams.Teams.First(x => x.Id == TeamId);
-            TeamEditViewModel teamForEdit = new TeamEditViewModel()
+            TeamViewModel teamForEdit = new TeamViewModel()
             {
                 Id=Team.Id,   
                 TeamName = Team.Name,
@@ -71,7 +85,7 @@ namespace FootballApp.WebUI.Controllers
             return View(teamForEdit);
         }
         [HttpPost]
-        public ActionResult Edit(TeamEditViewModel team)
+        public ActionResult Edit(TeamViewModel team)
         {
             byte[] imageData = null;
             if (ModelState.IsValid)
@@ -94,6 +108,24 @@ namespace FootballApp.WebUI.Controllers
 
             }
             return View();
+        }
+        public JsonResult SearchTeam(string Name)
+        {
+            var teamsearch = teams.SearchTeam(Name);
+            List<TeamsDisplayViewModel> teamlist = new List<TeamsDisplayViewModel>();
+            foreach (var t in teamsearch)
+            {
+                string imagesource = "";
+                if (t.Picture != null)
+                {
+                    string imageBase64 = Convert.ToBase64String(t.Picture);
+                    imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+
+                }
+                teamlist.Add(new TeamsDisplayViewModel { Id = t.Id, Name = t.Name, Description = t.Description, ImageSource = imagesource });
+            }
+            var result = new { teamlist = teamlist };
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

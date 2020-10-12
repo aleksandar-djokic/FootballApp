@@ -8,9 +8,11 @@ using System.Web;
 namespace FootballApp.WebUI.Models
 {
     public class TeamViewModel
-    {   [Required]
+    {
+        public int Id { get; set; }
+        [Required]
         [MaxLength(50, ErrorMessage = "Name must be under 50 characters long.")]
-        [Display(Name = "TeamName")]
+        [Display(Name = "Name")]
         public string TeamName { get; set; }
         
         [Required]
