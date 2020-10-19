@@ -38,7 +38,8 @@ namespace FootballApp.Domain.Models
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamMembers> TeamMembers { get; set; }
         public DbSet<TeamRole> TeamRoles { get; set; }
-
+        public DbSet<Friendship> Friendships { get; set; }
+        public DbSet<FriendshipRequest> FriendRequests { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -60,7 +61,19 @@ namespace FootballApp.Domain.Models
                     IndexAnnotation.AnnotationName,
                     new IndexAnnotation(
                         new IndexAttribute("RoleName_TeamId", 2) { IsUnique = true }));
-
+            modelBuilder
+                .Entity<Friendship>().HasKey(f => new { f.User1Id, f.User2Id });
+            modelBuilder
+                .Entity<Friendship>()
+                .HasRequired(f => f.User1)
+                .WithMany()
+                .HasForeignKey(f => f.User1Id);
+            modelBuilder
+                .Entity<Friendship>()
+                .HasRequired(f => f.User2)
+                .WithMany()
+                .HasForeignKey(f => f.User2Id)
+                .WillCascadeOnDelete(false);
         }
 
 

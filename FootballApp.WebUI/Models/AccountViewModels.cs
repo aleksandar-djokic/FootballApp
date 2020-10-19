@@ -119,4 +119,9 @@ namespace FootballApp.WebUI.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+    public class FriendViewModel
+    {
+        public string Name { get; set; }
+        public string ImageSource { get; set; }
+    }
 }

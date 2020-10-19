@@ -1,0 +1,128 @@
+﻿body {
+}
+* {
+    outline: none;
+    
+}
+main{
+    padding:0px !important;
+}
+.friends-navigation{
+    height:5%;
+    display:flex;
+    flex-direction:row;
+    background-color:rgb(41,45,48);
+    align-items:center;
+    padding-left:0rem;
+}
+.friends-nav-item{
+    height:100%;
+}
+.friends-button {
+    color: white;
+    font-size: 1.4rem;
+    min-width: 100px;
+    text-align: center;
+    height: 100%;
+    background-color: rgb(41,45,48);
+    border-style: none;
+}
+.friends-button:hover {
+    background-color: rgb(61, 64, 68);
+}
+.friends-button.active {
+    background-color: rgb(61, 64, 68);
+}
+.friends-content{
+    height:95%;
+}
+.friends-content-item{
+    display:none;
+}
+.allfriends{
+    margin-left:3.5rem;
+    margin-top:2rem;
+    border:none;
+    display:block;
+    width:60%;
+    height:90vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+.allfriends-msg{
+    font-size:1.7rem;
+    vertical-align:central;
+    text-align:center;
+    color:white;
+}
+.friends-item {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    height: 100px;
+    width: 100%;
+    background-color: rgb(52,55, 57);
+    border-radius:1.5rem;
+    overflow:hidden;
+    margin-bottom:1rem;
+}
+
+.friends-info{
+    display:flex;
+    flex-flow:row;
+    align-items:center;
+}
+.friends-image {
+    margin-left:2rem;
+    margin-right:2rem;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    object-position: center;
+}
+.friends-info p{
+    font-size:1.7rem;
+    color:white;
+}
+.friends-options{
+    width:150px;
+    display:flex;
+    flex-flow:row;
+    justify-content:space-around;
+    align-items:center;
+}
+.friends-options-msg{
+    border-radius:50%;
+    height:65px;
+    width:65px;
+    background-color:pink;
+}
+.friends-options-dropdown {
+    border-radius: 10px;
+    height: 65px;
+    width: 40px;
+    background-color: rgb(38,41,43);
+}
+/*custom scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    margin-left: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(45,48, 50);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(28,30, 31);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(24, 26, 27);
+}
