@@ -23,12 +23,12 @@
                         img = '<img src="/Content/Images/emptypfp.png" />';
                     }
 
-                    dom += '<div class="search-team" ><div class="searchteam-data"><div class="searchteam-image">' + img + '</div><div class="searchteam-info"><p class="searchteam-name">' + timovi.Name + '</p><p class="searchteam-description">'+timovi.Description+'</p></div></div><div class="searchteam-button-wrap"><a class="searchteam-button" >Visit</a></div> </div ></div>';
+                    dom += '<div class="search-team" ><div class="searchteam-data"><div class="searchteam-image">' + img + '</div><div class="searchteam-info"><p class="searchteam-name">' + timovi.Name + '</p><p class="searchteam-description">' + timovi.Description + '</p></div></div><div class="searchteam-button-wrap"><a class="searchteam-button" href="/Team/TeamProfile?teamId=' + timovi.Id +'" > Visit</a ></div > </div ></div > ';
                 })
                 
             }
             else {
-                dom = '<p>There is no team with similiar name</p>';
+                dom = '<p class="error-msg">There is no team with similiar name</p>';
                
             }
             teamlist.html(dom);

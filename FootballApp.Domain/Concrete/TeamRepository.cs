@@ -102,5 +102,11 @@ namespace FootballApp.Domain.Concrete
             var teams = context.Teams.Where(x => x.Name.Contains(Name));
             return teams;
         }
+
+        public Team GetTeamByID(int Id)
+        {
+            Team team=context.Teams.FirstOrDefault(x=>x.Id==Id);
+            return team;
+        }
     }
 }

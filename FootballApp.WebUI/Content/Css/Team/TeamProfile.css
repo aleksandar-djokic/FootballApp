@@ -1,0 +1,81 @@
+﻿body {
+}
+*{
+    outline:none;
+}
+main{
+    padding:0px !important;
+
+}
+.profile-header {
+    height: 17%;
+    width: 100%;
+    background-color: rgb(44, 48, 52);
+    overflow:hidden;
+}
+.profile-content{
+    height:83%;
+}
+.profile-data{
+    height:80%;
+    width:100%;
+    display:flex;
+    flex-flow:row;
+    align-items:center;
+    padding-left:3rem;
+
+}
+.profile-info{
+    margin-left:2rem;
+}
+.profile-name {
+    color: rgba(255,255,255,0.8);
+    font-size: 2rem;
+}
+
+.profile-description {
+    margin-top: 3px;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.6rem;
+}
+.profile-image img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    object-position: center;
+}
+.profile-navigation {
+    height: 20%;
+    width: 100%;
+    background-color: rgb(41,45,48);
+    display:flex;
+    flex-flow:row;
+    justify-content:start;
+    align-items:center;
+}
+.profile-nav-item{
+    color:white;
+    font-size:1.4rem;
+    min-width:100px;
+    text-align:center;
+    height:100%;
+}
+.profile-nav-item:hover {
+    background-color: rgb(61, 64, 68);
+}
+.profile-nav-item button {
+    color: white;
+    font-size: 1.4rem;
+    min-width: 100px;
+    text-align: center;
+    height: 100%;
+    background-color: rgb(41,45,48);
+    border-style:none;
+}
+.profile-nav-item button:hover {
+    background-color: rgb(61, 64, 68);
+}
+.profilenav-button.active {
+    background-color:rgb(61, 64, 68);
+}

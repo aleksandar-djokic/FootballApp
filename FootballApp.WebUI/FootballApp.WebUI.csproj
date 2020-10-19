@@ -208,6 +208,7 @@
     <Content Include="Content\Css\Register\register.css" />
     <Content Include="Content\Css\Team\TeamCreate.css" />
     <Content Include="Content\Css\Team\TeamIndex.css" />
+    <Content Include="Content\Css\Team\TeamProfile.css" />
     <Content Include="Content\Images\arrow-right-ico.svg" />
     <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\emptypfp.png" />
@@ -237,6 +238,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Teams\searchteam.js" />
+    <Content Include="Scripts\Teams\TeamProfileNav.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -274,6 +276,7 @@
     <Content Include="Views\Team\Create.cshtml" />
     <Content Include="Views\Team\Edit.cshtml" />
     <Content Include="Views\Team\Index.cshtml" />
+    <Content Include="Views\Team\TeamProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

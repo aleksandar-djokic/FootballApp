@@ -19,6 +19,7 @@ namespace FootballApp.Domain.Abstract
         int GetOwnerRoleId(int TeamId);
         IEnumerable<Team> GetTeamsByMember(string UserId);
         IEnumerable<Team> SearchTeam(string Name);
+        Team GetTeamByID(int Id);
       
     }
 }

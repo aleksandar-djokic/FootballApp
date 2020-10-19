@@ -127,5 +127,19 @@ namespace FootballApp.WebUI.Controllers
             var result = new { teamlist = teamlist };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult TeamProfile(int teamId)
+        {
+            var team = teams.GetTeamByID(teamId);
+            string imagesource = "";
+            if (team.Picture != null)
+            {
+                string imageBase64 = Convert.ToBase64String(team.Picture);
+                imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+            }
+
+            TeamsDisplayViewModel teamDisplay = new TeamsDisplayViewModel { Id = team.Id,Name=team.Name,Description=team.Description,ImageSource=imagesource };
+            return View(teamDisplay);
+        }
     }
 }

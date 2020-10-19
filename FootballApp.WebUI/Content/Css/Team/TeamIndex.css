@@ -21,6 +21,9 @@
     padding:0 2rem 0 2rem;
     justify-content:space-between;
 }
+a{
+    text-decoration:none;
+}
 .teamlist-data {
     display: flex;
     flex-direction: row;
@@ -171,6 +174,10 @@
     margin-top: 3px;
     color: rgba(255,255,255,0.8);
     font-size: 1.2rem;
+}
+.error-msg{
+    font-size:1.5rem;
+    color:white;
 }
 
 /*custom scrollbar*/

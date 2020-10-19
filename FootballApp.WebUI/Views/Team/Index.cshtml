@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="teamlist-button-wrap">
-                <a class="teamlist-button">Visit profile</a>
+                <a class="teamlist-button" href="/Team/TeamProfile?teamId=@item.Id">Visit profile</a>
             </div>
             
         
@@ -42,7 +42,7 @@
     }
 else
 {
-    <p> You are not part of any team.</p>
+    <p class="error-msg"> You are not part of any team.</p>
 }
 </div>
 <div class="search-list-wrap">
@@ -51,20 +51,7 @@ else
         <button id="search-button">Search</button>
     </div>
     <div class="search-list">
-        <div class="search-team">
-            <div class="searchteam-data">
-                <div class="searchteam-image">
-                    <img src="~/Content/Images/emptypfp.png" />
-                </div>
-                <div class="searchteam-info">
-                    <p class="searchteam-name">No name</p>
-                    <p class="searchteam-description">No description</p>
-                </div>
-            </div>
-            <div class="searchteam-button-wrap">
-                <a class="searchteam-button" >Visit</a>
-            </div>  
-        </div>
+       
     </div>
 
 </div>
