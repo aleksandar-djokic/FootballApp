@@ -8,7 +8,7 @@ main{
     padding:0px !important;
 }
 .friends-navigation{
-    height:5%;
+    height:50px;
     display:flex;
     flex-direction:row;
     background-color:rgb(41,45,48);
@@ -34,17 +34,18 @@ main{
     background-color: rgb(61, 64, 68);
 }
 .friends-content{
+    width:80%;
     height:95%;
 }
 .friends-content-item{
     display:none;
 }
+/*AllFriends tab*/
 .allfriends{
-    margin-left:3.5rem;
-    margin-top:2rem;
+    margin:1.5rem auto;
     border:none;
     display:block;
-    width:60%;
+    width:80%;
     height:90vh;
     overflow-x:hidden;
     overflow-y:auto;
@@ -60,7 +61,7 @@ main{
     flex-flow: row;
     justify-content: space-between;
     height: 100px;
-    width: 100%;
+    width: 95%;
     background-color: rgb(52,55, 57);
     border-radius:1.5rem;
     overflow:hidden;
@@ -92,18 +93,210 @@ main{
     justify-content:space-around;
     align-items:center;
 }
-.friends-options-msg{
-    border-radius:50%;
-    height:65px;
-    width:65px;
-    background-color:pink;
+.friends-options-msg {
+    border-radius: 50%;
+    background-color: rgb(38,41,43);
+    border: none;
+    cursor: pointer;
+    padding: 20px 20px;
+}
+.friends-options-msg:hover {
+    background-color: rgb(23,24,25);
+}
+.friends-msg-ico {
+    background: url('/Content/Images/message-ico.png');
+    background-size: 25px 25px;
+    float: left;
+    width: 25px;
+    height: 25px;
+    display: block;
 }
 .friends-options-dropdown {
     border-radius: 10px;
     height: 65px;
     width: 40px;
     background-color: rgb(38,41,43);
+    border: none;
+    cursor: pointer;
 }
+.dropdown-options{
+    display:none;
+    position:absolute;
+    width:200px;
+
+}
+.dropdown-option {
+    position:absolute;
+    border: none;
+    background-color: rgb(30,32,34);
+    color: white;
+    width: 100%;
+    height: 40px;
+}
+.dropdown-option:hover{
+    background-color:rgb(51,54,57);
+}
+/*Pending friends tab*/
+.pendingfriends-msg {
+    margin:10rem auto;
+    font-size: 1.7rem;
+    vertical-align: central;
+    text-align: center;
+    color: white;
+}
+.requests {
+    text-align:center;
+    margin: 1.5rem auto;
+    border: none;
+    display: block;
+    width: 80%;
+    height: 90vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.request {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    height: 100px;
+    width: 95%;
+    background-color: rgb(52,55, 57);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.request-info {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+.request-image {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    object-position: center;
+}
+.request-data{
+}
+.request-data-name{
+    font-size:1.7rem;
+    color:white;
+    text-align:left;
+}
+.request-data-direction{
+    font-size:1.5rem;
+    color:rgba(255,255,255,0.8);
+}
+.request-options-incoming {
+    margin-right:2rem;
+    width: 150px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.request-options-outgoing {
+    margin-right: 2rem;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.request-accept {
+    border-radius: 50%;
+    background-color: violet;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+}
+.request-accept:hover {
+    background-color: rgb(224, 104, 224);
+}
+.request-cancel {
+    border-radius: 50%;
+    background-color: rgb(38,41,43);
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+}
+.request-cancel:hover {
+    background-color: rgb(23,24,25);
+}
+.request-decline {
+    border-radius: 50%;
+    background-color: rgb(38,41,43);
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+}
+.request-decline:hover {
+    background-color: rgb(23,24,25);
+
+}
+.request-accept-ico {
+    background: url('/Content/Images/request-accept-ico.png');
+    background-size: 20px 20px;
+    float: left;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+.request-decline-ico {
+    background: url('/Content/Images/request-decline-ico.png');
+    background-size: 20px 20px;
+    float: left;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+/*AddFriends tab*/
+.add-friends-form {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    width: 700px;
+    margin-left: 400px;
+    margin-top: 150px;
+}
+.add-friends-form-message{
+    margin-bottom:5rem;
+}
+.addfriends-success{
+    text-align:left;
+    padding-left:5px;
+    margin-bottom:1rem;
+    color:green;
+}
+.addfriends-fail {
+    text-align: left;
+    padding-left: 5px;
+    margin-bottom: 1rem;
+    color: red;
+}
+.add-friends-form input {
+    width: 500px;
+    height: 40px;
+    padding-left: 1rem;
+    font-size: 1.3rem;
+    border: none;
+    background-color: rgb(41,45,48);
+    color: rgba(255,255,255,0.7);
+}
+.add-friends-form button {
+    width: 190px;
+    height: 40px;
+    background-color: violet;
+    color: white;
+    border: none;
+    cursor:pointer;
+}
+.add-friends-form button:hover{
+    background-color:rgb(224, 104, 224);
+}
+
 /*custom scrollbar*/
 ::-webkit-scrollbar {
     width: 10px;

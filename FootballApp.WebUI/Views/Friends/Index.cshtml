@@ -7,10 +7,10 @@
 
 <div class="friends-navigation">
     <div class="friends-nav-item">
-        <button class="friends-button active">All</button>
+        <button class="friends-button active" id="All-nav">All</button>
     </div>
     <div class="friends-nav-item">
-        <button class="friends-button">Pending</button>
+        <button class="friends-button" id="pending-nav">Pending</button>
     </div>
     <div class="friends-nav-item">
         <button class="friends-button">AddFriends</button>
@@ -18,13 +18,13 @@
 </div>
 <div class="friends-content">
     <div class="friends-content-item" style="display:block;" id="All">
-        <div class="allfriends">
+        <div class="allfriends"id="allfriends">
             @if(Model != null && Model.Count() > 0)
             {
 
             foreach(var item in Model)
             {
-                <div class="friends-item">
+                <div class="friends-item" id="friend-@item.Id">
                     <div class="friends-info">
                         @if (item.ImageSource != "")
                         {
@@ -38,10 +38,10 @@
                         
                         <p>@item.Name</p>
                     </div>
-                <div class="friends-options">
-                    <div class="friends-options-msg"></div>
-                    <div class="friends-options-dropdown"></div>
-                </div>
+                    <div class="friends-options">
+                        <button class="friends-options-msg"><span class="friends-msg-ico"></span></button>
+                        <button class="friends-options-dropdown" onclick="OpenDropdown(this)" value="@item.Id"></button>
+                    </div>
                 </div>
 
             }
@@ -50,43 +50,26 @@
             {
                 <div class="allfriends-msg">It appears that you have no friends.To add some click on AddFriends above.</div>
             }
-
+        </div>
+            <div class="dropdown-options" id="dropdown">
+                <button class="dropdown-option" id="remove-friend" onclick="RemoveFriend(this)">Remove</button>
+            </div>
+    </div>
+    <div class="friends-content-item" id="Pending">
+        <div class="requests" id="Pending-requests">
         </div>
     </div>
-    <div class="friends-content-item" id="Pending"></div>
-    <div class="friends-content-item" id="AddFriends"></div>
+    <div class="friends-content-item" id="AddFriends">
+        <div class="add-friends-form">
+            <h1>Add a friend</h1>
+            <p class="add-friends-form-message">You can add a friend using their username.Names are not case sensitive.</p>
+            <p class="addfriends-success"></p>
+            <p class="addfriends-fail"></p>
+            <input type="text" id="Add-friend-input" placeholder="Username" autocomplete="off" />
+            <button id="add-friend-button">Send friend request</button>
+        </div>
+    </div>
 </div>
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageSource)
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ImageSource)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-        }
-
-    </table>*@
 @Scripts.Render("/Scripts/Friends/FriendsIndex.js")
 @Styles.Render("~/Content/Css/Friends/FriendsIndex.css")
