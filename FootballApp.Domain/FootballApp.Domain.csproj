@@ -75,8 +75,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IFriendsRepository.cs" />
     <Compile Include="Abstract\ITeamRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\FriendsRepository.cs" />
     <Compile Include="Concrete\TeamRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Migrations\202009180948434_InitialCreate.cs" />
@@ -115,7 +117,17 @@
     <Compile Include="Migrations\202010011232107_RoleTeamIdRelationship.Designer.cs">
       <DependentUpon>202010011232107_RoleTeamIdRelationship.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010190904337_Friendships.cs" />
+    <Compile Include="Migrations\202010190904337_Friendships.Designer.cs">
+      <DependentUpon>202010190904337_Friendships.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010190946216_FriendRequests.cs" />
+    <Compile Include="Migrations\202010190946216_FriendRequests.Designer.cs">
+      <DependentUpon>202010190946216_FriendRequests.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Friendship.cs" />
+    <Compile Include="Models\FriendshipRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamMembers.cs" />
@@ -153,6 +165,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010011232107_RoleTeamIdRelationship.resx">
       <DependentUpon>202010011232107_RoleTeamIdRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010190904337_Friendships.resx">
+      <DependentUpon>202010190904337_Friendships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010190946216_FriendRequests.resx">
+      <DependentUpon>202010190946216_FriendRequests.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

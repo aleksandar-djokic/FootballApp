@@ -22,6 +22,7 @@ namespace FootballApp.WebUI
             //RegisterDependency
             builder.RegisterType<TeamRepository>().As<ITeamRepository>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
+            builder.RegisterType<FriendsRepository>().As<IFriendsRepository>();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

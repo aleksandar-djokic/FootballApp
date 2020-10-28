@@ -1,0 +1,206 @@
+﻿$('.friends-button').click(function (event) {
+    $('.friends-content-item').hide();
+    $('.friends-button').removeClass("active");
+
+    var navName = "#" + $(event.target).html();
+    $(event.target).addClass("active");
+    $(navName).show();
+
+})
+// AddFriend
+$('#add-friend-button').click(function () {
+
+    var user = $('#Add-friend-input').val();
+    $('.addfriends-success').html('')
+    $('.addfriends-fail').html('')
+    $.ajax({
+        method: 'POST',
+        url: '/Friends/AddFriend',
+        data: {
+            userName:user,
+        },
+        success: function (result) {
+            if (result.resultvalue == true) {
+                $('.addfriends-success').html('Your friend request is successfully sent.')  ;
+            }
+            else {
+                $('.addfriends-fail').html(result.resultmsg);
+            }
+            $('#Add-friend-input').val('');
+        }
+    });
+})
+//List Friend Requests
+$('#pending-nav').click(function () {
+    $('#Pending-requests').html('');
+    $.ajax({
+        method: 'GET',
+        url: '/Friends/GetRequests',
+        success: function (result) {
+            var dom = "";
+            if (result.resultmsg == 'full') {
+
+                $.each(result.resultitems, function (i, result) {
+                    var img = '';
+                    var msg = '';
+                    var controls = '';
+                    if (result.ImageSource != "") {
+                        img = '<img class="request-image" src="' + result.ImageSource + '"/>';
+                    }
+                    else {
+                        img = '<img class="request-image" src="/Content/Images/emptypfp.png" />';
+                    }
+                    if (result.Direction == "Incoming") {
+                        msg = "Incoming friend request."
+                        controls = '<div class="request-options-incoming"><button onclick="AddFriend(this)" value="' + result.Id + '" title = "Accept request!" class="request-accept" > <span class="request-accept-ico"></span></button > <button onclick="DeclineFriendRequest(this)" value="' + result.Id + '"title="Decline request!" class="request-decline"><span class="request-decline-ico"></span></button></div > ';
+                    }
+                    else {
+                        msg = "Outgoing friend request."
+                        controls = '<div class="request-options-outgoing"><button onclick="CancelFriendRequest(this)" value="' + result.Id + '"title="Cancel request!"class="request-cancel"><span class="request-decline-ico"></span></button></div>';
+                    }
+                    dom += '<div class="request" id="' + result.Id + '"><div class="request-info">' + img + '<div class="request-data"><div class="request-data-name">' + result.Name + '</div><div class="request-data-direction">' + msg + '</div></div></div>' + controls + '</div>';
+                })
+            }
+            else {
+                dom = '<div class="pendingfriends-msg">It appears that you dont have any pending requests.</div>';
+            }
+            $('#Pending-requests').html(dom);
+           
+        }
+    })
+})
+
+$('#All-nav').click(function () {
+    $('#allfriends').html('');
+    $.ajax({
+        method: 'POST',
+        url: '/Friends/GetFriends',
+        success: function (result) {
+            var dom = "";
+            if (result.length > 0 && result != null) {
+                $.each(result, function (i, result) {
+                    var img = '';
+                    if (result.ImageSource != "") {
+                        img = '<img class="friends-image" src="' + result.ImageSource + '"/>';
+                    }
+                    else {
+                        img = '<img class="friends-image" src="/Content/Images/emptypfp.png" />';
+                    }
+                    dom += '<div class="friends-item" id="friend-' + result.Id + '"> <div class="friends-info">' + img + '<p>' + result.Name + '</p></div><div class="friends-options"> <button class="friends-options-msg"><span class="friends-msg-ico"></span></button><button class="friends-options-dropdown" onclick="OpenDropdown(this)" value="' + result.Id + '"></button></div></div>'
+                })
+            }
+            else {
+                dom = '<div class="allfriends-msg">It appears that you have no friends.To add some click on AddFriends above.</div>';
+            }
+            $('#allfriends').html(dom);
+        }
+    })
+})
+
+
+//Control functions
+
+//Accept friend request
+function AddFriend (element) {
+    var id = element.value;
+    $.ajax({
+        method: 'POST',
+        url: '/Friends/AcceptFriendRequest',
+        data: {
+            requestUserId:id
+        },
+        success: function (result) {
+            if (result == true) {
+                $('#' + id).remove();
+            }
+            if (!($('#Pending-requests').children().length > 0)) {
+                $('#Pending-requests').html('<div class="pendingfriends-msg">It appears that you dont have any pending requests.</div>');
+
+            }
+        }
+
+
+    })
+}
+//Decline friend request
+function DeclineFriendRequest(element) {
+    var id = element.value;
+    $.ajax({
+        method: 'POST',
+        url: '/Friends/DeclineFriendRequest',
+        data: {
+            requestUserId: id
+        },
+        success: function (result) {
+            if (result == true) {
+                $('#' + id).remove();
+            }
+            if (!($('#Pending-requests').children().length > 0)) {
+                $('#Pending-requests').html('<div class="pendingfriends-msg">It appears that you dont have any pending requests.</div>');
+
+            }
+        }
+    })
+}
+//Cancel friend request
+
+function CancelFriendRequest(element) {
+    var id = element.value;
+    $.ajax({
+        method: 'POST',
+        url: '/Friends/CancelFriendRequest',
+        data: {
+            requestUserId: id
+        },
+        success: function (result) {
+            if (result == true) {
+                $('#' + id).remove();
+            }
+            if (!($('#Pending-requests').children().length > 0)) {
+                $('#Pending-requests').html('<div class="pendingfriends-msg">It appears that you dont have any pending requests.</div>');
+            
+            }
+        }
+    })
+}
+
+//Dropdown functions
+function OpenDropdown(element) {
+    var id = element.value;
+    $('#remove-friend').val(id);
+    var x = element.getBoundingClientRect().left + 40;
+    var y = element.getBoundingClientRect().top + 50;
+    $('#dropdown').show();
+    $('#dropdown').css({ top: y, left: x });
+
+}
+//Dropdown hide
+$(document).mouseup(function (e) {
+    var container = $("#dropdown");
+
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+    }
+});
+//Remove friend
+function RemoveFriend(element) {
+    var id = element.value;
+    $.ajax({
+        method: 'POST',
+        url: '/Friends/RemoveFriend',
+        data: {
+            friendUserId: id
+        },
+        success: function (result) {
+            if (result == true) {
+                $('#friend-' + id).remove();
+                $('#dropdown').hide();
+            }
+            if (!($('#allfriends').children().length > 0)) {
+                $('#allfriends').html('<div class="allfriends-msg">It appears that you have no friends.To add some click on AddFriends above.</div>');
+
+            }
+        }
+    })
+}
