@@ -17,9 +17,16 @@ namespace FootballApp.Domain.Abstract
         void AddRole(string Name, int TeamId, bool admin = false);
 
         int GetOwnerRoleId(int TeamId);
+        int GetRoleId(string roleName, int teamId);
         IEnumerable<Team> GetTeamsByMember(string UserId);
         IEnumerable<Team> SearchTeam(string Name);
         Team GetTeamByID(int Id);
-      
+        bool InviteUser(string InviterId, string InviteeId, int teamId, out string msg);
+        IEnumerable<TeamInvite> GetInvites(string userId);
+        bool DeclineInvite(int inviteId);
+        bool AcceptInvite(int inviteId);
+        int GetTeamIdFromInvite(int inviteId);
+
+
     }
 }

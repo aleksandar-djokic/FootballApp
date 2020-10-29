@@ -59,6 +59,7 @@ namespace FootballApp.Domain.Concrete
             context.Teams.Add(team);
             context.SaveChanges();
             AddRole("Owner", team.Id, true);
+            AddRole("Member", team.Id, false);
             AddMember(user, team.Id,GetOwnerRoleId(team.Id));
         }
 
@@ -107,6 +108,101 @@ namespace FootballApp.Domain.Concrete
         {
             Team team=context.Teams.FirstOrDefault(x=>x.Id==Id);
             return team;
+        }
+
+        public bool InviteUser(string InviterId, string InviteeId, int teamId, out string msg)
+        {
+            var result = false;
+            msg = "";
+            var team = context.Teams.Where(x => x.Id == teamId).FirstOrDefault();
+            var inviter = context.Users.Where(x => x.Id == InviterId).FirstOrDefault();
+            var invitee = context.Users.Where(x => x.Id == InviteeId).FirstOrDefault();
+            var membership = context.TeamMembers.Where(x => x.TeamId == teamId && x.UserId == InviteeId).FirstOrDefault();
+            var invitation = context.TeamInvites.Where(x => x.TeamId == teamId && x.InviteeId == InviteeId).FirstOrDefault();
+
+            try
+            {
+                if (membership != null)
+                {
+                    msg = "User is already in that team.";
+                }
+                else if(invitation != null)
+                {
+                    msg = "User is already invited in that team";
+                }
+                else
+                {
+                    context.TeamInvites.Add(new TeamInvite { InviterId = inviter.Id, InviteeId = invitee.Id, TeamId = team.Id, Inviter = inviter, Invitee = invitee, Team = team });
+                    context.SaveChanges();
+                    result = true;
+                }
+            }
+            catch (Exception)
+            {
+                msg = "Something went wrong.";
+                result = false;
+            }
+
+            return result;
+        }
+
+        public IEnumerable<TeamInvite> GetInvites(string userId)
+        {
+            var teamInvites = context.TeamInvites.Where(x => x.InviteeId == userId).ToList();
+            return teamInvites;
+        }
+
+        public bool DeclineInvite(int inviteId)
+        {
+            var result = false;
+            var invite = context.TeamInvites.Where(x => x.InviteId == inviteId).FirstOrDefault();
+            if(invite != null)
+            {
+                try
+                {
+                    context.TeamInvites.Remove(invite);
+                    context.SaveChanges();
+                    result = true;
+                }
+                catch(Exception)
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
+        public int GetRoleId(string roleName,int teamId)
+        {
+            TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == teamId && x.Name==roleName);
+            return TeamRole.Id;
+            
+        }
+        public bool AcceptInvite(int inviteId)
+        {
+            var result = false;
+            var invite= context.TeamInvites.Where(x => x.InviteId == inviteId).FirstOrDefault();
+            
+            if (invite != null)
+            {
+                var roleId = GetRoleId("Member", invite.TeamId);
+                try
+                {
+                    AddMember(invite.InviteeId, invite.TeamId, roleId);
+                    context.TeamInvites.Remove(invite);
+                    context.SaveChanges();
+                    result = true;
+                }
+                catch (Exception)
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
+        public int GetTeamIdFromInvite(int inviteId)
+        {
+            var invite = context.TeamInvites.Where(x => x.InviteId == inviteId).FirstOrDefault();
+            return invite.TeamId;
         }
     }
 }
