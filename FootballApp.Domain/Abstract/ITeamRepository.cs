@@ -15,10 +15,11 @@ namespace FootballApp.Domain.Abstract
         void AddMember(string UserId, int TeamId,int RoleId);
 
         void AddRole(string Name, int TeamId, bool admin = false);
-
+        string UserInRole(string userId,int teamId);
         int GetOwnerRoleId(int TeamId);
         int GetRoleId(string roleName, int teamId);
         IEnumerable<Team> GetTeamsByMember(string UserId);
+        IEnumerable<ApplicationUser> GetTeamMembers(int teamId);
         IEnumerable<Team> SearchTeam(string Name);
         Team GetTeamByID(int Id);
         bool InviteUser(string InviterId, string InviteeId, int teamId, out string msg);
@@ -26,7 +27,14 @@ namespace FootballApp.Domain.Abstract
         bool DeclineInvite(int inviteId);
         bool AcceptInvite(int inviteId);
         int GetTeamIdFromInvite(int inviteId);
-
+        bool SendJoinRequestToTeam(int teamId,string userId);
+        bool DeclineRequest(int requestId);
+        bool AcceptRequest(int requestId);
+        ApplicationUser GetUserFromRequest(int requestId);
+        IEnumerable<TeamJoinRequests> UserGetTeamJoinRequests(string userId);
+        IEnumerable<TeamJoinRequests> TeamGetTeamJoinRequests(int teamId);
+        bool IsUserAMember(string UserId, int teamId);
+        bool IsRequestSent(string UserId, int teamId);
 
     }
 }

@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Profile";
 }
-
+@if (ViewBag.isMember)
+{
 <div class="profile-header">
     <div class="profile-data">
         <div class="profile-image">
@@ -21,30 +22,103 @@
             <p class="profile-name">@Model.Name</p>
             <p class="profile-description">@Model.Description</p>
         </div>
+        @Html.HiddenFor(m=>Model.Id,new {id="team-id" })
     </div>
     <div class="profile-navigation">
         <div class="profile-nav-item">
-           <button class="profilenav-button">Chat</button>
+            <button class="profilenav-button"id="Chat-button">Chat</button>
         </div>
         <div class="profile-nav-item">
-            <button class="profilenav-button">Members</button>
+            <button class="profilenav-button" id="Members-button">Members</button>
         </div>
         <div class="profile-nav-item">
-            <button class="profilenav-button">Matches</button>
+            <button class="profilenav-button" id="Matches-button">Matches</button>
         </div>
     </div>
 </div>
 <div class="profile-content">
     <div class="profile-content-item" id="Chat">
-        Chat
     </div>
     <div class="profile-content-item" id="Members">
-        Members
+        @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
+        {
+            <button class="pending-members" id="pending-members">Pending members</button>
+            <div class="modal" id="modal-pending-requests">
+                <div class="modal-content">
+                    <span class="modal-close" id="pending-modal-close">&times</span>
+                    <div class="request-items"id="request-items">
+
+                        <div class="request-item">
+                            <div class="request-data">
+                                <div class="request-image">
+
+                                </div>
+                                <div class="request-info">
+                                    <p class="teamrequest-msg">
+
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @Scripts.Render("~/Scripts/Teams/pendingRequests.js")
+        }
+        <div class="member-list" id="member-list">
+
+        </div>
     </div>
     <div class="profile-content-item" id="Matches">
         Matches
     </div>
 
 </div>
+}
+else
+{
+<div class="nonmember-wrap">
+
+    <div class="nonmember-img">
+        @if (@Model.ImageSource != "")
+        {
+            <img src="@Model.ImageSource" />
+
+        }
+        else
+        {
+            <img src="~/Content/Images/emptypfp.png" />
+        }
+    </div>
+    <div class="nonmember-data">
+        <p class="nonmember-name">@Model.Name</p>
+        <p class="nonmember-description">@Model.Description</p>
+    </div>
+    @if (ViewBag.isRequestSent)
+    {
+        <div class="nonmember-msg" id="nonmember-msg">
+            <p>You have already requested to join this team</p>
+        </div>
+        <!--Button-->
+        <div class="request-join">
+            <button class="request-button" id="request-button" disabled>Request join</button>
+        </div>
+    }
+    else
+    {
+
+        <div class="nonmember-msg" id="nonmember-msg">
+            <p>You are not part of this team.Request to join below.</p>
+        </div>
+        <!--Button-->
+        <div class="request-join">
+            <button class="request-button" id="request-button" onclick="RequestJoin(this)" value="@Model.Id">Request join</button>
+        </div>
+    }
+</div>
+    @Scripts.Render("/Scripts/Teams/requestJoin.js")
+}
 @Scripts.Render("/Scripts/Teams/TeamProfileNav.js")
 @Styles.Render("/Content/Css/Team/TeamProfile.css")

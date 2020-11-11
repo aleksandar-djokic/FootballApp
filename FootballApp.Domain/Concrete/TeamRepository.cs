@@ -10,11 +10,11 @@ namespace FootballApp.Domain.Concrete
 {
     public class TeamRepository : ITeamRepository
     {
-        private ApplicationDbContext context =new ApplicationDbContext();
-        
+        private ApplicationDbContext context = new ApplicationDbContext();
+
         public IEnumerable<Team> Teams { get { return context.Teams.ToList(); } }
 
-        public void AddMember(string UserId, int TeamId,int RoleId)
+        public void AddMember(string UserId, int TeamId, int RoleId)
         {
             ApplicationUser User = context.Users.First(x => x.Id == UserId);
             Team Team = context.Teams.First(x => x.Id == TeamId);
@@ -25,8 +25,8 @@ namespace FootballApp.Domain.Concrete
                 UserId = UserId,
                 RoleId = RoleId,
                 TeamRole = Role,
-                Team=Team,
-                User=User
+                Team = Team,
+                User = User
             };
             context.TeamMembers.Add(newMember);
             context.SaveChanges();
@@ -60,15 +60,15 @@ namespace FootballApp.Domain.Concrete
             context.SaveChanges();
             AddRole("Owner", team.Id, true);
             AddRole("Member", team.Id, false);
-            AddMember(user, team.Id,GetOwnerRoleId(team.Id));
+            AddMember(user, team.Id, GetOwnerRoleId(team.Id));
         }
 
-        public void Edit(int TeamId,string Name, string Description, byte[] Image)
+        public void Edit(int TeamId, string Name, string Description, byte[] Image)
         {
             var team = context.Teams.First(x => x.Id == TeamId);
             team.Name = Name;
             team.Description = Description;
-            if(Image!= null)
+            if (Image != null)
             {
                 team.Picture = Image;
             }
@@ -95,7 +95,7 @@ namespace FootballApp.Domain.Concrete
                              Picture = t.Picture
 
 
-                         }).ToList().Select(x => new Team {Id=x.Id,Name=x.Name,Description=x.Description,Picture=x.Picture }); 
+                         }).ToList().Select(x => new Team { Id = x.Id, Name = x.Name, Description = x.Description, Picture = x.Picture });
             return teams;
         }
         public IEnumerable<Team> SearchTeam(string Name)
@@ -106,7 +106,7 @@ namespace FootballApp.Domain.Concrete
 
         public Team GetTeamByID(int Id)
         {
-            Team team=context.Teams.FirstOrDefault(x=>x.Id==Id);
+            Team team = context.Teams.FirstOrDefault(x => x.Id == Id);
             return team;
         }
 
@@ -126,7 +126,7 @@ namespace FootballApp.Domain.Concrete
                 {
                     msg = "User is already in that team.";
                 }
-                else if(invitation != null)
+                else if (invitation != null)
                 {
                     msg = "User is already invited in that team";
                 }
@@ -156,7 +156,7 @@ namespace FootballApp.Domain.Concrete
         {
             var result = false;
             var invite = context.TeamInvites.Where(x => x.InviteId == inviteId).FirstOrDefault();
-            if(invite != null)
+            if (invite != null)
             {
                 try
                 {
@@ -164,24 +164,24 @@ namespace FootballApp.Domain.Concrete
                     context.SaveChanges();
                     result = true;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     result = false;
                 }
             }
             return result;
         }
-        public int GetRoleId(string roleName,int teamId)
+        public int GetRoleId(string roleName, int teamId)
         {
-            TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == teamId && x.Name==roleName);
+            TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == teamId && x.Name == roleName);
             return TeamRole.Id;
-            
+
         }
         public bool AcceptInvite(int inviteId)
         {
             var result = false;
-            var invite= context.TeamInvites.Where(x => x.InviteId == inviteId).FirstOrDefault();
-            
+            var invite = context.TeamInvites.Where(x => x.InviteId == inviteId).FirstOrDefault();
+
             if (invite != null)
             {
                 var roleId = GetRoleId("Member", invite.TeamId);
@@ -203,6 +203,137 @@ namespace FootballApp.Domain.Concrete
         {
             var invite = context.TeamInvites.Where(x => x.InviteId == inviteId).FirstOrDefault();
             return invite.TeamId;
+        }
+
+        public bool SendJoinRequestToTeam(int teamId, string userId)
+        {
+            var result = false;
+            var team = context.Teams.Where(x => x.Id == teamId).FirstOrDefault();
+            var user = context.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+            try
+            {
+                context.TeamJoinRequests.Add(new TeamJoinRequests { RequestInitiator = "User", UserId = user.Id, TeamId = team.Id ,User=user,Team=team});
+                context.SaveChanges();
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+            return result;
+        }
+        public IEnumerable<TeamJoinRequests> UserGetTeamJoinRequests(string userId)
+        {
+            var result = context.TeamJoinRequests.Where(x => x.UserId == userId).ToList();
+            return result;
+        }
+        public IEnumerable<TeamJoinRequests> TeamGetTeamJoinRequests(int teamId)
+        {
+            var result = context.TeamJoinRequests.Where(x => x.TeamId == teamId).ToList();
+            return result;
+        }
+
+        public bool IsUserAMember(string UserId, int teamId)
+        {
+            var result = false;
+            var condition = context.TeamMembers.FirstOrDefault(x => x.TeamId == teamId && x.UserId == UserId);
+            if (condition != null)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        public string UserInRole(string userId,int teamId)
+        {
+            
+            var roleName =   (from t in context.TeamMembers
+                            join r in context.TeamRoles
+                            on t.RoleId equals r.Id
+                            where t.UserId == userId && t.TeamId == teamId
+                            select r.Name).FirstOrDefault();
+            string result = "";
+            if (roleName != null)
+            {
+                result = roleName.ToString();
+            }
+           
+            return result;
+        }
+
+        public bool IsRequestSent(string UserId, int teamId)
+        {
+            var result = false;
+            var request = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == UserId && x.TeamId == teamId);
+            if (request != null)
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        public bool DeclineRequest(int requestId)
+        {
+            var result = false;
+            var request = context.TeamJoinRequests.Where(x => x.RequestId == requestId).FirstOrDefault();
+            if (request != null)
+            {
+                try
+                {
+                    context.TeamJoinRequests.Remove(request);
+                    context.SaveChanges();
+                    result = true;
+                }
+                catch (Exception)
+                {
+                    result = false;
+                }
+            }
+            return result;
+           
+        }
+
+        public IEnumerable<ApplicationUser> GetTeamMembers(int teamId)
+        {
+            var query = context.TeamMembers.Where(x => x.TeamId == teamId).ToList();
+            List<ApplicationUser> members = new List<ApplicationUser>();
+            foreach(var q in query)
+            {
+                members.Add(q.User);
+            }
+            return members;
+
+        }
+
+        public bool AcceptRequest(int requestId)
+        {
+            var result = false;
+            var request = context.TeamJoinRequests.FirstOrDefault(x => x.RequestId == requestId);
+            if (request != null)
+            {
+                var roleId = GetRoleId("Member", request.TeamId);
+                try
+                {
+                    AddMember(request.UserId, request.TeamId, roleId);
+                    context.TeamJoinRequests.Remove(request);
+                    context.SaveChanges();
+                    result = true;
+                }
+                catch (Exception)
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
+
+        public ApplicationUser GetUserFromRequest(int requestId)
+        {
+            var userId = context.TeamJoinRequests.FirstOrDefault(x => x.RequestId == requestId).UserId;
+            var user = context.Users.FirstOrDefault(x => x.Id == userId);
+            return user;
         }
     }
 }

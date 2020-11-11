@@ -197,6 +197,8 @@
     <Compile Include="Models\FriendViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TeamInviteViewModel.cs" />
+    <Compile Include="Models\TeamMemberViewModel.cs" />
+    <Compile Include="Models\TeamRequestViewModel.cs" />
     <Compile Include="Models\TeamsDisplayViewModel.cs" />
     <Compile Include="Models\TeamViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -246,6 +248,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Teams\pendingRequests.js" />
+    <Content Include="Scripts\Teams\requestJoin.js" />
     <Content Include="Scripts\Teams\searchteam.js" />
     <Content Include="Scripts\Teams\TeamInvites.js" />
     <Content Include="Scripts\Teams\TeamProfileNav.js" />

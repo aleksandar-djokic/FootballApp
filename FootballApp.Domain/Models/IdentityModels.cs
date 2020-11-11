@@ -41,6 +41,7 @@ namespace FootballApp.Domain.Models
         public DbSet<TeamInvite> TeamInvites { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<FriendshipRequest> FriendRequests { get; set; }
+        public DbSet<TeamJoinRequests> TeamJoinRequests { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

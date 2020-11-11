@@ -133,12 +133,17 @@
     <Compile Include="Migrations\202010271257518_TeamInviteEdit.Designer.cs">
       <DependentUpon>202010271257518_TeamInviteEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011031054116_TeamJoinRequests.cs" />
+    <Compile Include="Migrations\202011031054116_TeamJoinRequests.Designer.cs">
+      <DependentUpon>202011031054116_TeamJoinRequests.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Friendship.cs" />
     <Compile Include="Models\FriendshipRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamInvite.cs" />
+    <Compile Include="Models\TeamJoinRequests.cs" />
     <Compile Include="Models\TeamMembers.cs" />
     <Compile Include="Models\TeamRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -186,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010271257518_TeamInviteEdit.resx">
       <DependentUpon>202010271257518_TeamInviteEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011031054116_TeamJoinRequests.resx">
+      <DependentUpon>202011031054116_TeamJoinRequests.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

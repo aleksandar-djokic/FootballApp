@@ -319,15 +319,107 @@ a{
     height: 15px;
     display: block;
 }
-.teaminvite-msg{
-  
-}
+
 .invite-emptymsg {
     font-size:1.6rem;
     text-align: center;
     margin: 0 auto;
     color: white;
     margin-top: 25rem;
+}
+/*team requests*/
+.request-item {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+
+    .request-item:hover {
+        background-color: rgb(46, 51, 55);
+    }
+
+.request-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.request-image {
+    width: 100px;
+}
+
+    .request-image img {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+.request-msg {
+    color: white;
+    font-size: 1.6rem;
+}
+
+.request-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.accept-request {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: violet;
+    margin-right: 1rem;
+}
+
+.accept-request:hover {
+    background-color: rgb(224, 104, 224);
+}
+
+.decline-request {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(38,41,43);
+}
+
+.decline-request:hover {
+    background-color: rgb(23,24,25);
+}
+
+.accept-request-ico {
+    background: url('/Content/Images/request-accept-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+.decline-request-ico {
+    background: url('/Content/Images/request-decline-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+.teamrequest-msg {
+    color: white;
+    font-size: 1.6rem;
 }
 /*custom scrollbar*/
 ::-webkit-scrollbar {
