@@ -54,7 +54,7 @@ function DeclineRequest(element) {
             if (result == true) {
                 element.closest('.request-item').remove();
             }
-            var requests = $('#request-items').children('.requestitem');
+            var requests = $('#request-items').children('.request-item');
             var msg = "";
             if (!requests.length > 0) {
                 msg = '<p class="invite-emptymsg">Currently you have no invites.</p>'

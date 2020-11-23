@@ -36,7 +36,7 @@ $('#pending-button').click(function () {
                     }
                     else {
                         teammsg = result.TeamName + " invited you to join them";
-                        controls = '<div class="request-controls"><button class="accept-request" onclick="" value="' + result.RequestId + '"><span class="accept-request-ico"></span></button><button class="decline-request" onclick="DeclineRequest(this)" value="' + result.RequestId + '"><span class="decline-request-ico"></span></button></div>';
+                        controls = '<div class="request-controls"><button class="accept-request" onclick="AcceptRequest(this)" value="' + result.RequestId + '"><span class="accept-request-ico"></span></button><button class="decline-request" onclick="DeclineRequest(this)" value="' + result.RequestId + '"><span class="decline-request-ico"></span></button></div>';
                     }
                     dom += '<div class="request-item"><div class="request-data"><div class="request-image">' + img + '</div><div class="request-info"><p class="teamrequest-msg">' + teammsg + '</p></div></div>' + controls + '</div>';
                 })
@@ -70,13 +70,15 @@ function AcceptInvite(element) {
                     img = '<img src="/Content/Images/emptypfp.png" />';
                 }
                 dom = '<div class="teamlist-team"><div class="teamlist-data"><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Visit profile</a></div></div>';
-                var errorMsg = $('#teamlist').children('.error-msg');
+                var errorMsg = $('#teamlist').children('.error-msg').html();
                 if (errorMsg != null) {
                     $('#teamlist').html(dom);
+               
                 }
                 else {
 
-                $('#teamlist').append(dom);
+                    $('#teamlist').append(dom);
+
                 }
                 
                 element.closest('.invite-item').remove();
@@ -138,6 +140,47 @@ function DeclineRequest(element) {
                 $('#invite-items').append(invitemsg);
             }
 
+        }
+    })
+}
+function AcceptRequest(element) {
+    var id = element.value;
+    $.ajax({
+        method: 'POST',
+        url: '/Team/AcceptRequestUser',
+        data: {
+            requestId:id
+        },
+        success: function (result) {
+            var dom = "";
+            var img = "";
+            if (result.value == true) {
+                if (result.team.ImageSource != "") {
+                    img = '<img src="' + result.team.ImageSource + '"/>';
+                }
+                else {
+                    img = '<img src="/Content/Images/emptypfp.png" />';
+                }
+                dom = '<div class="teamlist-team"><div class="teamlist-data"><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Visit profile</a></div></div>';
+                var errorMsg = $('#teamlist').children('.error-msg').html();
+                if (errorMsg != null) {
+                    $('#teamlist').html(dom);
+                }
+                else {
+
+                    $('#teamlist').append(dom);
+                }
+
+                element.closest('.request-item').remove();
+                var invites = $('#invite-items').children('.invite-item');
+                var requests = $('#invite-items').children('.request-item');
+                var invitemsg = "";
+                if (!invites.length > 0 && !requests.length > 0) {
+                    invitemsg = '<p class="invite-emptymsg">Currently you have no requests.</p>'
+                    $('#invite-items').append(invitemsg);
+                }
+
+            }
         }
     })
 }

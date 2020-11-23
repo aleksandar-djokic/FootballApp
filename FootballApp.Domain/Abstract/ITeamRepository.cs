@@ -35,6 +35,6 @@ namespace FootballApp.Domain.Abstract
         IEnumerable<TeamJoinRequests> TeamGetTeamJoinRequests(int teamId);
         bool IsUserAMember(string UserId, int teamId);
         bool IsRequestSent(string UserId, int teamId);
-
+        Team GetTeamFromRequest(int requestId);
     }
 }

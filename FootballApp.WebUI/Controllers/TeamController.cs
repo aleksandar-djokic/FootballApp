@@ -305,6 +305,21 @@ namespace FootballApp.WebUI.Controllers
             var result = new { member = member, value = value };
             return Json(result);
         }
+        //need to add new acceptrequest for user that resembles accept invite
+        [HttpPost]
+        public JsonResult AcceptRequestUser(int requestId)
+        {
+            var team= teams.GetTeamFromRequest(requestId);
+            var value = teams.AcceptRequest(requestId);
+            string imagesource = "";
+            if (team.Picture != null)
+            {
+                string imageBase64 = Convert.ToBase64String(team.Picture);
+                imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+            }
+            var result = new { value = value, team = new TeamsDisplayViewModel { Id = team.Id, Name = team.Name, Description = team.Description, ImageSource = imagesource } };
+            return Json(result);
+        }
         public JsonResult DeclineRequest(int requestId)
         {
             var result = teams.DeclineRequest(requestId);

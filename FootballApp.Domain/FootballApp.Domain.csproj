@@ -75,9 +75,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IFreeAgentRepository.cs" />
     <Compile Include="Abstract\IFriendsRepository.cs" />
     <Compile Include="Abstract\ITeamRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\FreeAgentRepository.cs" />
     <Compile Include="Concrete\FriendsRepository.cs" />
     <Compile Include="Concrete\TeamRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
@@ -137,7 +139,12 @@
     <Compile Include="Migrations\202011031054116_TeamJoinRequests.Designer.cs">
       <DependentUpon>202011031054116_TeamJoinRequests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011111414494_FreeAgents.cs" />
+    <Compile Include="Migrations\202011111414494_FreeAgents.Designer.cs">
+      <DependentUpon>202011111414494_FreeAgents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\FreeAgentProfile.cs" />
     <Compile Include="Models\Friendship.cs" />
     <Compile Include="Models\FriendshipRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -194,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011031054116_TeamJoinRequests.resx">
       <DependentUpon>202011031054116_TeamJoinRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011111414494_FreeAgents.resx">
+      <DependentUpon>202011111414494_FreeAgents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

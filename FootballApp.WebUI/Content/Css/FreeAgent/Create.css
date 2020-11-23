@@ -1,0 +1,50 @@
+﻿main{
+    padding:0 !important;
+}
+.freeagent-wrap {
+    margin-left:-25rem;
+    margin-top: 10rem;
+    color:white;
+    text-align:center;
+}
+h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+p{
+    font-size:1.5rem;
+    margin-bottom:1rem;
+}
+.create-button{
+    display:block;
+    background-color:forestgreen;
+    color:white;
+    border:none;
+    outline:none;
+    margin:1rem auto;
+    font-size:1.5rem;
+    padding:5px;
+    cursor:pointer;
+}
+.create-button:disabled{
+    background-color: rgb(2, 58,2);
+    color:rgba(255,255,255,0.7);
+
+}
+.create-button:disabled:hover {
+    background-color: rgb(2, 58,2);
+    color: rgba(255,255,255,0.7);
+}
+.create-button:hover{
+    background-color:darkgreen;
+}
+select {
+    background-color: rgb(35,39,42);
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 200px;
+    height: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+}

@@ -119,6 +119,7 @@ namespace FootballApp.Domain.Concrete
             var invitee = context.Users.Where(x => x.Id == InviteeId).FirstOrDefault();
             var membership = context.TeamMembers.Where(x => x.TeamId == teamId && x.UserId == InviteeId).FirstOrDefault();
             var invitation = context.TeamInvites.Where(x => x.TeamId == teamId && x.InviteeId == InviteeId).FirstOrDefault();
+            var requested = context.TeamJoinRequests.FirstOrDefault(x => x.TeamId == teamId && x.UserId == InviteeId && x.RequestInitiator == "User");
 
             try
             {
@@ -132,7 +133,26 @@ namespace FootballApp.Domain.Concrete
                 }
                 else
                 {
-                    context.TeamInvites.Add(new TeamInvite { InviterId = inviter.Id, InviteeId = invitee.Id, TeamId = team.Id, Inviter = inviter, Invitee = invitee, Team = team });
+                    if (requested != null)
+                    {
+                        var role = context.TeamRoles.FirstOrDefault(x => x.Name == "Member" && x.TeamId == teamId);
+                        context.TeamMembers.Add(new TeamMembers { TeamId = teamId, UserId = InviteeId, RoleId = role.Id });
+                        var requestUser = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == InviteeId && x.TeamId == teamId && x.RequestInitiator == "User");
+                        var requestTeam = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == InviteeId && x.TeamId == teamId && x.RequestInitiator == "Team");
+                        if (requestUser != null)
+                        {
+                            context.TeamJoinRequests.Remove(requestUser);
+                        }
+                        if (requestTeam != null)
+                        {
+                            context.TeamJoinRequests.Remove(requestUser);
+                        }
+                    }
+                    else
+                    {
+                        context.TeamInvites.Add(new TeamInvite { InviterId = inviter.Id, InviteeId = invitee.Id, TeamId = team.Id, Inviter = inviter, Invitee = invitee, Team = team });
+
+                    }
                     context.SaveChanges();
                     result = true;
                 }
@@ -181,6 +201,7 @@ namespace FootballApp.Domain.Concrete
         {
             var result = false;
             var invite = context.TeamInvites.Where(x => x.InviteId == inviteId).FirstOrDefault();
+            var request = context.TeamJoinRequests.FirstOrDefault(x => x.TeamId == invite.TeamId && x.UserId == invite.InviteeId && x.RequestInitiator=="Team");
 
             if (invite != null)
             {
@@ -189,6 +210,11 @@ namespace FootballApp.Domain.Concrete
                 {
                     AddMember(invite.InviteeId, invite.TeamId, roleId);
                     context.TeamInvites.Remove(invite);
+                    if (request != null)
+                    {
+                        context.TeamJoinRequests.Remove(request);
+                    }
+                    
                     context.SaveChanges();
                     result = true;
                 }
@@ -210,10 +236,31 @@ namespace FootballApp.Domain.Concrete
             var result = false;
             var team = context.Teams.Where(x => x.Id == teamId).FirstOrDefault();
             var user = context.Users.Where(x => x.Id == userId).FirstOrDefault();
+            var TeamRequest = context.TeamJoinRequests.FirstOrDefault(x => x.TeamId == teamId && x.UserId == userId && x.RequestInitiator == "Team");
+            var invite = context.TeamInvites.FirstOrDefault(x => x.InviteeId ==userId && x.TeamId == teamId);
+
 
             try
             {
-                context.TeamJoinRequests.Add(new TeamJoinRequests { RequestInitiator = "User", UserId = user.Id, TeamId = team.Id ,User=user,Team=team});
+                if (TeamRequest != null || invite!=null)
+                {
+                    var role = context.TeamRoles.FirstOrDefault(x => x.TeamId == teamId && x.Name == "Member");
+                    context.TeamMembers.Add(new TeamMembers { TeamId = teamId, UserId = userId, RoleId = role.Id });
+                    if (TeamRequest != null)
+                    {
+                        context.TeamJoinRequests.Remove(TeamRequest);
+
+                    }
+                    if (invite != null)
+                    {
+                        context.TeamInvites.Remove(invite);
+                    }
+                }
+                else
+                {
+                    context.TeamJoinRequests.Add(new TeamJoinRequests { RequestInitiator = "User", UserId = user.Id, TeamId = team.Id ,User=user,Team=team});
+
+                }
                 context.SaveChanges();
                 result = true;
             }
@@ -266,7 +313,7 @@ namespace FootballApp.Domain.Concrete
         public bool IsRequestSent(string UserId, int teamId)
         {
             var result = false;
-            var request = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == UserId && x.TeamId == teamId);
+            var request = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == UserId && x.TeamId == teamId && x.RequestInitiator=="User");
             if (request != null)
             {
                 result = true;
@@ -311,6 +358,7 @@ namespace FootballApp.Domain.Concrete
         {
             var result = false;
             var request = context.TeamJoinRequests.FirstOrDefault(x => x.RequestId == requestId);
+            var invite = context.TeamInvites.FirstOrDefault(x => x.TeamId == request.TeamId && x.InviteeId == request.UserId);
             if (request != null)
             {
                 var roleId = GetRoleId("Member", request.TeamId);
@@ -318,6 +366,10 @@ namespace FootballApp.Domain.Concrete
                 {
                     AddMember(request.UserId, request.TeamId, roleId);
                     context.TeamJoinRequests.Remove(request);
+                    if (invite != null)
+                    {
+                        context.TeamInvites.Remove(invite);
+                    }
                     context.SaveChanges();
                     result = true;
                 }
@@ -334,6 +386,12 @@ namespace FootballApp.Domain.Concrete
             var userId = context.TeamJoinRequests.FirstOrDefault(x => x.RequestId == requestId).UserId;
             var user = context.Users.FirstOrDefault(x => x.Id == userId);
             return user;
+        }
+
+        public Team GetTeamFromRequest(int requestId)
+        {
+            var team = context.TeamJoinRequests.FirstOrDefault(x => x.RequestId == requestId).Team;
+            return team;
         }
     }
 }

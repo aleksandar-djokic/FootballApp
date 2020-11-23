@@ -211,8 +211,20 @@ main{
 .pending-members:hover{
     background-color:darkgreen;
 }
+.freeagent-button {
+    margin-top: 1rem;
+    padding: 5px;
+    background-color: forestgreen;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+.freeagent-button:hover {
+    background-color: darkgreen;
+}
 /*Requests modal*/
-.modal{
+.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -248,6 +260,12 @@ main{
     cursor: pointer;
 }
 /*Requests*/
+.request-items {
+    height: 90%;
+    width: 90%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 .request-item {
     width: 90%;
     height: 80px;
@@ -341,4 +359,96 @@ main{
 .teamrequest-msg {
     color: white;
     font-size: 1.6rem;
+}
+/*Free Agents*/
+.freeagent-items{
+    height:90%;
+    width:90%;
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+.freeagent-item {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+.freeagent-item:hover{
+    background-color: rgb(46, 51, 55);
+}
+.freeagent-data{
+    display:flex;
+    align-items:center;
+}
+.freeagent-image {
+    height: 80px;
+    width: 80px;
+    padding: 10px;
+}
+.freeagent-image img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+.freeagent-name{
+    font-size:1.4rem;
+    color:white;
+}
+.freeagent-location{
+    font-size:1.5rem;
+    color:white;
+}
+.freeagent-invite{
+    outline:none;
+    border:none;
+    background-color:forestgreen;
+    padding:5px;
+    color:white;
+}
+.freeagent-emptymsg{
+    text-align:center;
+    font-size:1.6rem;
+    color:white;
+    padding-top:25rem;
+}
+select {
+    background-color: rgb(35,39,42);
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 200px;
+    height: 40px;
+    margin-bottom: 1rem;
+}
+.freeagent-invite:hover {
+    background-color: darkgreen;
+}
+/*custom scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    margin-left: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(45,48, 50);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(28,30, 31);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(24, 26, 27);
 }

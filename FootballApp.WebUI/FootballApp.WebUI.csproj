@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FreeAgentController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -193,6 +194,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FreeAgentProfileViewModel.cs" />
+    <Compile Include="Models\FreeAgentViewModel.cs" />
     <Compile Include="Models\FriendRequestViewModel.cs" />
     <Compile Include="Models\FriendViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -209,6 +212,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Css\FreeAgent\Create.css" />
+    <Content Include="Content\Css\FreeAgent\Edit.css" />
     <Content Include="Content\Css\Friends\FriendsIndex.css" />
     <Content Include="Content\Css\Layout\navigation.css" />
     <Content Include="Content\Css\Login\login.css" />
@@ -237,6 +242,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\PermanentMarker-Regular.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\FreeAgent\create.js" />
+    <Content Include="Scripts\FreeAgent\edit.js" />
     <Content Include="Scripts\Friends\FriendsIndex.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -248,6 +255,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Teams\FreeAgents.js" />
     <Content Include="Scripts\Teams\pendingRequests.js" />
     <Content Include="Scripts\Teams\requestJoin.js" />
     <Content Include="Scripts\Teams\searchteam.js" />
@@ -292,6 +300,8 @@
     <Content Include="Views\Team\Index.cshtml" />
     <Content Include="Views\Team\TeamProfile.cshtml" />
     <Content Include="Views\Friends\Index.cshtml" />
+    <Content Include="Views\FreeAgent\Create.cshtml" />
+    <Content Include="Views\FreeAgent\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -43,10 +43,55 @@
         @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
         {
             <button class="pending-members" id="pending-members">Pending members</button>
+            <button class="freeagent-button" id="freeagent-button">Free Agents</button>
+            <div class="modal" id="modal-freeagents">
+                <div class="modal-content">
+                    <span class="modal-close" id="freeagent-modal-close">&times</span>
+                    <div class="freeagent-search" style="margin-left:43px; margin-bottom:5px;">
+                        <select id="country-select">
+                            <option disabled selected>Select Country</option>
+                            <option value="All">All</option>
+                            <option value="Serbia">Serbia</option>
+                            <option value="Russia">Russia</option>
+                            <option value="England">England</option>
+                            <option value="Germany">Germany</option>
+                        </select>
+                        <select id="city-select" disabled>
+                            <option disabled selected>Select City</option>
+                        </select>
+                    </div>
+                    <div class="freeagent-items" id="freeagent-items">
+
+                        <div class="freeagent-item">
+                            <div class="freeagent-data">
+                                <div class="freeagent-image">
+                                    <img src="~/Content/Images/emptypfp.png" />
+                                </div>
+                                <div class="freeagent-info">
+                                    <p class="freeagent-name">
+                                        Name
+                                    </p>
+                                    <p class="freeagent-location">
+                                        Country,City
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="freeagent-controls">
+                                <button class="freeagent-invite">Invite</button>
+                            </div>
+
+                        </div>
+
+                        
+
+
+                    </div>
+                </div>
+            </div>
             <div class="modal" id="modal-pending-requests">
                 <div class="modal-content">
                     <span class="modal-close" id="pending-modal-close">&times</span>
-                    <div class="request-items"id="request-items">
+                    <div class="request-items" id="request-items">
 
                         <div class="request-item">
                             <div class="request-data">
@@ -65,6 +110,7 @@
                 </div>
 
             </div>
+            @Scripts.Render("~/Scripts/Teams/FreeAgents.js")
             @Scripts.Render("~/Scripts/Teams/pendingRequests.js")
         }
         <div class="member-list" id="member-list">
