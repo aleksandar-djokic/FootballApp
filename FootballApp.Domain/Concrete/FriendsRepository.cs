@@ -34,7 +34,7 @@ namespace FootballApp.Domain.Concrete
             var result = context.FriendRequests.Where(x => x.RequesterId == id || x.AddresseeId == id).ToList();
             return result;
         }
-        public bool SendFriendRequest(string user1Id,string userName,out string resultmsg)
+        public bool SendFriendRequest(string user1Id, string userName, out string resultmsg)
         {
             var result = false;
             resultmsg = "";
@@ -67,9 +67,9 @@ namespace FootballApp.Domain.Concrete
                     result = true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                resultmsg = ex.Message;
+                resultmsg = "Something went wrong";
                 result = false;
             }
             finally

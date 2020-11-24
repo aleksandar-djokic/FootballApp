@@ -3,60 +3,92 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="create-button">
-    @Html.ActionLink("Create New", "Create")
+<div class="top-options">
+    <div class="pending-button">
+        <button id="pending-button">Pending Teams</button>
+    </div>
+    <div class="create-button">
+        @Html.ActionLink("Create New", "Create")
+    </div>
+    <div class="freeagent-button">
+        @Html.ActionLink("Free Agent", "Index", "FreeAgent", null, null)
+    </div>
 </div>
 <div class="teamindex-wrap">
 
-<div class="teamlist">
+    <div class="teamlist" id="teamlist">
 
-@if (Model != null && Model.Count() > 0)
-{
-    foreach (var item in Model) {
-    <div class="teamlist-team">
-            <div class="teamlist-data">
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <div class="teamlist-team">
+                    <div class="teamlist-data">
 
-                <div class="teamlist-image">
+                        <div class="teamlist-image">
 
-                     @if (item.ImageSource != "")
-                     {
-                        <img src="@item.ImageSource" />
+                            @if (item.ImageSource != "")
+                            {
+                                <img src="@item.ImageSource" />
 
-                     } else {
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/emptypfp.png" />
+                            }
+                        </div>
+                        <div class="teamlist-info">
+                            <p class="teamlist-name">@Html.DisplayFor(modelItem => item.Name)</p>
+                            <p class="teamlist-description">@Html.DisplayFor(modelItem => item.Description)</p>
+
+                        </div>
+                    </div>
+                    <div class="teamlist-button-wrap">
+                        <a class="teamlist-button" href="/Team/TeamProfile?teamId=@item.Id">Visit profile</a>
+                    </div>
+
+
+                </div>
+            }
+        }
+        else
+        {
+            <p class="error-msg"> You are not part of any team.</p>
+        }
+    </div>
+    <div class="search-list-wrap">
+        <div class="search-bar">
+            <input type="text" id="search-bar" placeholder="Find a team" />
+            <button id="search-button">Search</button>
+        </div>
+        <div class="search-list">
+
+        </div>
+
+    </div>
+</div>
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <div class="invite-items" id="invite-items">
+            <div class="invite-item">
+                <div class="invite-data">
+                    <div class="invite-image">
                         <img src="~/Content/Images/emptypfp.png" />
-                     }
-                 </div>
-                <div class="teamlist-info">
-                    <p class="teamlist-name">@Html.DisplayFor(modelItem => item.Name)</p>
-                    <p class="teamlist-description">@Html.DisplayFor(modelItem => item.Description)</p>
-               
+                    </div>
+                    <div class="invite-info">
+                        <p class="teaminvite-msg">Y has invited you to join X</p>
+                    </div>
+                </div>
+                <div class="invite-controls">
+                    <button class="accept-invite"><span class="accept-invite-ico"></span></button>
+                    <button class="decline-invite"><span class="decline-invite-ico"></span></button>
                 </div>
             </div>
-            <div class="teamlist-button-wrap">
-                <a class="teamlist-button" href="/Team/TeamProfile?teamId=@item.Id">Visit profile</a>
-            </div>
-            
-        
+        </div>
     </div>
-    } 
-    }
-else
-{
-    <p class="error-msg"> You are not part of any team.</p>
-}
-</div>
-<div class="search-list-wrap">
-    <div class="search-bar">
-        <input type="text" id="search-bar" placeholder="Find a team" />
-        <button id="search-button">Search</button>
-    </div>
-    <div class="search-list">
-       
-    </div>
-
-</div>
 </div>
 @Styles.Render("~/Content/Css/Team/TeamIndex.css")
 @Scripts.Render("~/Scripts/Teams/searchteam.js")
-
+@Scripts.Render("~/Scripts/Teams/TeamInvites.js")
 

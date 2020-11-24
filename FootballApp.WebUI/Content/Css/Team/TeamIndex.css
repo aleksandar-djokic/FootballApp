@@ -71,6 +71,40 @@ a{
     padding:5px;
     margin-left:2rem;
 }
+.create-button a:hover {
+    background-color: darkgreen;
+}
+.freeagent-button a {
+    text-decoration: none;
+    background-color: forestgreen;
+    color: white;
+    font-size: 1.4rem;
+    padding: 5px;
+    margin-left: 2rem;
+}
+
+.freeagent-button a:hover {
+    background-color: darkgreen;
+}
+.top-options{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+.pending-button button {
+    outline:none;
+    border:none;
+    text-decoration: none;
+    background-color: violet;
+    color: white;
+    font-size: 1.4rem;
+    padding: 5px;
+    margin-left: 2rem;
+    cursor:pointer;
+}
+.pending-button button:hover {
+    background-color:rgb(224, 104, 224);
+}
 .teamindex-wrap{
     display:flex;
     flex-flow:row;
@@ -105,13 +139,13 @@ a{
     padding: 10px;
 }
 /*Searchlist div*/
-    .search-bar button {
-        color:white;
-        height:33px;
-        width:70px;
-        background-color: rgb(255,115,250);
-        border-style: none;
-    }
+.search-bar button {
+    color:white;
+    height:33px;
+    width:70px;
+    background-color: rgb(255,115,250);
+    border-style: none;
+}
 .search-list {
     width: 500px;
     height: 80vh;
@@ -146,13 +180,13 @@ a{
     width: 100px;
 }
 
-    .searchteam-image img {
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-        object-position: center;
-    }
+.searchteam-image img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    object-position: center;
+}
 
 .searchteam-button {
     background-color: rgb(255,115,250);
@@ -179,7 +213,229 @@ a{
     font-size:1.5rem;
     color:white;
 }
+/*Modal display for TeamInvites*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: rgb(35,39,42);
+    margin: auto;
+    padding: 20px;
+    border: solid gray 1px;
+    width: 60%;
+    height: 600px;
+}
+.modal-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.modal-close:hover,
+.modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.invite-items {
+    width: 85%;
+    height: 85%;
+    margin: 2rem auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-shrink: 0;
+}
+.invite-item {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+.invite-item:hover {
+    background-color: rgb(46, 51, 55);
+}
+.invite-data {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+}
+.invite-image {
+    width: 100px;
+}
+.invite-image img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+.teaminvite-msg{
+    color:white;
+    font-size:1.6rem;
+}
+.invite-controls{
+   display:flex;
+   align-items:center;
+   justify-content:space-around;
 
+}
+.accept-invite{
+    outline:none;
+    border-radius:50%;
+    padding:15px 15px;
+    border:none;
+    cursor:pointer;
+    background-color:violet;
+    margin-right:1rem;
+
+}
+.accept-invite:hover {
+    background-color: rgb(224, 104, 224);
+}
+.decline-invite {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(38,41,43);
+
+}
+.decline-invite:hover {
+    background-color: rgb(23,24,25);
+}
+.accept-invite-ico {
+    background: url('/Content/Images/request-accept-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+.decline-invite-ico {
+    background: url('/Content/Images/request-decline-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+.invite-emptymsg {
+    font-size:1.6rem;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    margin-top: 25rem;
+}
+/*team requests*/
+.request-item {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+
+    .request-item:hover {
+        background-color: rgb(46, 51, 55);
+    }
+
+.request-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.request-image {
+    width: 100px;
+}
+
+    .request-image img {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+.request-msg {
+    color: white;
+    font-size: 1.6rem;
+}
+
+.request-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.accept-request {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: violet;
+    margin-right: 1rem;
+}
+
+.accept-request:hover {
+    background-color: rgb(224, 104, 224);
+}
+
+.decline-request {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(38,41,43);
+}
+
+.decline-request:hover {
+    background-color: rgb(23,24,25);
+}
+
+.accept-request-ico {
+    background: url('/Content/Images/request-accept-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+.decline-request-ico {
+    background: url('/Content/Images/request-decline-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+.teamrequest-msg {
+    color: white;
+    font-size: 1.6rem;
+}
 /*custom scrollbar*/
 ::-webkit-scrollbar {
     width: 10px;
@@ -199,7 +455,7 @@ a{
 }
 
 /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background-color: rgb(24, 26, 27);
-        
-    }
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(24, 26, 27);
+    
+}

@@ -126,7 +126,7 @@ main{
 
 }
 .dropdown-option {
-    position:absolute;
+    display:block;
     border: none;
     background-color: rgb(30,32,34);
     color: white;
@@ -135,6 +135,127 @@ main{
 }
 .dropdown-option:hover{
     background-color:rgb(51,54,57);
+}
+/*Team Invites*/
+.invite-modal {
+    display:none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+}
+.invite-modal-content {
+    background-color: rgb(35,39,42);
+    margin: auto;
+    padding: 20px;
+    border:solid gray 1px;
+    width: 60%;
+    height:600px;
+}
+.invite-modal-content h1{
+    color:white;
+}
+.invite-modal-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.invite-modal-msgsuccess{
+    margin:0rem auto;
+    margin-top:1rem;
+    width:75%;
+    color:green;
+    font-size:1.6rem;
+}
+.invite-modal-msgerror {
+    margin: 0rem auto;
+    margin-top: 0.5rem;
+    width: 75%;
+    color: red;
+    font-size: 1.6rem;
+}
+
+.invite-modal-close:hover,
+.invite-modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.invite-modal-items {
+    width: 85%;
+    height: 85%;
+    margin: 2rem auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-shrink: 0;
+}
+.invite-modal-item {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+.invite-modal-item:hover {
+    background-color: rgb(46, 51, 55);
+}
+.inviteteam-data{
+    display:flex;
+    flex-direction:row;
+}
+.inviteteam-info{
+    color:white;
+    font-size:1.2rem;
+}
+.inviteteam-image{
+    width:100px;
+}
+.inviteteam-image img{
+    border-radius:50%;
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    object-position:center;
+}
+.inviteteam-name {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.6rem;
+}
+.inviteteam-description {
+    margin-top: 3px;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.2rem;
+}
+.inviteteam-button {
+    background-color: violet;
+    height: 50px;
+    width: 50px;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 5px;
+    border-radius: 5px;
+    cursor:pointer;
+}
+.inviteteam-button:hover {
+    background-color: rgb(224, 104, 224);
+}
+.teaminvite-msg{
+    width:75%;
+    margin:0 auto;
+    margin-top:3rem;
+    font-size:2rem;
+    color:white;
 }
 /*Pending friends tab*/
 .pendingfriends-msg {

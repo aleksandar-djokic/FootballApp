@@ -1,4 +1,5 @@
-﻿$('.friends-button').click(function (event) {
+﻿//Function for tabular view
+$('.friends-button').click(function (event) {
     $('.friends-content-item').hide();
     $('.friends-button').removeClass("active");
 
@@ -168,6 +169,7 @@ function CancelFriendRequest(element) {
 function OpenDropdown(element) {
     var id = element.value;
     $('#remove-friend').val(id);
+    $('#invite-friend').val(id);
     var x = element.getBoundingClientRect().left + 40;
     var y = element.getBoundingClientRect().top + 50;
     $('#dropdown').show();
@@ -177,10 +179,14 @@ function OpenDropdown(element) {
 //Dropdown hide
 $(document).mouseup(function (e) {
     var container = $("#dropdown");
+    var modal = $("#invite-modal");
 
     // if the target of the click isn't the container nor a descendant of the container
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         container.hide();
+    }
+    if (modal.is(e.target)) {
+        modal.hide();
     }
 });
 //Remove friend
@@ -203,4 +209,66 @@ function RemoveFriend(element) {
             }
         }
     })
+}
+//Invite modal open
+function OpenInviteModal(element) {
+    $('#invite-result-msgsuccess').html("");
+    $('#invite-result-msgerror').html("");
+    $('#dropdown').hide();
+    $('#invite-modal').show();
+}
+//Close
+function CloseModal() {
+    $('#invite-modal').hide();
+}
+//Populate
+$(document).ready(function () {
+    $.ajax({
+        method: "GET",
+        url: '/Team/GetTeams',
+        success: function (result) {
+            var modalitems = $('#invite-modal-items');
+            var dom = "";
+            if (result.length > 0) {
+                $.each(result, function (i, result) {
+                    var img = '';
+                    if (result.ImageSource != "") {
+                        img = '<img src="' + result.ImageSource + '"/>';
+                    }
+                    else {
+                        img = '<img src="/Content/Images/emptypfp.png" />';
+                    }
+                    dom += '<div class="invite-modal-item"><div class="inviteteam-data"><div class="inviteteam-image">' + img + '</div><div class="inviteteam-info"><p class="inviteteam-name">' + result.Name + '</p><p class="inviteteam-description>"' + result.Description + '</p></div></div><div class="inviteteam-button-wrap"><a class="inviteteam-button" onclick="Invite(this,' + result.Id + ')">Invite</a></div></div>'
+                })
+            }
+            else {
+                dom = '<p class="teaminvite-msg">You have no teams</p>';
+            }
+            modalitems.html(dom);
+        }
+
+    })
+});
+//Invite Friend to a team
+function Invite(element,teamid) {
+    var friendid = $("#invite-friend").val();
+    $('#invite-result-msgsuccess').html("");
+    $('#invite-result-msgerror').html("");
+    $.ajax({
+        method: "POST",
+        url: '/Team/Invite',
+        data: {
+            inviteeId: friendid,
+            teamId: teamid
+        },
+        success: function (result) {
+            if (result.value) {
+                $('#invite-result-msgsuccess').html("Invitation successfully sent.");
+            }
+            else {
+                $('#invite-result-msgerror').html(result.msg);
+            }
+        }
+
+    });
 }

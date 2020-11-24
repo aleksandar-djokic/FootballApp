@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+<div class="freeagent-wrap">
+
+    <h2>Free Agent Profile</h2>
+    <p> To create your own profile,please select Country and City bellow.</p>
+    <select id="country-select">
+        <option disabled selected>Select Country</option>
+        <option value="Serbia">Serbia</option>
+        <option value="Russia">Russia</option>
+        <option value="England">England</option>
+        <option value="Germany">Germany</option>
+    </select>
+    <select id="city-select" disabled>
+        <option disabled selected >Select City</option>
+    </select>
+    <p id="error-msg"></p>
+    <button class="create-button" id="create-button" disabled>Create</button>
+</div>
+
+@Styles.Render("~/Content/Css/FreeAgent/Create.css")
+@Scripts.Render("~/Scripts/FreeAgent/create.js")

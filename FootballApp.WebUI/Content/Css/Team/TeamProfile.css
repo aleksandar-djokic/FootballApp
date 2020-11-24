@@ -6,15 +6,19 @@
 main{
     padding:0px !important;
 
+
 }
 .profile-header {
-    height: 17%;
+    height: 160px;
     width: 100%;
     background-color: rgb(44, 48, 52);
     overflow:hidden;
 }
 .profile-content{
     height:83%;
+}
+.profile-content-item{
+    display:none;
 }
 .profile-data{
     height:80%;
@@ -46,7 +50,7 @@ main{
     object-position: center;
 }
 .profile-navigation {
-    height: 20%;
+    height: 32px;
     width: 100%;
     background-color: rgb(41,45,48);
     display:flex;
@@ -78,4 +82,373 @@ main{
 }
 .profilenav-button.active {
     background-color:rgb(61, 64, 68);
+}
+
+/*If user is not member*/
+.nonmember-wrap {
+    margin-left: 400px;
+    margin-top: 150px;
+    width: 50rem;
+    height: 50rem;
+    background-color: rgb(35,39,42);
+    border-radius: 20px;
+    padding-top:5rem;
+}
+.nonmember-img{
+    width:100px;
+    margin:0 auto;
+}
+.nonmember-img img {
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+}
+.nonmember-data{
+    padding-top:3rem;
+    width:100%;
+    text-align:center;
+}
+.nonmember-name{
+    font-size:2rem;
+    color:rgba(255,255,255,0.7);
+}
+.nonmember-description {
+    font-size: 1.8rem;
+    color: rgba(255,255,255,0.7);
+}
+.nonmember-msg {
+    text-align: center;
+    padding: 50px;
+    margin: 0 auto;
+    font-size: 1.6rem;
+    color: rgba(255,255,255,0.7);
+}
+.request-join{
+    width:100%;
+    margin:0 auto;
+}
+.request-button {
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    padding: 7px;
+    background-color: forestgreen;
+    outline: none;
+    border: none;
+    color: white;
+}
+.request-button:hover{
+    background-color:darkgreen;
+}
+.request-button:disabled {
+    cursor: default;
+    background-color: darkgreen;
+    color: rgba(255,255,255,0.7);
+}
+/*Members tab*/
+.member-list {
+    margin: 1.5rem auto;
+    border: none;
+    display: block;
+    width: 80%;
+    height: 90vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.member-item {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    height: 100px;
+    width: 70%;
+    background-color: rgb(52,55, 57);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.member-info {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.member-image {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.member-info p {
+    font-size: 1.7rem;
+    color: white;
+}
+
+.member-options {
+    width: 150px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.pending-members{
+    margin-left:17rem;
+    margin-top:1rem;
+    padding:5px;
+    background-color:forestgreen;
+    color:white;
+    cursor:pointer;
+    outline:none;
+    border:none;
+}
+.pending-members:hover{
+    background-color:darkgreen;
+}
+.freeagent-button {
+    margin-top: 1rem;
+    padding: 5px;
+    background-color: forestgreen;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+.freeagent-button:hover {
+    background-color: darkgreen;
+}
+/*Requests modal*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: rgb(35,39,42);
+    margin: auto;
+    padding: 20px;
+    border: solid gray 1px;
+    width: 60%;
+    height: 600px;
+}
+
+.modal-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*Requests*/
+.request-items {
+    height: 90%;
+    width: 90%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.request-item {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+
+.request-item:hover {
+    background-color: rgb(46, 51, 55);
+}
+
+.request-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.request-image {
+    width: 100px;
+}
+
+.request-image img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.request-msg {
+    color: white;
+    font-size: 1.6rem;
+}
+
+.request-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.accept-request {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: violet;
+    margin-right: 1rem;
+}
+
+.accept-request:hover {
+    background-color: rgb(224, 104, 224);
+}
+
+.decline-request {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(38,41,43);
+}
+
+.decline-request:hover {
+    background-color: rgb(23,24,25);
+}
+
+.accept-request-ico {
+    background: url('/Content/Images/request-accept-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+.decline-request-ico {
+    background: url('/Content/Images/request-decline-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+.teamrequest-msg {
+    color: white;
+    font-size: 1.6rem;
+}
+/*Free Agents*/
+.freeagent-items{
+    height:90%;
+    width:90%;
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+.freeagent-item {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+.freeagent-item:hover{
+    background-color: rgb(46, 51, 55);
+}
+.freeagent-data{
+    display:flex;
+    align-items:center;
+}
+.freeagent-image {
+    height: 80px;
+    width: 80px;
+    padding: 10px;
+}
+.freeagent-image img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+.freeagent-name{
+    font-size:1.4rem;
+    color:white;
+}
+.freeagent-location{
+    font-size:1.5rem;
+    color:white;
+}
+.freeagent-invite{
+    outline:none;
+    border:none;
+    background-color:forestgreen;
+    padding:5px;
+    color:white;
+}
+.freeagent-emptymsg{
+    text-align:center;
+    font-size:1.6rem;
+    color:white;
+    padding-top:25rem;
+}
+select {
+    background-color: rgb(35,39,42);
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 200px;
+    height: 40px;
+    margin-bottom: 1rem;
+}
+.freeagent-invite:hover {
+    background-color: darkgreen;
+}
+/*custom scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    margin-left: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(45,48, 50);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(28,30, 31);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(24, 26, 27);
 }

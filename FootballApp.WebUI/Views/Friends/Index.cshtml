@@ -53,6 +53,18 @@
         </div>
             <div class="dropdown-options" id="dropdown">
                 <button class="dropdown-option" id="remove-friend" onclick="RemoveFriend(this)">Remove</button>
+                <button class="dropdown-option" id="invite-friend" onclick="OpenInviteModal(this)">Invite</button>
+            </div>
+            <div class="invite-modal" id="invite-modal">
+                <div class="invite-modal-content" id="invite-modal-content">
+                    <span class="invite-modal-close" id="invite-modal-close" onclick="CloseModal()">&times;</span>
+                    <h1>Invite friends to a Team</h1>
+                    <p class="invite-modal-msgsuccess" id="invite-result-msgsuccess"></p>
+                    <p class="invite-modal-msgerror" id="invite-result-msgerror"></p>
+                    <div class="invite-modal-items" id="invite-modal-items">                       
+
+                    </div>
+                </div>
             </div>
     </div>
     <div class="friends-content-item" id="Pending">
