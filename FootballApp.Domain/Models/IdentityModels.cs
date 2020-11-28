@@ -43,10 +43,20 @@ namespace FootballApp.Domain.Models
         public DbSet<FriendshipRequest> FriendRequests { get; set; }
         public DbSet<TeamJoinRequests> TeamJoinRequests { get; set; }
         public DbSet<FreeAgentProfile> FreeAgents { get; set; }
+        public DbSet<Match> Matches { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            modelBuilder
+                .Entity<Team>()
+                .Property(t => t.Name)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnAnnotation(
+                    IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(
+                        new IndexAttribute("TeamName") { IsUnique=true}
+                        ));
             modelBuilder
                 .Entity<TeamRole>()
                 .Property(t => t.Name)

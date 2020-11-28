@@ -18,20 +18,20 @@
     text-align: left;
 }
 
-    .form-input input {
-        display: block;
-        height: 35px;
-        width: 400px;
-        border-radius: 3px;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-style: solid;
-        border-width: 1px;
-        border-color: black;
-        color: #B9BBBE;
-        padding: 10px;
-        margin-bottom: 2rem;
-        margin-top:0.5rem;
-    }
+.form-input input {
+    display: block;
+    height: 35px;
+    width: 400px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #B9BBBE;
+    padding: 10px;
+    margin-bottom: 2rem;
+    margin-top:0.5rem;
+}
 
 .button-field {
     margin-top: 10px;

@@ -118,7 +118,59 @@
         </div>
     </div>
     <div class="profile-content-item" id="Matches">
-        Matches
+        @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
+        {
+            <button class="pending-matches-button" id="pending-matches-button">Pending matches</button>
+            <button class="creatematch-button" id="creatematch-button">Create</button>
+            <div class="modal" id="modal-create-matches">
+                <div class="modal-content">
+                    <span class="modal-close" id="creatematches-modal-close">&times</span>
+                    <div class="create-match-inputs">
+                        <h1>Create match</h1>
+                        <div class="creatematch-errors" id="creatematch-errors">
+
+                        </div>
+                        <p class="error-msg" id="creatematch-error"></p>
+                        <input type="text" id="creatematch-TeamName" placeholder="Team Name" />
+                        <input type="text" id="creatematch-Adress" placeholder="Adress" />
+                        <input type="datetime-local" id="creatematch-DateTime" />
+                        <button id="create-match-button">Create</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal" id="modal-pending-matches">
+                <div class="modal-content">
+                    <span class="modal-close" id="pendingmatches-modal-close">&times</span>
+                    <div class="pending-matches" id="pending-matches">
+                        <div class="pending-match">
+                            <div class="pending-match-data">
+                                <div class="pending-match-image">
+                                    <img src="~/Content/Images/emptypfp.png"/>
+                                </div>
+                                <div class="pending-match-info">
+                                    <p class="pending-match-date">Date</p>
+                                    <p class="pending-match-location">Location</p>
+                                    <p class="pending-match-msg">Challanges you to a match.</p>
+                                </div>
+                                
+                            </div>
+                            <div class="pending-match-controls">
+                                <button class="accept-pending-match"><span class="accept-pending-match-ico"></span></button>
+                                <button class="decline-pending-match"><span class="decline-pending-match-ico"></span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            @Scripts.Render("~/Scripts/Matches/createMatch.js")
+            @Scripts.Render("~/Scripts/Matches/pendingMatches.js")
+        }
+        <div class="matches-list" id="matches-list">
+
+        </div>
     </div>
 
 </div>

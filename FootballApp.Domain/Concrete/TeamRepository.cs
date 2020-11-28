@@ -393,5 +393,19 @@ namespace FootballApp.Domain.Concrete
             var team = context.TeamJoinRequests.FirstOrDefault(x => x.RequestId == requestId).Team;
             return team;
         }
+
+        public bool isNameTaken(string Name)
+        {
+            var team = context.Teams.FirstOrDefault(x => x.Name.ToLower().Equals(Name.ToLower()));
+            if (team != null)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

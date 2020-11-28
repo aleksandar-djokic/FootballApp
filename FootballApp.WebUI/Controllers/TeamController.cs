@@ -49,6 +49,11 @@ namespace FootballApp.WebUI.Controllers
         public ActionResult Create(TeamViewModel team)
         {
             byte[] imageData = null;
+            if (teams.isNameTaken(team.TeamName))
+            {
+                ModelState.AddModelError("TeamName", "There is already team with that name.");
+
+            }
             if (ModelState.IsValid)
             {
                 if (team.Picture != null)
@@ -88,6 +93,8 @@ namespace FootballApp.WebUI.Controllers
         public ActionResult Edit(TeamViewModel team)
         {
             byte[] imageData = null;
+            
+            
             if (ModelState.IsValid)
             {
                 if (team.Picture != null)

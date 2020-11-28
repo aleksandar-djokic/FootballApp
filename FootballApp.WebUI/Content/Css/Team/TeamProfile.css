@@ -430,6 +430,177 @@ select {
 .freeagent-invite:hover {
     background-color: darkgreen;
 }
+/*Matches*/
+/*matches modal create*/
+.create-match-inputs{
+    padding:10rem;
+    text-align:center;
+    width:90%;
+    height:90%;
+    margin:0 auto;
+}
+.create-match-inputs input {
+    margin: 0 auto;
+    display: block;
+    height: 35px;
+    width: 400px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #B9BBBE;
+    padding: 10px;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+.create-match-inputs button {
+    display: block;
+    background-color: forestgreen;
+    color: white;
+    border: none;
+    outline: none;
+    margin: 1rem auto;
+    font-size: 1.5rem;
+    padding: 5px;
+    cursor: pointer;
+}
+.create-match-inputs button:disabled {
+    background-color: rgb(2, 58,2);
+    color: rgba(255,255,255,0.7);
+}
+
+.create-match-inputs button:disabled:hover {
+    background-color: rgb(2, 58,2);
+    color: rgba(255,255,255,0.7);
+}
+
+.create-match-inputs button:hover {
+    background-color: darkgreen;
+}
+.create-match-inputs h1{
+    color:white;
+}
+.creatematch-errors {
+    margin: 1rem;
+}
+.creatematch-error {
+    font-size: 1.4rem;
+    color: red;
+    margin-bottom: 5px;
+}
+.creatematch-success {
+    font-size: 1.4rem;
+    color: green;
+    margin-bottom: 5px;
+}
+/*Pending matches*/
+.pending-matches{
+    width: 85%;
+    height: 85%;
+    margin: 2rem auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-shrink: 0;
+}
+
+.pending-match {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+
+.pending-match:hover {
+    background-color: rgb(46, 51, 55);
+}
+
+.pending-match-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pending-match-image {
+    width: 100px;
+}
+
+.pending-match-image img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.pending-match-info {
+    color: white;
+    font-size: 1.6rem;
+}
+
+.pending-match-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.accept-pending-match {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: violet;
+    margin-right: 1rem;
+}
+
+.accept-pending-match:hover {
+    background-color: rgb(224, 104, 224);
+}
+
+.decline-pending-match {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(38,41,43);
+}
+
+.decline-pending-match:hover {
+    background-color: rgb(23,24,25);
+}
+
+.accept-pending-match-ico {
+    background: url('/Content/Images/request-accept-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+.decline-pending-match-ico {
+    background: url('/Content/Images/request-decline-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+.pending-match-date, .pending-match-location{
+    
+    font-size:1.2rem;
+    color:rgba(255,255,255,0.7)
+}
+.pending-match-msg {
+    font-size: 1.4rem;
+}
 /*custom scrollbar*/
 ::-webkit-scrollbar {
     width: 10px;
