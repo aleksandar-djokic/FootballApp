@@ -32,7 +32,7 @@ $('#pending-members').click(function () {
                 })
             }
             if (!result.length > 0 ) {
-                dom = '<p class="invite-emptymsg">Currently you have no pending members.</p>';
+                dom = '<p class="pending-members-empty">Currently you have no pending members.</p>';
             }
             $('#request-items').html(dom);
         }
@@ -57,7 +57,7 @@ function DeclineRequest(element) {
             var requests = $('#request-items').children('.request-item');
             var msg = "";
             if (!requests.length > 0) {
-                msg = '<p class="invite-emptymsg">Currently you have no invites.</p>'
+                msg = '<p class="pending-members-empty">Currently you have no pending members.</p>';
                 $('#request-items').append(msg);
             }
         }
@@ -89,7 +89,7 @@ function AcceptRequest(element) {
                 var requests = $('#request-items').children('.requestitem');
                 var msg = "";
                 if (!requests.length > 0) {
-                    msg = '<p class="invite-emptymsg">Currently you have no invites.</p>'
+                    msg = '<p class="pending-members-empty">Currently you have no pending members.</p>';
                     $('#request-items').append(msg);
                 }
                 

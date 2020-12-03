@@ -37,5 +37,8 @@ namespace FootballApp.Domain.Abstract
         bool IsRequestSent(string UserId, int teamId);
         Team GetTeamFromRequest(int requestId);
         bool isNameTaken(string Name);
+        bool LeaveTeamMember(string MemberId, int teamId);
+        bool TranseferOwnershipAndLeave(string OwnerId, int teamId, string MemberName,out string msg);
+        bool DisabandonTeam(int teamId);
     }
 }

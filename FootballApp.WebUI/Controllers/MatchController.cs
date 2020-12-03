@@ -17,6 +17,39 @@ namespace FootballApp.WebUI.Controllers
             this.matches = matchRepository;
 
         }
+
+        [HttpGet]
+        public JsonResult GetMatches(int teamId)
+        {
+            var listOfMatches= matches.getActiveMatches(teamId).ToList();
+            var result = new List<MatchViewModel>();
+            for (int i = 0; i < listOfMatches.Count; i++)
+            {
+                var current = listOfMatches[i];
+                var temp = new MatchViewModel() { Id = current.Id, Team1Name = current.Team1.Name, Team2Name = current.Team2.Name, Location = current.Adress, Time = current.DateTime.ToString() };
+                if (current.Team1.Picture != null)
+                {
+                    string imageBase64 = Convert.ToBase64String(current.Team1.Picture);
+                    temp.Team1Image = string.Format("data:image/png;base64,{0}", imageBase64);
+                }
+                else
+                {
+                    temp.Team1Image = "";
+                }
+                if (current.Team2.Picture != null)
+                {
+                    string imageBase64 = Convert.ToBase64String(current.Team2.Picture);
+                    temp.Team2Image = string.Format("data:image/png;base64,{0}", imageBase64);
+                }
+                else
+                {
+                    temp.Team2Image = "";
+                }
+                result.Add(temp);
+            }
+            return Json(result,JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult Create(int team1Id, string team2Name, string Adress, DateTime dateTime)
         {
@@ -62,6 +95,21 @@ namespace FootballApp.WebUI.Controllers
                 result.Add(temp);
             }
             return Json(result,JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Accept(int matchId)
+        {
+            var resultvalue = matches.Accept(matchId);
+            var resultmsg = resultvalue ? "success" : "Match date already passed.";
+            var result = new { resultvalue = resultvalue, resultmsg = resultmsg };
+
+            return Json(result);
+        }
+        [HttpPost]
+        public JsonResult Decline(int matchId)
+        {
+            var result = matches.Decline(matchId);
+            return Json(result);
         }
     }
 }

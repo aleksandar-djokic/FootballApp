@@ -407,5 +407,73 @@ namespace FootballApp.Domain.Concrete
                 return false;
             }
         }
+
+        public bool LeaveTeamMember(string MemberId, int teamId)
+        {
+            var result = false;
+            var member=context.TeamMembers.FirstOrDefault(x => x.TeamId == teamId && x.UserId == MemberId);
+            try
+            {
+                context.TeamMembers.Remove(member);
+                context.SaveChanges();
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+            return result;
+        }
+
+        public bool TranseferOwnershipAndLeave(string OwnerId, int teamId, string MemberName,out string msg)
+        {
+            msg = "";
+            var result = false;
+            var owner = context.TeamMembers.FirstOrDefault(x => x.UserId == OwnerId && x.TeamId==teamId);
+            var member = context.TeamMembers.FirstOrDefault(x => x.User.UserName.ToLower() == MemberName.ToLower() && x.TeamId == teamId);
+            if (MemberName == "")
+            {
+                msg = "Please enter a name.";
+                return false;
+            }
+            if (member != null)
+            {
+                member.RoleId = owner.RoleId;
+                context.TeamMembers.Remove(owner);
+                context.SaveChanges();
+                result = true;
+            }
+            else
+            {
+                msg = "No member with that name found.";
+                result = false;
+            }
+            return result;
+        }
+
+        public bool DisabandonTeam(int teamId)
+        {
+            var result = false;
+            var team = context.Teams.FirstOrDefault(x => x.Id == teamId);
+            var teamMatches = context.Matches.Where(x => x.Team1Id == teamId || x.Team2Id == teamId).ToList();
+            try
+            {
+                if (teamMatches.Count > 0)
+                {
+                    for (int i = teamMatches.Count-1; i >= 0; i--)
+                    {
+                        context.Matches.Remove(teamMatches[i]);
+                    }
+                }
+                context.Teams.Remove(team);
+                context.SaveChanges();
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+            return result;
+        }
     }
 }

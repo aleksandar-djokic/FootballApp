@@ -11,5 +11,8 @@ namespace FootballApp.Domain.Abstract
     {
         bool Create(int team1Id, string team2Name, DateTime dateTime, string Adress, out string resultmsg);
         IEnumerable<Match> getPendingMatches(int teamId);
+        IEnumerable<Match> getActiveMatches(int teamId);
+        bool Accept(int matchId);
+        bool Decline(int matchId);
     }
 }

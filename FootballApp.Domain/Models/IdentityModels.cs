@@ -87,6 +87,7 @@ namespace FootballApp.Domain.Models
                 .WithMany()
                 .HasForeignKey(f => f.User2Id)
                 .WillCascadeOnDelete(false);
+           
         }
 
 

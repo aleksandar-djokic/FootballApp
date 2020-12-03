@@ -6,22 +6,77 @@
 @if (ViewBag.isMember)
 {
 <div class="profile-header">
-    <div class="profile-data">
-        <div class="profile-image">
-            @if (@Model.ImageSource != "")
-            {
-                <img src="@Model.ImageSource" />
+    <div class="profile-data-wrap">
+        <div class="profile-data">
 
-            }
-            else
+            <div class="profile-image">
+                @if (@Model.ImageSource != "")
+                {
+                    <img src="@Model.ImageSource" />
+
+                }
+                else
+                {
+                    <img src="~/Content/Images/emptypfp.png" />
+                }
+            </div>
+            <div class="profile-info">
+                <p class="profile-name">@Model.Name</p>
+                <p class="profile-description">@Model.Description</p>
+            </div>
+        </div>
+        <div class="profile-controls">
+            @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
             {
-                <img src="~/Content/Images/emptypfp.png" />
+
+                <a href="/Team/Edit?teamId=@Model.Id" class="profile-edit">Edit</a>
             }
+          
+            
+                @if (ViewBag.UserRole == "Owner")
+                {
+                    <button class="team-leave" id="OwnerLeaveButton">Leave</button>
+                    <div class="modal" id="leave-modal">
+                        <div class="modal-content">
+                            <span class="modal-close" id="leave-modal-close">&times</span>
+                            <div class="leave-wrap">
+                                <p>Team cant exist without the owner. Do you want to disabandon team or transfer ownership?</p>
+                                <button id="disabandon-team" class="disabandon-team">Disabandon</button>
+                                <button id="transfer-team-ownership" class="transfer-team-ownership">Transfer ownership</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal" id="disabandon-modal">
+                        <div class="modal-content">
+                            <span class="modal-close" id="disabandon-modal-close">&times</span>
+                            <div class="disabandon-wrap">
+                                <p> Disbandoning team is permanent.Are you sure you want to disbandon team?.</p>
+                                <button id="disabandon-yes">Yes</button>
+                                <button id="disabandon-no">No</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal" id="transfer-ownership-modal">
+                        <div class="modal-content">
+                            <span class="modal-close" id="transfer-ownership-close">&times</span>
+                            <div class="transfer-ownership-wrap">
+                                <p>This step is permanent.Team needs a strong leader,so make a right choice.</p>
+                                <p>Enter the name of team member below.</p>
+                                <p class="ownership-transfer-error" id="ownership-transfer-error"></p>
+                                <input type="text" class="transfer-membername" id="transfer-membername" placeholder="Members name"/>
+                                <button class="transfer-confirm" id="transfer-confirm">Transfer & leave</button>
+                                <button id="transfer-cancel" class="transfer-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <button class="team-leave" id="MemberLeaveButton" value="@Model.Id">Leave</button>
+                }
+
         </div>
-        <div class="profile-info">
-            <p class="profile-name">@Model.Name</p>
-            <p class="profile-description">@Model.Description</p>
-        </div>
+
         @Html.HiddenFor(m=>Model.Id,new {id="team-id" })
     </div>
     <div class="profile-navigation">
@@ -142,24 +197,9 @@
             <div class="modal" id="modal-pending-matches">
                 <div class="modal-content">
                     <span class="modal-close" id="pendingmatches-modal-close">&times</span>
+                    <p class="pending-match-error">Error msg </p>
                     <div class="pending-matches" id="pending-matches">
-                        <div class="pending-match">
-                            <div class="pending-match-data">
-                                <div class="pending-match-image">
-                                    <img src="~/Content/Images/emptypfp.png"/>
-                                </div>
-                                <div class="pending-match-info">
-                                    <p class="pending-match-date">Date</p>
-                                    <p class="pending-match-location">Location</p>
-                                    <p class="pending-match-msg">Challanges you to a match.</p>
-                                </div>
-                                
-                            </div>
-                            <div class="pending-match-controls">
-                                <button class="accept-pending-match"><span class="accept-pending-match-ico"></span></button>
-                                <button class="decline-pending-match"><span class="decline-pending-match-ico"></span></button>
-                            </div>
-                        </div>
+                        
                     </div>
 
                 </div>
@@ -169,7 +209,7 @@
             @Scripts.Render("~/Scripts/Matches/pendingMatches.js")
         }
         <div class="matches-list" id="matches-list">
-
+            
         </div>
     </div>
 

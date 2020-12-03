@@ -200,6 +200,7 @@
     <Compile Include="Models\FriendRequestViewModel.cs" />
     <Compile Include="Models\FriendViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MatchViewModel.cs" />
     <Compile Include="Models\PendingMatchViewModel.cs" />
     <Compile Include="Models\TeamInviteViewModel.cs" />
     <Compile Include="Models\TeamMemberViewModel.cs" />

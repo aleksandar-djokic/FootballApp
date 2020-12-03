@@ -332,5 +332,28 @@ namespace FootballApp.WebUI.Controllers
             var result = teams.DeclineRequest(requestId);
             return Json(result);
         }
+        [HttpPost]
+        public JsonResult MemberLeaveTeam(int teamId)
+        {
+            var userId = User.Identity.GetUserId();
+            var result=teams.LeaveTeamMember(userId, teamId);
+            return Json(result);
+
+        }
+        [HttpPost]
+        public JsonResult TransferOwnershipAndLeave(int teamId,string memberName)
+        {
+            var msg = "";
+            var UserId = User.Identity.GetUserId();
+            var resultvalue = teams.TranseferOwnershipAndLeave(UserId,teamId,memberName,out msg);
+            var result = new { resultvalue = resultvalue, resultmsg = msg };
+            return Json(result);
+        }
+        [HttpPost]
+        public JsonResult DisabandonTeam(int teamId)
+        {
+            var result = teams.DisabandonTeam(teamId);
+            return Json(result);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿$("#pending-matches-button").click(function () {
+    $(".pending-match-error").html("");
     var teamId = $('#team-id').val();
     $.ajax({
         method: 'GET',
@@ -25,11 +26,11 @@
                     if (parseInt(teamId) == parseInt(result.TeamId)) {
 
                         msg = '<p class="pending-match-msg">Your team challenged ' + result.TeamName + ' to a match.</p>';
-                        controls = '<div class="pending-match-controls"><button class="decline-pending-match"><span class="decline-pending-match-ico"></span></button></div >';
+                        controls = '<div class="pending-match-controls"><button class="decline-pending-match" value="'+result.Id+'" onclick="Decline(this)"><span class="decline-pending-match-ico"></span></button></div >';
                     }
                     else {
                         msg = '<p class="pending-match-msg">' + result.TeamName + ' challenged your team to a match.</p>';
-                        controls = '<div class="pending-match-controls"><button class="accept-pending-match" > <span class="accept-pending-match-ico"></span></button><button class="decline-pending-match"><span class="decline-pending-match-ico"></span></button></div >';
+                        controls = '<div class="pending-match-controls"><button class="accept-pending-match" value="' + result.Id + '" onclick="Accept(this)"> <span class="accept-pending-match-ico"></span></button><button class="decline-pending-match"value="' + result.Id +'"onclick="Decline(this)"><span class="decline-pending-match-ico"></span></button></div >';
                     }
                     dom += '<div class="pending-match"><div class="pending-match-data">' + img + '<div class="pending-match-info">' + date + location + msg + '</div></div>'+controls+'</div>';
 
@@ -37,12 +38,62 @@
                 $('#pending-matches').html(dom);
             }
             else {
-
+                $('#pending-matches').html('<p class="pending-match-empty">There are no pending matches.<p>');
             }
         }
     })
     $("#modal-pending-matches").show();
 })
+function Decline(element) {
+    $(".pending-match-error").html("");
+
+    var matchId = element.value;
+    $.ajax({
+        method: "POST",
+        url: "/Match/Decline",
+        data:{
+            matchId:matchId
+        },
+        success: function (result) {
+            if (result == true) {
+                element.closest('.pending-match').remove();
+            }
+            var matches = $('#pending-matches').children('.pending-match');
+            var msg = "";
+            if (!matches.length > 0) {
+                msg = '<p class="pending-match-empty">There are no pending matches.<p>';
+                $('#pending-matches').append(msg);
+            }
+        }
+    })
+}
+function Accept(element) {
+    var matchId = element.value;
+    $(".pending-match-error").html("");
+    $.ajax({
+        method: "POST",
+        url: "/Match/Accept",
+        data: {
+            matchId: matchId
+        },
+        success: function (result) {
+            if (result.resultvalue) {
+                element.closest('.pending-match').remove();
+            }
+            else {
+                $(".pending-match-error").html(result.resultmsg);
+                element.closest('.pending-match').remove();
+
+            }
+            var matches = $('#pending-matches').children('.pending-match');
+            var msg = "";
+            if (!matches.length > 0) {
+                msg = '<p class="pending-match-empty">There are no pending matches.<p>';
+                $('#pending-matches').append(msg);
+            }
+        }
+    })
+}
 $("#pendingmatches-modal-close").click(function () {
     $("#modal-pending-matches").hide();
 })
