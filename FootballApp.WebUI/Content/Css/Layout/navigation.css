@@ -79,6 +79,14 @@ main {
     color: white;
     line-height: 6rem;
 }
+.nav-text a {
+    width: 22rem;
+    text-align: left;
+    font-size: 1.6rem;
+    color: white;
+    line-height: 6rem;
+    text-decoration:none;
+}
 
 .nav-brand {
     display: flex;

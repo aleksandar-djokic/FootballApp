@@ -220,6 +220,9 @@
     <Content Include="Content\Css\Friends\FriendsIndex.css" />
     <Content Include="Content\Css\Layout\navigation.css" />
     <Content Include="Content\Css\Login\login.css" />
+    <Content Include="Content\Css\Manage\ChangePassword.css" />
+    <Content Include="Content\Css\Manage\EditProfilePicture.css" />
+    <Content Include="Content\Css\Manage\ManageProfile.css" />
     <Content Include="Content\Css\Register\register.css" />
     <Content Include="Content\Css\Team\TeamCreate.css" />
     <Content Include="Content\Css\Team\TeamIndex.css" />
@@ -307,6 +310,7 @@
     <Content Include="Views\Friends\Index.cshtml" />
     <Content Include="Views\FreeAgent\Create.cshtml" />
     <Content Include="Views\FreeAgent\Edit.cshtml" />
+    <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

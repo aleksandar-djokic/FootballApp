@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using FootballApp.WebUI.CustomValidation;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -12,6 +14,18 @@ namespace FootballApp.WebUI.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string ImageSource { get; set; }
+    }
+
+    public class ChangeProfilePictureViewModel
+    {
+        public string Id { get; set; }
+        public string ImageDisplay { get; set; }
+        [ValidateImage(ErrorMessage = "Please select a PNG or JPEG image smaller than 4MB")]
+        [Display(Name = "ProfilePicture")]
+        public HttpPostedFileBase ProfilePicture { get; set; }
     }
 
     public class ManageLoginsViewModel

@@ -1,0 +1,78 @@
+﻿body {
+}
+
+* {
+    outline: none;
+}
+
+main {
+    padding: 0px !important;
+}
+.ChangeProfile-wrap {
+    width: 100%;
+    height: 100%;
+}
+.changeprofile {
+    width: 50rem;
+    height: 50rem;
+    background-color: rgb(35,39,42);
+    margin-left: 35rem;
+    border-radius: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    margin-top: 10rem;
+}
+.changeprofile-image {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+.changeprofile-image img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+}
+.changeprofile form{
+    margin:0 auto;
+    width:300px;
+    text-align:center;
+}
+.changeprofile input {
+    margin-top:2rem;
+    margin-bottom:2rem;
+    color:white;
+}
+#file-upload-button {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: gray;
+    color: white;
+}
+.changeprofile a{
+    position:relative;
+    bottom:-100px;
+    left:50px;
+    font-size:1.4rem;
+    text-decoration:none;
+    color:white;
+}
+.changeprofile p{
+    color:white;
+    font-size:1.5rem;
+}
+.submit-button{
+    background-color:violet;
+    border:none;
+    padding:5px;
+    height:40px;
+    width:80px;
+    cursor:pointer;
+
+}
+.submit-button:hover{
+    background-color: palevioletred;
+}

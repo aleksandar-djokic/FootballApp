@@ -18,10 +18,15 @@ $('#Members-button').click(function () {
             teamId:id
         },
         success: function (result) {
-            if (result.length > 0) {
+            if (result.list.length > 0) {
                 var dom = "";
-                $.each(result, function (i, result) {
-                   
+                var Id = result.userId;
+                isOwner = result.isUserOwner;
+                $.each(result.list, function (i, result) {
+                    var options = '';
+                    if (isOwner == true && result.Id != Id) {
+                        options = '<div class="member-item-controls"><button value="' + result.Id + '"class="member-item-options" onclick="OpenMemberOptionDropdown(this)"><span class="dot"></span><span class="dot"></span><span class="dot"></span></button></div>';
+                    }
                     var img = "";
                     if (result.ImageSource != "") {
                         img = '<img class="member-image" src="' + result.ImageSource + '"/>';
@@ -29,14 +34,101 @@ $('#Members-button').click(function () {
                     else {
                         img = '<img class="member-image" src="/Content/Images/emptypfp.png" />';
                     }
-                    dom += '<div class="member-item"><div class="member-info">' + img + '<p>' + result.Name + '</p></div></div>';
+                    dom += '<div class="member-item"><div class="member-info">' + img + '<p>' + result.Name + '</p></div>' + options + '</div>';
                 })
+            }
+            if (isOwner == true) {
+                dom+='<div class="member-dropdown" id="member-dropdown"></div>'
             }
 
             $('#member-list').html(dom);
         }
     })
 })
+
+/* Open member options dropdown*/
+function OpenMemberOptionDropdown(element) {
+    $('#member-dropdown').html("");
+    var id = element.value;
+    var teamid = $('#team-id').val();
+    $.ajax({
+        method: "Get",
+        url: "/Team/GetUserRole",
+        data: {
+            Id: id,
+            teamId: teamid
+        },
+        success: function (result) {
+            var controls = ""
+            if (result == "Admin") {
+                controls = '<button class="member-dropdown-item" value="' + id + '" onclick="PromoteToOwner(this)">Promote to Leader</button><button class="member-dropdown-item" value="' + id +'" onclick="DemoteToMember(this)">Demote to Member</button>'
+            }
+            else if (result == "Member") {
+                controls = '<button class="member-dropdown-item" value="' + id + '" onclick="PromoteToOwner(this)">Promote to Leader</button><button class="member-dropdown-item" value="' + id + '" onclick="PromoteToAdmin(this)">Promote to Administrator</button>'
+            }
+            $('#member-dropdown').html(controls);
+        }
+    })
+    var x = element.getBoundingClientRect().left + 35;
+    var y = element.getBoundingClientRect().top + 35;
+    $('#member-dropdown').show();
+    $('#member-dropdown').css({ top: y, left: x });
+}
+function PromoteToOwner(element) {
+    var id = element.value;
+    var teamid = $('#team-id').val();
+    $.ajax({
+        method: 'Post',
+        url: '/Team/PromoteUserToOwner',
+        data: {
+            userId: id,
+            TeamId: teamid
+        },
+        success: function (result) {
+            if (result) {
+                $('#Members-button').click();
+            }
+            $('#members-dropdown').hide();
+            location.reload();
+        }
+    })
+}
+function PromoteToAdmin(element) {
+    var id = element.value;
+    var teamid = $('#team-id').val();
+    $.ajax({
+        method: 'Post',
+        url: '/Team/PromoteUserToAdmin',
+        data: {
+            userId: id,
+            TeamId: teamid
+        },
+        success: function (result) {
+            if (result) {
+                $('#Members-button').click();
+            }
+            $('#members-dropdown').hide();
+        }
+    })
+}
+function DemoteToMember(element) {
+    var id = element.value;
+    var teamid = $('#team-id').val();
+    $.ajax({
+        method: 'Post',
+        url: '/Team/PromoteUserToMember',
+        data: {
+            userId: id,
+            TeamId: teamid
+        },
+        success: function (result) {
+            if (result) {
+                $('#Members-button').click();
+            }
+            $('#members-dropdown').hide();
+        }
+    })
+}
 $('#Matches-button').click(function () {
     /*$('#matches-list').html("");*/
     var id = $('#team-id').val();

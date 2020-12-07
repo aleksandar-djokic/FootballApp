@@ -17,7 +17,7 @@
                     var msg = "";
                     var controls = "";
                     if (result.ImageSource != "") {
-                        img = '<div class=""pending-match-image"><img src="' + result.ImageSource + '"/></div>';
+                        img = '<div class="pending-match-image"><img src="' + result.ImageSource + '"/></div>';
                     }
                     else {
                         
@@ -91,6 +91,7 @@ function Accept(element) {
                 msg = '<p class="pending-match-empty">There are no pending matches.<p>';
                 $('#pending-matches').append(msg);
             }
+            $('#Matches-button').click();
         }
     })
 }

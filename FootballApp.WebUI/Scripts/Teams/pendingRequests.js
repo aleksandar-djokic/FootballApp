@@ -77,14 +77,15 @@ function AcceptRequest(element) {
             var img = "";
             var member = result.member;
             if (result.value == true) {
-                if (member.ImageSource != "") {
-                    img = '<img class="member-image" src="' + member.ImageSource + '"/>';
-                }
-                else {
-                    img = '<img class="member-image" src="/Content/Images/emptypfp.png" />';
-                }
-                dom += '<div class="member-item"><div class="member-info">' + img + '<p>' + member.Name + '</p></div></div>';
-                $('#member-list').append(dom);
+                //if (member.ImageSource != "") {
+                //    img = '<img class="member-image" src="' + member.ImageSource + '"/>';
+                //}
+                //else {
+                //    img = '<img class="member-image" src="/Content/Images/emptypfp.png" />';
+                //}
+                //dom += '<div class="member-item"><div class="member-info">' + img + '<p>' + member.Name + '</p></div></div>';
+                //$('#member-list').append(dom);
+                $('#Members-button').click();
                 element.closest('.request-item').remove();
                 var requests = $('#request-items').children('.requestitem');
                 var msg = "";
@@ -103,8 +104,12 @@ $('#pending-modal-close').click(function () {
 })
 $(document).mouseup(function (e) {
     var modal = $("#modal-pending-requests");
+    var modal2 = $("#member-dropdown");
 
     if (modal.is(e.target)) {
         modal.hide();
+    }
+    if (!modal2.is(e.target) && modal2.has(e.target).length === 0) {
+        modal2.hide();
     }
 });

@@ -106,7 +106,7 @@ namespace FootballApp.WebUI.Controllers
                         team.Picture.InputStream.Position = 0;
                         imageData = br.ReadBytes(team.Picture.ContentLength);
                     }
-
+                    
 
 
                 }
@@ -265,8 +265,10 @@ namespace FootballApp.WebUI.Controllers
         [HttpGet]
         public JsonResult GetTeamMembers(int teamId)
         {
+            var userId = User.Identity.GetUserId();
             var members = teams.GetTeamMembers(teamId);
-            List<TeamMemberViewModel> result = new List<TeamMemberViewModel>();
+            var isUserOwner = teams.IsUserOwner(userId,teamId);
+            List<TeamMemberViewModel> list = new List<TeamMemberViewModel>();
             foreach (var m in members)
             {
                 string imagesource = "";
@@ -276,8 +278,15 @@ namespace FootballApp.WebUI.Controllers
                     imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
 
                 }
-                result.Add(new TeamMemberViewModel { Id = m.Id, Name = m.UserName, ImageSource = imagesource });
+                list.Add(new TeamMemberViewModel { Id = m.Id, Name = m.UserName, ImageSource = imagesource });
             }
+            var result = new { list = list ,isUserOwner=isUserOwner,userId=userId };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public JsonResult GetUserRole(string Id,int teamId)
+        {
+            var result = teams.GetMemberRole(Id, teamId);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
@@ -288,10 +297,23 @@ namespace FootballApp.WebUI.Controllers
             foreach (var r in requests)
             {
                 string imagesource = "";
-                if (r.Team.Picture != null)
+                if (r.RequestInitiator == "Team")
                 {
-                    string imageBase64 = Convert.ToBase64String(r.Team.Picture);
-                    imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+
+                    if (r.Team.Picture != null)
+                    {
+                        string imageBase64 = Convert.ToBase64String(r.Team.Picture);
+                        imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+                    }
+                }
+                else
+                {
+                    if (r.User.ProfilePicture != null)
+                    {
+                        string imageBase64 = Convert.ToBase64String(r.User.ProfilePicture);
+                        imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+                    }
+
                 }
                 result.Add(new TeamRequestViewModel { RequestId = r.RequestId, ImageSource = imagesource, TeamName = r.Team.Name,Username=r.User.UserName, Requestor = r.RequestInitiator });
             }
@@ -353,6 +375,25 @@ namespace FootballApp.WebUI.Controllers
         public JsonResult DisabandonTeam(int teamId)
         {
             var result = teams.DisabandonTeam(teamId);
+            return Json(result);
+        }
+        [HttpPost]
+        public JsonResult PromoteUserToAdmin(string userId, int TeamId)
+        {
+            var result = teams.PromoteUserToAdmin(userId,TeamId);
+            return Json(result);
+        }
+        [HttpPost]
+        public JsonResult PromoteUserToOwner(string userId, int TeamId)
+        {
+            var result = teams.PromoteUserToOwner(userId, TeamId);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult PromoteUserToMember(string userId, int TeamId)
+        {
+            var result = teams.DemoteUserToMember(userId, TeamId);
             return Json(result);
         }
     }
