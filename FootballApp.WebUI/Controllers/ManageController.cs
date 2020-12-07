@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FootballApp.WebUI.Models;
+using FootballApp.Domain.Abstract;
+using System.IO;
 
 namespace FootballApp.WebUI.Controllers
 {
@@ -15,15 +17,18 @@ namespace FootballApp.WebUI.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        public IUserRepository users;
 
-        public ManageController()
+        public ManageController(IUserRepository userRepository)
         {
+            this.users = userRepository;
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserRepository userRepository)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this.users = userRepository;
         }
 
         public ApplicationSignInManager SignInManager
@@ -64,17 +69,70 @@ namespace FootballApp.WebUI.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var user = users.GetUser(userId);
+            var imagesource = "";
+            if (user.ProfilePicture != null)
+            {
+                string imageBase64 = Convert.ToBase64String(user.ProfilePicture);
+                imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+            }
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                UserName = user.UserName,
+                Email = user.Email,
+                ImageSource = imagesource
             };
             return View(model);
         }
+        [HttpGet]
+        public ActionResult ChangeProfilePicture(){
+            var userId = User.Identity.GetUserId();
+            var user = users.GetUser(userId);
+            var imagesource = "";
+            if (user.ProfilePicture != null)
+            {
+                string imageBase64 = Convert.ToBase64String(user.ProfilePicture);
+                imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+            }
+            var model = new ChangeProfilePictureViewModel
+            {
+                Id = user.Id,
+                ImageDisplay = imagesource
 
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult ChangeProfilePicture(ChangeProfilePictureViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.ProfilePicture != null)
+                {
+                    byte[] imageData = null;
+
+                    using (BinaryReader br = new BinaryReader(model.ProfilePicture.InputStream))
+                    {
+                        model.ProfilePicture.InputStream.Position = 0;
+                        imageData = br.ReadBytes(model.ProfilePicture.ContentLength);
+                    }
+                    users.Edit(model.Id,imageData);
+                    var imagesource = "";
+                    string imageBase64 = Convert.ToBase64String(imageData);
+                    
+                    imagesource = string.Format("data:image/png;base64,{0}", imageBase64);
+                    model.ImageDisplay = imagesource;
+                }
+                return View(model);
+            }
+            return View();
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

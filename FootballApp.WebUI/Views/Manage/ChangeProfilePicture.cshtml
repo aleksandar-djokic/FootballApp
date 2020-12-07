@@ -1,0 +1,52 @@
+﻿@model FootballApp.WebUI.Models.ChangeProfilePictureViewModel
+
+@{
+    ViewBag.Title = "ChangeProfilePicture";
+}
+
+<div class="ChangeProfile-wrap">
+    <div class="changeprofile">
+
+        <div class="changeprofile-image">
+
+            @if (Model.ImageDisplay != "")
+            {
+                <img src="@Model.ImageDisplay" />
+            }
+            else
+            {
+                <img src="~/Content/Images/emptypfp.png" />
+            }
+        </div>
+
+        @using (Html.BeginForm("ChangeProfilePicture", "Manage", FormMethod.Post, new
+        {
+            @class = "form-horizontal",
+            role = "form",
+            enctype = "multipart/form-data"
+        }))
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <p>Choose your new profile picture.</p>
+        <input type="file" accept="image/*" name="ProfilePicture" id="ProfilePicture" />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+                <input type="submit" value="Save" class="submit-button"  />
+            </div>
+        </div>
+    </div>
+        }
+
+        <div>
+            @Html.ActionLink("< Back to Profile", "Index")
+        </div>
+    </div>
+</div>
+@Styles.Render("/Content/Css/Manage/EditProfilePicture.css")

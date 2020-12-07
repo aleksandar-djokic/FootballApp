@@ -10,6 +10,7 @@ namespace FootballApp.Domain.Abstract
     public interface IUserRepository
     {
         ApplicationUser GetUser(string Id);
+        void Edit(string Id, byte[] Image);
 
     }
 }

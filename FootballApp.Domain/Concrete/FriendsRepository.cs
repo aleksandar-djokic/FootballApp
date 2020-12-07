@@ -50,6 +50,12 @@ namespace FootballApp.Domain.Concrete
                     return result;
                    
                 }
+                else if (user2.Id == user1.Id)
+                {
+                    resultmsg = "You cant add yourself as friend.";
+                    return result;
+
+                }
                 var friendship = context.Friendships.Where(x => (x.User1Id == user1.Id && x.User2Id == user2.Id) || (x.User1Id == user2.Id && x.User2Id == user1.Id)).FirstOrDefault();
                 var friendrequest = context.FriendRequests.Where(x => (x.RequesterId == user1.Id && x.AddresseeId == user2.Id) || (x.RequesterId == user2.Id && x.AddresseeId == user1.Id)).FirstOrDefault();
                 if (friendship != null)

@@ -20,14 +20,21 @@ main{
 .profile-content-item{
     display:none;
 }
-.profile-data{
+.profile-data-wrap{
     height:80%;
-    width:100%;
+    width:1300px;
     display:flex;
     flex-flow:row;
     align-items:center;
+    justify-content:space-between;
     padding-left:3rem;
+    padding-right:3rem;
 
+}
+.profile-data{
+    display:flex;
+    flex-flow:row;
+    align-items:center;
 }
 .profile-info{
     margin-left:2rem;
@@ -49,14 +56,159 @@ main{
     object-fit: cover;
     object-position: center;
 }
+.profile-edit{
+    text-align:center;
+    display:block;
+    width:100px;
+    font-size:1.3rem;
+    background-color:forestgreen;
+    color:white;
+    padding:5px;
+    outline:none;
+    border-style:none;
+    cursor:pointer;
+    text-decoration:none;
+    margin-bottom:5px;
+}
+.profile-edit:hover {
+    background-color: darkgreen;
+}
+.team-leave{
+    width:100px;
+    font-size:1.3rem;
+    padding:5px;
+    background-color:red;
+    color:white;
+    outline:none;
+    border:none;
+    cursor:pointer;
+}
+.team-leave:hover{
+    background-color:darkred;
+}
+.leave-wrap{
+    width:100%;
+    padding-top:20rem;
+    text-align:center;
+    color:white;
+}
+.leave-wrap p{
+    font-size:1.6rem;
+    margin-bottom:5rem;
+}
+.disabandon-team {
+    color: white;
+    background-color: red;
+    padding: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.disabandon-team:hover {
+    background-color: darkred;
+}
+.transfer-team-ownership {
+    color: white;
+    background-color: forestgreen;
+    padding: 5px;
+    border: none;
+    outline: none;
+    cursor:pointer;
+}
+.transfer-team-ownership:hover{
+    background-color:darkgreen;
+}
+.ownership-transfer-error{
+    color:red;
+    font-size:1.4rem;
+}
+.disabandon-wrap {
+    width: 100%;
+    padding-top: 20rem;
+    text-align: center;
+    color: white;
+}
+.disabandon-wrap p {
+    font-size: 1.6rem;
+    margin-bottom: 5rem;
+}
+#disabandon-yes {
+    color: white;
+    background-color: red;
+    padding: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+#disabandon-yes:hover {
+    background-color: darkred;
+}
+#disabandon-no {
+    color: white;
+    background-color: forestgreen;
+    padding: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+#disabandon-no:hover {
+    background-color: darkgreen;
+}
+.transfer-ownership-wrap {
+    width: 100%;
+    padding-top: 15rem;
+    text-align: center;
+    color: white;
+}
+.transfer-ownership-wrap p {
+    font-size: 1.6rem;
+    margin-bottom:5px;
+}
+.transfer-membername {
+    margin: 0 auto;
+    display: block;
+    height: 35px;
+    width: 400px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #B9BBBE;
+    padding: 10px;
+    margin-bottom:3rem;
+    margin-top: 3rem;
+}
+.transfer-confirm {
+    color: white;
+    background-color: red;
+    padding: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.transfer-confirm:hover{
+    background-color:darkred;
+}
+.transfer-cancel {
+    color: white;
+    background-color: forestgreen;
+    padding: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.transfer-cancel:hover {
+    background-color: darkgreen;
+}
 .profile-navigation {
     height: 32px;
     width: 100%;
     background-color: rgb(41,45,48);
-    display:flex;
-    flex-flow:row;
-    justify-content:start;
-    align-items:center;
+    display: flex;
+    flex-flow: row;
+    justify-content: start;
+    align-items: center;
 }
 .profile-nav-item{
     color:white;
@@ -162,6 +314,7 @@ main{
     display: flex;
     flex-flow: row;
     justify-content: space-between;
+    align-items:center;
     height: 100px;
     width: 70%;
     background-color: rgb(52,55, 57);
@@ -190,7 +343,30 @@ main{
     font-size: 1.7rem;
     color: white;
 }
-
+.member-item-controls{
+    margin-right:2rem;
+}
+.member-item-options {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: rgb(38,41,43);
+    border: none;
+    display:flex;
+    flex-flow:row;
+    align-items:center;
+    justify-content:space-evenly;
+    cursor:pointer;
+}
+.member-item-options:hover {
+    background-color:rgb(23,24,25);
+}
+.dot{
+    background-color:white;
+    height:5px;
+    width:5px;
+    border-radius:50%;
+}
 .member-options {
     width: 150px;
     display: flex;
@@ -198,6 +374,25 @@ main{
     justify-content: space-around;
     align-items: center;
 }
+.member-dropdown {
+    display: none;
+    position: absolute;
+    width: 200px;
+
+}
+.member-dropdown-item {
+    display: block;
+    border: none;
+    background-color: rgb(30,32,34);
+    color: white;
+    width: 100%;
+    height: 40px;
+    
+}
+.member-dropdown-item:hover {
+    background-color: rgb(51,54,57);
+}
+/*Pending*/
 .pending-members{
     margin-left:17rem;
     margin-top:1rem;
@@ -260,6 +455,13 @@ main{
     cursor: pointer;
 }
 /*Requests*/
+.pending-members-empty {
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    margin-top: 25rem;
+}
 .request-items {
     height: 90%;
     width: 90%;
@@ -429,6 +631,263 @@ select {
 }
 .freeagent-invite:hover {
     background-color: darkgreen;
+}
+/*Matches*/
+.matches-list {
+    margin: 1.5rem auto;
+    border: none;
+    display: block;
+    width: 80%;
+    height: 90vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.match-item {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items:center;
+    height: 100px;
+    width: 70%;
+    background-color: rgb(52,55, 57);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.match-team1{
+    margin-left:1rem;
+    display:flex;
+    align-items:center;
+}
+.match-team2 {
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+}
+.match-team-image {
+    margin-left:1rem;
+    margin-right:1rem;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    object-position: center;
+}
+.match-team-name{
+    color:white;
+    font-size:1.5rem;
+}
+.match-info{
+    text-align:center;
+    color:white;
+    font-size:1.4rem;
+}
+/*matches modal create*/
+.create-match-inputs{
+    padding:10rem;
+    text-align:center;
+    width:90%;
+    height:90%;
+    margin:0 auto;
+}
+.create-match-inputs input {
+    margin: 0 auto;
+    display: block;
+    height: 35px;
+    width: 400px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #B9BBBE;
+    padding: 10px;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+.create-match-inputs button {
+    display: block;
+    background-color: forestgreen;
+    color: white;
+    border: none;
+    outline: none;
+    margin: 1rem auto;
+    font-size: 1.5rem;
+    padding: 5px;
+    cursor: pointer;
+}
+.create-match-inputs button:disabled {
+    background-color: rgb(2, 58,2);
+    color: rgba(255,255,255,0.7);
+}
+
+.create-match-inputs button:disabled:hover {
+    background-color: rgb(2, 58,2);
+    color: rgba(255,255,255,0.7);
+}
+
+.create-match-inputs button:hover {
+    background-color: darkgreen;
+}
+.create-match-inputs h1{
+    color:white;
+}
+.creatematch-errors {
+    margin: 1rem;
+}
+.creatematch-error {
+    font-size: 1.4rem;
+    color: red;
+    margin-bottom: 5px;
+}
+.creatematch-success {
+    font-size: 1.4rem;
+    color: green;
+    margin-bottom: 5px;
+}
+.creatematch-button {
+    margin-top: 1rem;
+    padding: 5px;
+    background-color: forestgreen;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+.creatematch-button:hover{
+    background-color:darkgreen;
+}
+/*Pending matches*/
+.pending-matches-button {
+    margin-left: 17rem;
+    margin-top: 1rem;
+    padding: 5px;
+    background-color: forestgreen;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+.pending-matches-button:hover{
+    background-color: darkgreen;
+}
+.pending-matches{
+    width: 85%;
+    height: 85%;
+    margin: 2rem auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-shrink: 0;
+}
+
+.pending-match {
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 2rem 0 2rem;
+    justify-content: space-between;
+    border-top: solid gray 1px;
+    align-items: center;
+}
+
+.pending-match:hover {
+    background-color: rgb(46, 51, 55);
+}
+
+.pending-match-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pending-match-image {
+    width: 100px;
+}
+
+.pending-match-image img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.pending-match-info {
+    color: white;
+    font-size: 1.6rem;
+}
+
+.pending-match-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.accept-pending-match {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: violet;
+    margin-right: 1rem;
+}
+
+.accept-pending-match:hover {
+    background-color: rgb(224, 104, 224);
+}
+
+.decline-pending-match {
+    outline: none;
+    border-radius: 50%;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(38,41,43);
+}
+
+.decline-pending-match:hover {
+    background-color: rgb(23,24,25);
+}
+
+.accept-pending-match-ico {
+    background: url('/Content/Images/request-accept-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+.decline-pending-match-ico {
+    background: url('/Content/Images/request-decline-ico.png');
+    background-size: 15px 15px;
+    float: left;
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+.pending-match-date, .pending-match-location{
+    
+    font-size:1.2rem;
+    color:rgba(255,255,255,0.7)
+}
+.pending-match-msg {
+    font-size: 1.4rem;
+}
+.pending-match-error {
+    color: red;
+    font-size: 1.4rem;
+    margin-left: 120px;
+}
+.pending-match-empty {
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    margin-top: 25rem;
 }
 /*custom scrollbar*/
 ::-webkit-scrollbar {

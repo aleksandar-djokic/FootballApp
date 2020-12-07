@@ -188,6 +188,7 @@
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MatchController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="CustomValidation\ValidateImage.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,6 +200,8 @@
     <Compile Include="Models\FriendRequestViewModel.cs" />
     <Compile Include="Models\FriendViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MatchViewModel.cs" />
+    <Compile Include="Models\PendingMatchViewModel.cs" />
     <Compile Include="Models\TeamInviteViewModel.cs" />
     <Compile Include="Models\TeamMemberViewModel.cs" />
     <Compile Include="Models\TeamRequestViewModel.cs" />
@@ -217,6 +220,9 @@
     <Content Include="Content\Css\Friends\FriendsIndex.css" />
     <Content Include="Content\Css\Layout\navigation.css" />
     <Content Include="Content\Css\Login\login.css" />
+    <Content Include="Content\Css\Manage\ChangePassword.css" />
+    <Content Include="Content\Css\Manage\EditProfilePicture.css" />
+    <Content Include="Content\Css\Manage\ManageProfile.css" />
     <Content Include="Content\Css\Register\register.css" />
     <Content Include="Content\Css\Team\TeamCreate.css" />
     <Content Include="Content\Css\Team\TeamIndex.css" />
@@ -254,6 +260,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Matches\createMatch.js" />
+    <Content Include="Scripts\Matches\pendingMatches.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Teams\FreeAgents.js" />
     <Content Include="Scripts\Teams\pendingRequests.js" />
@@ -302,9 +310,11 @@
     <Content Include="Views\Friends\Index.cshtml" />
     <Content Include="Views\FreeAgent\Create.cshtml" />
     <Content Include="Views\FreeAgent\Edit.cshtml" />
+    <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Match\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -59,6 +59,7 @@ namespace FootballApp.Domain.Concrete
             context.Teams.Add(team);
             context.SaveChanges();
             AddRole("Owner", team.Id, true);
+            AddRole("Admin", team.Id, true);
             AddRole("Member", team.Id, false);
             AddMember(user, team.Id, GetOwnerRoleId(team.Id));
         }
@@ -392,6 +393,166 @@ namespace FootballApp.Domain.Concrete
         {
             var team = context.TeamJoinRequests.FirstOrDefault(x => x.RequestId == requestId).Team;
             return team;
+        }
+
+        public bool isNameTaken(string Name)
+        {
+            var team = context.Teams.FirstOrDefault(x => x.Name.ToLower().Equals(Name.ToLower()));
+            if (team != null)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool LeaveTeamMember(string MemberId, int teamId)
+        {
+            var result = false;
+            var member=context.TeamMembers.FirstOrDefault(x => x.TeamId == teamId && x.UserId == MemberId);
+            try
+            {
+                context.TeamMembers.Remove(member);
+                context.SaveChanges();
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+            return result;
+        }
+
+        public bool TranseferOwnershipAndLeave(string OwnerId, int teamId, string MemberName,out string msg)
+        {
+            msg = "";
+            var result = false;
+            var owner = context.TeamMembers.FirstOrDefault(x => x.UserId == OwnerId && x.TeamId==teamId);
+            var member = context.TeamMembers.FirstOrDefault(x => x.User.UserName.ToLower() == MemberName.ToLower() && x.TeamId == teamId);
+            if (MemberName == "")
+            {
+                msg = "Please enter a name.";
+                return false;
+            }
+            if (member != null)
+            {
+                member.RoleId = owner.RoleId;
+                context.TeamMembers.Remove(owner);
+                context.SaveChanges();
+                result = true;
+            }
+            else
+            {
+                msg = "No member with that name found.";
+                result = false;
+            }
+            return result;
+        }
+
+        public bool DisabandonTeam(int teamId)
+        {
+            var result = false;
+            var team = context.Teams.FirstOrDefault(x => x.Id == teamId);
+            var teamMatches = context.Matches.Where(x => x.Team1Id == teamId || x.Team2Id == teamId).ToList();
+            try
+            {
+                if (teamMatches.Count > 0)
+                {
+                    for (int i = teamMatches.Count-1; i >= 0; i--)
+                    {
+                        context.Matches.Remove(teamMatches[i]);
+                    }
+                }
+                context.Teams.Remove(team);
+                context.SaveChanges();
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+            return result;
+        }
+
+        public bool IsUserOwner(string UserId, int TeamId)
+        {
+            var result = false;
+            var userTeamRole = context.TeamMembers.FirstOrDefault(x => x.UserId == UserId && x.TeamId == TeamId).TeamRole;
+            if (userTeamRole.Name == "Owner")
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        public string GetMemberRole(string userId, int teamId)
+        {
+            var role = context.TeamMembers.FirstOrDefault(x => x.UserId == userId && x.TeamId == teamId).TeamRole;
+            return role.Name;
+        }
+
+        public bool PromoteUserToAdmin(string userId, int TeamId)
+        {
+            var result = false;
+            var adminRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId && x.Name == "Admin");
+            var member = context.TeamMembers.FirstOrDefault(x => x.UserId == userId && x.TeamId == TeamId);
+            try
+            {
+                member.RoleId = adminRole.Id;
+                context.SaveChanges();
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public bool PromoteUserToOwner(string userId, int TeamId)
+        {
+            var result = false;
+            var member = context.TeamMembers.FirstOrDefault(x => x.UserId == userId && x.TeamId == TeamId);
+            var ownerRoleId = GetOwnerRoleId(TeamId);
+            var owner = context.TeamMembers.FirstOrDefault(x => x.TeamId == TeamId && x.RoleId == ownerRoleId);
+            var adminRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId && x.Name == "Admin");
+            try
+            {
+                member.RoleId = ownerRoleId;
+                owner.RoleId = adminRole.Id;
+                context.SaveChanges();
+                result = true;
+
+
+            }
+            catch
+            {
+                result = false;
+            }
+            return result;
+        }
+
+        public bool DemoteUserToMember(string userId, int TeamId)
+        {
+            var result = false;
+            var memberRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId && x.Name == "Member");
+            var member = context.TeamMembers.FirstOrDefault(x => x.UserId == userId && x.TeamId == TeamId);
+            try
+            {
+                member.RoleId = memberRole.Id;
+                context.SaveChanges();
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+
+            return result;
         }
     }
 }

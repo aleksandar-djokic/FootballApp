@@ -13,9 +13,10 @@ namespace FootballApp.Domain.Abstract
         void Create(string Name,string Description,byte[] Image,string user);
         void Edit(int TeamId,string Name, string Description, byte[] Image);
         void AddMember(string UserId, int TeamId,int RoleId);
-
+        bool IsUserOwner(string UserId, int TeamId);
         void AddRole(string Name, int TeamId, bool admin = false);
         string UserInRole(string userId,int teamId);
+        string GetMemberRole(string userId, int teamId);
         int GetOwnerRoleId(int TeamId);
         int GetRoleId(string roleName, int teamId);
         IEnumerable<Team> GetTeamsByMember(string UserId);
@@ -36,5 +37,12 @@ namespace FootballApp.Domain.Abstract
         bool IsUserAMember(string UserId, int teamId);
         bool IsRequestSent(string UserId, int teamId);
         Team GetTeamFromRequest(int requestId);
+        bool isNameTaken(string Name);
+        bool LeaveTeamMember(string MemberId, int teamId);
+        bool TranseferOwnershipAndLeave(string OwnerId, int teamId, string MemberName,out string msg);
+        bool DisabandonTeam(int teamId);
+        bool PromoteUserToAdmin(string userId, int TeamId);
+        bool PromoteUserToOwner(string userId, int TeamId);
+        bool DemoteUserToMember(string userId, int TeamId);
     }
 }
