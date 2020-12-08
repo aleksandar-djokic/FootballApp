@@ -8,6 +8,7 @@ namespace FootballApp.WebUI
     {
         public void Configuration(IAppBuilder app)
         {
+            app.MapSignalR();
             ConfigureAuth(app);
         }
     }

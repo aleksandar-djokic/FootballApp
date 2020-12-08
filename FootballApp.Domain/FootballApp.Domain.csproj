@@ -78,11 +78,13 @@
     <Compile Include="Abstract\IFreeAgentRepository.cs" />
     <Compile Include="Abstract\IFriendsRepository.cs" />
     <Compile Include="Abstract\IMatchRepository.cs" />
+    <Compile Include="Abstract\ITeamChatRepository.cs" />
     <Compile Include="Abstract\ITeamRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\FreeAgentRepository.cs" />
     <Compile Include="Concrete\FriendsRepository.cs" />
     <Compile Include="Concrete\MatchRepository.cs" />
+    <Compile Include="Concrete\TeamChatRepository.cs" />
     <Compile Include="Concrete\TeamRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Migrations\202009180948434_InitialCreate.cs" />

@@ -21,6 +21,7 @@ namespace FootballApp.WebUI
 
             //RegisterDependency
             builder.RegisterType<TeamRepository>().As<ITeamRepository>();
+            builder.RegisterType<TeamChatRepository>().As<ITeamChatRepository>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<FriendsRepository>().As<IFriendsRepository>();
             builder.RegisterType<FreeAgentRepository>().As<IFreeAgentRepository>();
