@@ -211,6 +211,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MatchViewModel.cs" />
     <Compile Include="Models\PendingMatchViewModel.cs" />
+    <Compile Include="Models\TeamChatMessageViewModel.cs" />
     <Compile Include="Models\TeamInviteViewModel.cs" />
     <Compile Include="Models\TeamMemberViewModel.cs" />
     <Compile Include="Models\TeamRequestViewModel.cs" />

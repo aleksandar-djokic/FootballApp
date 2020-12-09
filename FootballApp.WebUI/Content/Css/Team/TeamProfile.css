@@ -908,8 +908,11 @@ select {
     flex-flow:row;
     justify-content:start;
     align-items:center;
-    padding-left:1.5rem;
-    margin-bottom:20px;
+    padding:5px 5px 5px 1.5rem;
+    margin-bottom:10px;
+}
+.chat-msg:hover {
+    background-color: rgb(52, 56 ,60) !important;
 }
 .chat-img{
     width:50px;
@@ -926,6 +929,14 @@ select {
     padding-left:1.5rem;
     color:white;
     font-size:1.4rem;
+}
+.chat-name{
+    font-weight:bold;
+}
+.chat-time{
+    font-size:1.3rem;
+    color:rgba(255,255,255,0.8);
+    font-weight:normal;
 }
 .chat-controlls{
     height:50px;
@@ -954,9 +965,23 @@ select {
     outline:none;
     color:white;
     border-style:none;
+    cursor:pointer;
 }
 .chat-send:hover {
     background-color:rgb(224, 104, 224);
+}
+.loadmsg-button {
+    display:block;
+    padding:5px;
+    margin:5px auto;
+    background-color: violet;
+    outline: none;
+    color: white;
+    border-style: none;
+    cursor:pointer;
+}
+.loadmsg-button:hover {
+    background-color: rgb(224, 104, 224);
 }
 /*custom scrollbar*/
 ::-webkit-scrollbar {

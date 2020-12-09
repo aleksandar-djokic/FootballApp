@@ -159,6 +159,10 @@
     <Compile Include="Migrations\202011251113323_MatchesEdit.Designer.cs">
       <DependentUpon>202011251113323_MatchesEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012081459085_TeamChat.cs" />
+    <Compile Include="Migrations\202012081459085_TeamChat.Designer.cs">
+      <DependentUpon>202012081459085_TeamChat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FreeAgentProfile.cs" />
     <Compile Include="Models\Friendship.cs" />
@@ -166,6 +170,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamChatMessage.cs" />
     <Compile Include="Models\TeamInvite.cs" />
     <Compile Include="Models\TeamJoinRequests.cs" />
     <Compile Include="Models\TeamMembers.cs" />
@@ -230,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011251113323_MatchesEdit.resx">
       <DependentUpon>202011251113323_MatchesEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012081459085_TeamChat.resx">
+      <DependentUpon>202012081459085_TeamChat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

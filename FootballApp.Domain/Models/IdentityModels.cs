@@ -35,6 +35,7 @@ namespace FootballApp.Domain.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<TeamChatMessage> TeamMessages { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamMembers> TeamMembers { get; set; }
         public DbSet<TeamRole> TeamRoles { get; set; }

@@ -1,31 +1,120 @@
-﻿$(function () {
+﻿//messageCount so we can use lazy loading
+var messageCount = 0;
+//get messages onload
+window.onload = function () {
+    GetMessages();
+    $('#chat').animate({ scrollTop: $('#chat')[0].scrollHeight });
+
+}
+//Submit message on Enter
+$('#message').keypress(function (e) {
+    if (e.which == 13) {
+        $('#sendmessage').click();
+    }
+})
+//Get X messages on Load-messages button click (lazy loading)
+$('#Load-messages-btn').click(function () {
+    var teamId = $('#team-id').val();
+    $.ajax({
+        method: 'GET',
+        url: '/TeamChat/GetMessages',
+        data: {
+            teamId: teamId,
+            messageCount: messageCount
+
+        },
+        success: function (result) {
+
+            if (result.length > 0) {
+                var dom = ""
+                result.slice().reverse().forEach(function (result) {
+                    var img = "";
+                    if (result.ImageSource != "") {
+                        img = '<img src="' + result.ImageSource + '"/>';
+                    }
+                    else {
+                        img = '<img src="~/Content/Images/emptypfp.png" />';
+                    }
+                    dom += '<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p class="chat-name">' + result.UserName + '<span class="chat-time"> ' + result.Time + '</span></p><p>'
+                        + result.Message + '</p></div></div>';
+                   
+                });
+                var firstmsg = $('.chat-msg').first();
+                $(dom).insertBefore(firstmsg);
+                messageCount += result.length;
+            }
+
+        }
+    });
+})
+//Inital msg load
+function GetMessages() {
+    var teamId = $('#team-id').val();
+    $.ajax({
+        method: 'GET',
+        url: '/TeamChat/GetMessages',
+        data: {
+            teamId: teamId,
+            messageCount: messageCount
+
+        },
+        success:function (result){
+
+            if (result.length > 0) {
+               
+                result.slice().reverse().forEach(function (result) {
+                    var img = "";
+                    if (result.ImageSource != "") {
+                        img = '<img src="' + result.ImageSource + '"/>';
+                    }
+                    else {
+                        img = '<img src="~/Content/Images/emptypfp.png" />';
+                    }
+                    $('#chat').append('<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p class="chat-name">' + result.UserName + '<span class="chat-time"> ' + result.Time + '</span></p><p>'
+                        + result.Message + '</p></div></div>');
+                });
+                messageCount += result.length;
+            }
+            
+        }
+    })
+}
+$(function () {
     var chat = $.connection.teamChatHub;
     var teamName = $(".profile-name").html();
-    chat.client.addNewMessageToPage = function (name, message, imgsource,DateTime, grp) {
-        if (grp == teamName) {
-            var img = "";
-            if (imgsource != "") {
-                img = '<img src="' + imgsource + '"/>';
-            }
-            else {
-                img = '<img src="~/Content/Images/emptypfp.png" />';
-            }
-            $('#chat').append('<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p>' + name + '<span> ' + DateTime + '</span></p><p>'
-                + message + '</p></div></div>');
+    chat.client.addNewMessageToPage = function (name, message, imgsource, DateTime) {
+        var elem = $('#chat');
+        var isScrollBottom = false;
+        if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+            isScrollBottom = true;
+        }
+        var img = "";
+        if (imgsource != "") {
+            img = '<img src="' + imgsource + '"/>';
         }
         else {
-            console.log('you are not part of this grp');
+            img = '<img src="~/Content/Images/emptypfp.png" />';
         }
+        $('#chat').append('<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p class="chat-name">' + name + '<span class="chat-time"> ' + DateTime + '</span></p><p>'
+            + message + '</p></div></div>');
+        messageCount += 1;
+        if (isScrollBottom) {
+            $('#chat').animate({ scrollTop: $('#chat')[0].scrollHeight });
+        }
+       
     };
     $('#message').focus();
     $.connection.hub.start().done(function () {
+        chat.server.joinGroup(teamName);
         $('#sendmessage').click(function () {
+            var teamId = $('#team-id').val();
             $.ajax({
                 method: 'POST',
                 url: '/TeamChat/SendMsg',
                 data: {
                     message: $('#message').val(),
-                    grp: teamName
+                    grp: teamName,
+                    teamId: teamId
                 },
                 success: function (result) {
                     console.log(result);
@@ -34,5 +123,7 @@
             })
         })
     });
+    
+
 });
 

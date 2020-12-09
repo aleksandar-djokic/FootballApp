@@ -10,5 +10,7 @@ namespace FootballApp.Domain.Abstract
     public interface ITeamChatRepository
     {
         ApplicationUser GetUser(string Id);
+        bool AddMessage(string userId, int teamId, string Message, DateTime time);
+        IEnumerable<TeamChatMessage> GetMessages(int? messageCount,int teamid);
     }
 }
