@@ -78,11 +78,15 @@
     <Compile Include="Abstract\IFreeAgentRepository.cs" />
     <Compile Include="Abstract\IFriendsRepository.cs" />
     <Compile Include="Abstract\IMatchRepository.cs" />
+    <Compile Include="Abstract\IPrivateChatRepository.cs" />
+    <Compile Include="Abstract\ITeamChatRepository.cs" />
     <Compile Include="Abstract\ITeamRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\FreeAgentRepository.cs" />
     <Compile Include="Concrete\FriendsRepository.cs" />
     <Compile Include="Concrete\MatchRepository.cs" />
+    <Compile Include="Concrete\PrivateChatRepository.cs" />
+    <Compile Include="Concrete\TeamChatRepository.cs" />
     <Compile Include="Concrete\TeamRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Migrations\202009180948434_InitialCreate.cs" />
@@ -157,13 +161,32 @@
     <Compile Include="Migrations\202011251113323_MatchesEdit.Designer.cs">
       <DependentUpon>202011251113323_MatchesEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012081459085_TeamChat.cs" />
+    <Compile Include="Migrations\202012081459085_TeamChat.Designer.cs">
+      <DependentUpon>202012081459085_TeamChat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012091310593_Conversation.cs" />
+    <Compile Include="Migrations\202012091310593_Conversation.Designer.cs">
+      <DependentUpon>202012091310593_Conversation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012091339546_PrivateMessage.cs" />
+    <Compile Include="Migrations\202012091339546_PrivateMessage.Designer.cs">
+      <DependentUpon>202012091339546_PrivateMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012091501314_privatemessage2.cs" />
+    <Compile Include="Migrations\202012091501314_privatemessage2.Designer.cs">
+      <DependentUpon>202012091501314_privatemessage2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\FreeAgentProfile.cs" />
     <Compile Include="Models\Friendship.cs" />
     <Compile Include="Models\FriendshipRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\PrivateMessage.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\TeamChatMessage.cs" />
     <Compile Include="Models\TeamInvite.cs" />
     <Compile Include="Models\TeamJoinRequests.cs" />
     <Compile Include="Models\TeamMembers.cs" />
@@ -228,6 +251,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011251113323_MatchesEdit.resx">
       <DependentUpon>202011251113323_MatchesEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012081459085_TeamChat.resx">
+      <DependentUpon>202012081459085_TeamChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012091310593_Conversation.resx">
+      <DependentUpon>202012091310593_Conversation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012091339546_PrivateMessage.resx">
+      <DependentUpon>202012091339546_PrivateMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012091501314_privatemessage2.resx">
+      <DependentUpon>202012091501314_privatemessage2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

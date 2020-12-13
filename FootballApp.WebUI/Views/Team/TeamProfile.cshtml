@@ -5,34 +5,34 @@
 }
 @if (ViewBag.isMember)
 {
-<div class="profile-header">
-    <div class="profile-data-wrap">
-        <div class="profile-data">
+    <div class="profile-header">
+        <div class="profile-data-wrap">
+            <div class="profile-data">
 
-            <div class="profile-image">
-                @if (@Model.ImageSource != "")
-                {
-                    <img src="@Model.ImageSource" />
+                <div class="profile-image">
+                    @if (@Model.ImageSource != "")
+                    {
+                        <img src="@Model.ImageSource" />
 
-                }
-                else
-                {
-                    <img src="~/Content/Images/emptypfp.png" />
-                }
+                    }
+                    else
+                    {
+                        <img src="~/Content/Images/emptypfp.png" />
+                    }
+                </div>
+                <div class="profile-info">
+                    <p class="profile-name">@Model.Name</p>
+                    <p class="profile-description">@Model.Description</p>
+                </div>
             </div>
-            <div class="profile-info">
-                <p class="profile-name">@Model.Name</p>
-                <p class="profile-description">@Model.Description</p>
-            </div>
-        </div>
-        <div class="profile-controls">
-            @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
-            {
+            <div class="profile-controls">
+                @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
+                {
 
-                <a href="/Team/Edit?teamId=@Model.Id" class="profile-edit">Edit</a>
-            }
-          
-            
+                    <a href="/Team/Edit?teamId=@Model.Id" class="profile-edit">Edit</a>
+                }
+
+
                 @if (ViewBag.UserRole == "Owner")
                 {
                     <button class="team-leave" id="OwnerLeaveButton">Leave</button>
@@ -63,7 +63,7 @@
                                 <p>This step is permanent.Team needs a strong leader,so make a right choice.</p>
                                 <p>Enter the name of team member below.</p>
                                 <p class="ownership-transfer-error" id="ownership-transfer-error"></p>
-                                <input type="text" class="transfer-membername" id="transfer-membername" placeholder="Members name"/>
+                                <input type="text" class="transfer-membername" id="transfer-membername" placeholder="Members name" />
                                 <button class="transfer-confirm" id="transfer-confirm">Transfer & leave</button>
                                 <button id="transfer-cancel" class="transfer-cancel">Cancel</button>
                             </div>
@@ -75,188 +75,212 @@
                     <button class="team-leave" id="MemberLeaveButton" value="@Model.Id">Leave</button>
                 }
 
-        </div>
+            </div>
 
-        @Html.HiddenFor(m=>Model.Id,new {id="team-id" })
-    </div>
-    <div class="profile-navigation">
-        <div class="profile-nav-item">
-            <button class="profilenav-button"id="Chat-button">Chat</button>
+            @Html.HiddenFor(m => Model.Id, new { id = "team-id" })
         </div>
-        <div class="profile-nav-item">
-            <button class="profilenav-button" id="Members-button">Members</button>
-        </div>
-        <div class="profile-nav-item">
-            <button class="profilenav-button" id="Matches-button">Matches</button>
+        <div class="profile-navigation">
+            <div class="profile-nav-item">
+                <button class="profilenav-button" id="Chat-button">Chat</button>
+            </div>
+            <div class="profile-nav-item">
+                <button class="profilenav-button" id="Members-button">Members</button>
+            </div>
+            <div class="profile-nav-item">
+                <button class="profilenav-button" id="Matches-button">Matches</button>
+            </div>
         </div>
     </div>
-</div>
-<div class="profile-content">
-    <div class="profile-content-item" id="Chat">
-    </div>
-    <div class="profile-content-item" id="Members">
-        @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
-        {
-            <button class="pending-members" id="pending-members">Pending members</button>
-            <button class="freeagent-button" id="freeagent-button">Free Agents</button>
-            <div class="modal" id="modal-freeagents">
-                <div class="modal-content">
-                    <span class="modal-close" id="freeagent-modal-close">&times</span>
-                    <div class="freeagent-search" style="margin-left:43px; margin-bottom:5px;">
-                        <select id="country-select">
-                            <option disabled selected>Select Country</option>
-                            <option value="All">All</option>
-                            <option value="Serbia">Serbia</option>
-                            <option value="Russia">Russia</option>
-                            <option value="England">England</option>
-                            <option value="Germany">Germany</option>
-                        </select>
-                        <select id="city-select" disabled>
-                            <option disabled selected>Select City</option>
-                        </select>
+    <div class="profile-content">
+        <div class="profile-content-item" id="Chat" style="display:block;">
+            <div class="chat-wrap">
+                <div class="chat" id="chat">
+                    <button id="Load-messages-btn" class="loadmsg-button">Load more</button>
+                    @*<div class="chat-msg">
+
+                    <div class="chat-img">
+                        <img src="~/Content/Images/emptypfp.png" />
                     </div>
-                    <div class="freeagent-items" id="freeagent-items">
+                    <div class="chat-data">
+                        <p class="chat-name">Name  <span class="chat-time">@DateTime.Now</span></p>
+                        <p style="word-break:break-all; padding-right:20px;">ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+                    </div>
+                </div>*@
 
-                        <div class="freeagent-item">
-                            <div class="freeagent-data">
-                                <div class="freeagent-image">
-                                    <img src="~/Content/Images/emptypfp.png" />
+                </div>
+                <div class="chat-controlls">
+                    <input class="chat-input" id="message" type="text" maxlength="250" autocomplete="off" placeholder="Enter message..." />
+                    <button class="chat-send" id="sendmessage">send</button>
+                </div>
+            </div>
+            @Scripts.Render("/signalr/hubs")
+            @Scripts.Render("/Scripts/TeamChat/TeamChat.js")
+        </div>
+        <div class="profile-content-item" id="Members">
+            @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
+            {
+                <button class="pending-members" id="pending-members">Pending members</button>
+                <button class="freeagent-button" id="freeagent-button">Free Agents</button>
+                <div class="modal" id="modal-freeagents">
+                    <div class="modal-content">
+                        <span class="modal-close" id="freeagent-modal-close">&times</span>
+                        <div class="freeagent-search" style="margin-left:43px; margin-bottom:5px;">
+                            <select id="country-select">
+                                <option disabled selected>Select Country</option>
+                                <option value="All">All</option>
+                                <option value="Serbia">Serbia</option>
+                                <option value="Russia">Russia</option>
+                                <option value="England">England</option>
+                                <option value="Germany">Germany</option>
+                            </select>
+                            <select id="city-select" disabled>
+                                <option disabled selected>Select City</option>
+                            </select>
+                        </div>
+                        <div class="freeagent-items" id="freeagent-items">
+
+                            <div class="freeagent-item">
+                                <div class="freeagent-data">
+                                    <div class="freeagent-image">
+                                        <img src="~/Content/Images/emptypfp.png" />
+                                    </div>
+                                    <div class="freeagent-info">
+                                        <p class="freeagent-name">
+                                            Name
+                                        </p>
+                                        <p class="freeagent-location">
+                                            Country,City
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="freeagent-info">
-                                    <p class="freeagent-name">
-                                        Name
-                                    </p>
-                                    <p class="freeagent-location">
-                                        Country,City
-                                    </p>
+                                <div class="freeagent-controls">
+                                    <button class="freeagent-invite">Invite</button>
                                 </div>
+
                             </div>
-                            <div class="freeagent-controls">
-                                <button class="freeagent-invite">Invite</button>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="modal-pending-requests">
+                    <div class="modal-content">
+                        <span class="modal-close" id="pending-modal-close">&times</span>
+                        <div class="request-items" id="request-items">
+
+                            <div class="request-item">
+                                <div class="request-data">
+                                    <div class="request-image">
+
+                                    </div>
+                                    <div class="request-info">
+                                        <p class="teamrequest-msg">
+
+                                        </p>
+                                    </div>
+                                </div>
+
                             </div>
+                        </div>
+                    </div>
+
+                </div>
+                @Scripts.Render("~/Scripts/Teams/FreeAgents.js")
+                @Scripts.Render("~/Scripts/Teams/pendingRequests.js")
+            }
+            <div class="member-list" id="member-list">
+
+            </div>
+        </div>
+        <div class="profile-content-item" id="Matches">
+            @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
+            {
+                <button class="pending-matches-button" id="pending-matches-button">Pending matches</button>
+                <button class="creatematch-button" id="creatematch-button">Create</button>
+                <div class="modal" id="modal-create-matches">
+                    <div class="modal-content">
+                        <span class="modal-close" id="creatematches-modal-close">&times</span>
+                        <div class="create-match-inputs">
+                            <h1>Create match</h1>
+                            <div class="creatematch-errors" id="creatematch-errors">
+
+                            </div>
+                            <p class="error-msg" id="creatematch-error"></p>
+                            <input type="text" id="creatematch-TeamName" placeholder="Team Name" />
+                            <input type="text" id="creatematch-Adress" placeholder="Adress" />
+                            <input type="datetime-local" id="creatematch-DateTime" />
+                            <button id="create-match-button">Create</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal" id="modal-pending-matches">
+                    <div class="modal-content">
+                        <span class="modal-close" id="pendingmatches-modal-close">&times</span>
+                        <p class="pending-match-error">Error msg </p>
+                        <div class="pending-matches" id="pending-matches">
 
                         </div>
 
-                        
-
-
                     </div>
+
                 </div>
-            </div>
-            <div class="modal" id="modal-pending-requests">
-                <div class="modal-content">
-                    <span class="modal-close" id="pending-modal-close">&times</span>
-                    <div class="request-items" id="request-items">
-
-                        <div class="request-item">
-                            <div class="request-data">
-                                <div class="request-image">
-
-                                </div>
-                                <div class="request-info">
-                                    <p class="teamrequest-msg">
-
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                @Scripts.Render("~/Scripts/Matches/createMatch.js")
+                @Scripts.Render("~/Scripts/Matches/pendingMatches.js")
+            }
+            <div class="matches-list" id="matches-list">
 
             </div>
-            @Scripts.Render("~/Scripts/Teams/FreeAgents.js")
-            @Scripts.Render("~/Scripts/Teams/pendingRequests.js")
-        }
-        <div class="member-list" id="member-list">
-
         </div>
+
     </div>
-    <div class="profile-content-item" id="Matches">
-        @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
-        {
-            <button class="pending-matches-button" id="pending-matches-button">Pending matches</button>
-            <button class="creatematch-button" id="creatematch-button">Create</button>
-            <div class="modal" id="modal-create-matches">
-                <div class="modal-content">
-                    <span class="modal-close" id="creatematches-modal-close">&times</span>
-                    <div class="create-match-inputs">
-                        <h1>Create match</h1>
-                        <div class="creatematch-errors" id="creatematch-errors">
-
-                        </div>
-                        <p class="error-msg" id="creatematch-error"></p>
-                        <input type="text" id="creatematch-TeamName" placeholder="Team Name" />
-                        <input type="text" id="creatematch-Adress" placeholder="Adress" />
-                        <input type="datetime-local" id="creatematch-DateTime" />
-                        <button id="create-match-button">Create</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal" id="modal-pending-matches">
-                <div class="modal-content">
-                    <span class="modal-close" id="pendingmatches-modal-close">&times</span>
-                    <p class="pending-match-error">Error msg </p>
-                    <div class="pending-matches" id="pending-matches">
-                        
-                    </div>
-
-                </div>
-
-            </div>
-            @Scripts.Render("~/Scripts/Matches/createMatch.js")
-            @Scripts.Render("~/Scripts/Matches/pendingMatches.js")
-        }
-        <div class="matches-list" id="matches-list">
-            
-        </div>
-    </div>
-
-</div>
 }
 else
 {
-<div class="nonmember-wrap">
+    <div class="nonmember-wrap">
 
-    <div class="nonmember-img">
-        @if (@Model.ImageSource != "")
+        <div class="nonmember-img">
+            @if (@Model.ImageSource != "")
+            {
+                <img src="@Model.ImageSource" />
+
+            }
+            else
+            {
+                <img src="~/Content/Images/emptypfp.png" />
+            }
+        </div>
+        <div class="nonmember-data">
+            <p class="nonmember-name">@Model.Name</p>
+            <p class="nonmember-description">@Model.Description</p>
+        </div>
+        @if (ViewBag.isRequestSent)
         {
-            <img src="@Model.ImageSource" />
-
+            <div class="nonmember-msg" id="nonmember-msg">
+                <p>You have already requested to join this team</p>
+            </div>
+            <!--Button-->
+            <div class="request-join">
+                <button class="request-button" id="request-button" disabled>Request join</button>
+            </div>
         }
         else
         {
-            <img src="~/Content/Images/emptypfp.png" />
+
+            <div class="nonmember-msg" id="nonmember-msg">
+                <p>You are not part of this team.Request to join below.</p>
+            </div>
+            <!--Button-->
+            <div class="request-join">
+                <button class="request-button" id="request-button" onclick="RequestJoin(this)" value="@Model.Id">Request join</button>
+            </div>
         }
     </div>
-    <div class="nonmember-data">
-        <p class="nonmember-name">@Model.Name</p>
-        <p class="nonmember-description">@Model.Description</p>
-    </div>
-    @if (ViewBag.isRequestSent)
-    {
-        <div class="nonmember-msg" id="nonmember-msg">
-            <p>You have already requested to join this team</p>
-        </div>
-        <!--Button-->
-        <div class="request-join">
-            <button class="request-button" id="request-button" disabled>Request join</button>
-        </div>
-    }
-    else
-    {
-
-        <div class="nonmember-msg" id="nonmember-msg">
-            <p>You are not part of this team.Request to join below.</p>
-        </div>
-        <!--Button-->
-        <div class="request-join">
-            <button class="request-button" id="request-button" onclick="RequestJoin(this)" value="@Model.Id">Request join</button>
-        </div>
-    }
-</div>
     @Scripts.Render("/Scripts/Teams/requestJoin.js")
 }
+
+
 @Scripts.Render("/Scripts/Teams/TeamProfileNav.js")
 @Styles.Render("/Content/Css/Team/TeamProfile.css")

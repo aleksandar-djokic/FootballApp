@@ -1,0 +1,95 @@
+﻿@model IEnumerable<FootballApp.WebUI.Models.ConversationViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<input type="hidden" value="@ViewBag.myName" id="myName" />
+<div class="search-wrap">
+    <div class="search-control-wrap">
+
+        <div class="search">
+            <input class="searchbar" id="searchbar" type="text" placeholder="Search..." />
+        </div>
+        <div class="triangle"></div>
+        <div class="box" id="search-results">
+            @*@foreach(var m in Model)
+                {
+                    <div class="search-result">
+                        <div class="search-result-img">
+                            @if (m.ImageSource != "")
+                            {
+                                <img src="@m.ImageSource" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/emptypfp.png" />
+                            }
+                        </div>
+                        <p>@m.UserName</p>
+                    </div>
+
+                }*@
+        </div>
+        <div style="display:none;" class="suggestions">
+
+        </div>
+    </div>
+
+    <div class="conversations" id="conversations">
+        @if (Model.Count() > 0)
+        {
+
+            foreach (var m in Model)
+            {
+                if (m.isRead)
+                {
+                    <a href="/PrivateChat/Chat?conversationId=@m.Id" class="conversation read" id="@m.Id">
+                        <div class="conversation-img">
+
+                            @if (m.ImageSource != "")
+                            {
+                                <img src="@m.ImageSource" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/emptypfp.png" />
+                            }
+                        </div>
+                        <div class="Conversation-info">
+                            <p>@m.UserName <span class="time">@m.Time</span></p>
+                            <p class="conversation-msg">@m.MessageSender : @m.Message</p>
+                        </div>
+                    </a>
+
+                }
+                else
+                {
+                    <a href="/PrivateChat/Chat?conversationId=@m.Id" class="conversation unread" id="@m.Id">
+                        <div class="conversation-img">
+
+                            @if (m.ImageSource != "")
+                            {
+                                <img src="@m.ImageSource" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/emptypfp.png" />
+                            }
+                        </div>
+                        <div class="Conversation-info">
+                            <p>@m.UserName <span class="time">@m.Time</span></p>
+                            <p class="conversation-msg">@m.MessageSender : @m.Message</p>
+                        </div>
+                    </a>
+                }
+            }
+        }
+        else
+        {
+            <p class="empty-conversations">It appears that you dont have any conversations.</p>
+        }
+    </div>
+</div>
+@Styles.Render("/Content/Css/PrivateChat/Conversation.css")
+@Scripts.Render("/signalr/hubs")
+@Scripts.Render("/Scripts/PrivateChat/Conversations.js")

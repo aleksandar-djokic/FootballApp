@@ -1,0 +1,63 @@
+﻿@model FootballApp.WebUI.Models.ChatViewModel
+
+@{
+    ViewBag.Title = "Chat";
+}
+@Html.HiddenFor(x => x.myName)
+@Html.HiddenFor(x => x.Id)
+@if (Model.myImageSource != "")
+{
+    <img id="myImage" style="display:none" src="@Model.myImageSource" />
+
+}
+else
+{
+    <img id="myImage" style="display:none" src="/Content/Images/emptypfp.png" />
+
+}
+<div class="user-info-wrap">
+    <div class="user-img">
+        @if (Model.ImageSource == "")
+        {
+            <img id="recieverImg" src="/Content/Images/emptypfp.png" />
+        }
+        else
+        {
+            <img id="recieverImg" src="@Model.ImageSource" />
+        }
+    </div>
+    <p class="user-info">You are now chatting with <span id="recieverName">@Model.UserName</span> .</p>
+</div>
+
+<div class="chat-wrap">
+    <div class="chat" id="chat">
+        <button id="Load-messages-btn" class="loadmsg-button">Load more</button>
+        @*<div class="chat-msg">
+
+                <div class="chat-img">
+                    <img src="~/Content/Images/emptypfp.png" />
+                </div>
+                <div class="chat-data">
+                    <p class="chat-name">Name  <span class="chat-time">@DateTime.Now</span></p>
+                    <p style="word-break:break-all; padding-right:20px;">ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+                </div>
+            </div>*@
+
+    </div>
+    @if (Model.areFriends)
+    {
+        <div class="chat-controlls">
+            <input class="chat-input" id="message" type="text" maxlength="250" autocomplete="off" placeholder="Enter message..." />
+            <button class="chat-send" id="sendmessage">send</button>
+        </div>
+    }
+    else
+    {
+        <div class="chat-information">
+            You are not friends with this person anymore,so you cant chat.
+        </div>
+    }
+    @Styles.Render("/Content/Css/PrivateChat/Chat.css")
+    @Scripts.Render("/signalr/hubs")
+    @Scripts.Render("/Scripts/PrivateChat/Chat.js")
+</div>
