@@ -20,6 +20,7 @@ namespace FootballApp.WebUI
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             //RegisterDependency
+            builder.RegisterType<PrivateChatRepository>().As<IPrivateChatRepository>();
             builder.RegisterType<TeamRepository>().As<ITeamRepository>();
             builder.RegisterType<TeamChatRepository>().As<ITeamChatRepository>();
             builder.RegisterType<UserRepository>().As<IUserRepository>();

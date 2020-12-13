@@ -1,0 +1,163 @@
+﻿body {
+}
+
+* {
+    outline: none;
+}
+
+main {
+    padding: 0px !important;
+}
+.search-wrap {
+    margin-left: 20rem;
+    margin-top:2.5rem;
+    width: 800px;
+    
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #d4cece;
+    margin: 0 auto;
+    z-index: 1;
+    display: none;
+}
+.box {
+    width: 400px;
+    background-color: #d4cece;
+    z-index: 1;
+    position: absolute;
+    left: 656px;
+    border:1px solid gray;
+    border-radius:3px;
+    display:none;
+}
+.box p {
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: rgba(0,0,0,0.6);
+    font-size:1.4rem;
+}
+.search-result{
+    display:flex;
+    align-items:center;
+    height:60px;
+    border-bottom:1px solid gray;
+    font-size:1.4rem;
+    font-weight:800;
+    color: rgba(0,0,0,0.6);
+    text-decoration:none;
+}
+.search-result p{
+    margin-left:115px;
+}
+.search-result-img {
+    margin-left:10px;
+    width: 40px;
+    height: 40px;
+
+}
+.search-result-img img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+.search {
+    display: flex;
+    justify-content: center;
+}
+.searchbar {
+    height: 25px;
+    width: 300px;
+    padding-left: 5px;
+    display: block;
+    border-radius: 3px;
+    background-color: rgb(44, 48, 52);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #B9BBBE;
+    padding: 10px;
+}
+.conversations {
+    width: 800px;
+    padding-top: 1.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.conversation {
+    display: flex;
+    flex-flow: row;
+    justify-content: start;
+    align-items: center;
+    padding: 5px 5px 5px 1.5rem;
+    margin-bottom: 10px;
+    background-color: rgb(79 ,82, 86);
+    min-height: 100px;
+    text-decoration:none;
+}
+.read {
+    background-color: rgb(39, 40,43);
+}
+.read:hover {
+    background-color: rgb(52 ,54 ,58);
+}
+.unread {
+    background-color: rgb(79,82, 86);
+}
+.unread:hover {
+    background-color:rgb(93,99, 106);
+}
+.conversation-img {
+    width: 60px;
+    height: 60px;
+}
+.conversation-img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+.Conversation-info {
+    padding-left: 1.5rem;
+    color: white;
+    font-size: 1.4rem;
+}
+.loadmsg-button:hover {
+    background-color: rgb(224, 104, 224);
+}
+.empty-conversations{
+    margin-top:10rem;
+    text-align:center;
+    font-size:1.5rem;
+    color:white;
+}
+
+/*custom scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    margin-left: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(45,48, 50);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(28,30, 31);
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgb(24, 26, 27);
+    }

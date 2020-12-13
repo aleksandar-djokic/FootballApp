@@ -196,14 +196,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
+    <Compile Include="Controllers\PrivateChatController.cs" />
     <Compile Include="Controllers\TeamChatController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="CustomValidation\ValidateImage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\PrivateChatHub.cs" />
     <Compile Include="Hubs\TeamChatHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ChatViewModel.cs" />
+    <Compile Include="Models\ConversationViewModel.cs" />
     <Compile Include="Models\FreeAgentProfileViewModel.cs" />
     <Compile Include="Models\FreeAgentViewModel.cs" />
     <Compile Include="Models\FriendRequestViewModel.cs" />
@@ -211,6 +215,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MatchViewModel.cs" />
     <Compile Include="Models\PendingMatchViewModel.cs" />
+    <Compile Include="Models\PrivateChatMessageViewModel.cs" />
     <Compile Include="Models\TeamChatMessageViewModel.cs" />
     <Compile Include="Models\TeamInviteViewModel.cs" />
     <Compile Include="Models\TeamMemberViewModel.cs" />
@@ -233,6 +238,8 @@
     <Content Include="Content\Css\Manage\ChangePassword.css" />
     <Content Include="Content\Css\Manage\EditProfilePicture.css" />
     <Content Include="Content\Css\Manage\ManageProfile.css" />
+    <Content Include="Content\Css\PrivateChat\Chat.css" />
+    <Content Include="Content\Css\PrivateChat\Conversation.css" />
     <Content Include="Content\Css\Register\register.css" />
     <Content Include="Content\Css\Team\TeamCreate.css" />
     <Content Include="Content\Css\Team\TeamIndex.css" />
@@ -275,6 +282,8 @@
     <Content Include="Scripts\Matches\createMatch.js" />
     <Content Include="Scripts\Matches\pendingMatches.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\PrivateChat\Chat.js" />
+    <Content Include="Scripts\PrivateChat\Conversations.js" />
     <Content Include="Scripts\TeamChat\TeamChat.js" />
     <Content Include="Scripts\Teams\FreeAgents.js" />
     <Content Include="Scripts\Teams\pendingRequests.js" />
@@ -324,6 +333,8 @@
     <Content Include="Views\FreeAgent\Create.cshtml" />
     <Content Include="Views\FreeAgent\Edit.cshtml" />
     <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
+    <Content Include="Views\PrivateChat\Chat.cshtml" />
+    <Content Include="Views\PrivateChat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

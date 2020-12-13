@@ -1,6 +1,7 @@
-﻿//messageCount so we can use lazy loading
-var messageCount = 0;
-//get messages onload
+﻿var messageCount = 0;
+var myName = $('#myName').val();
+var recieverName = $('#recieverName').html();
+//onload
 window.onload = function () {
     GetMessages();
     $('#chat').animate({ scrollTop: $('#chat')[0].scrollHeight });
@@ -14,13 +15,13 @@ $('#message').keypress(function (e) {
 })
 //Get X messages on Load-messages button click (lazy loading)
 $('#Load-messages-btn').click(function () {
-    var teamId = $('#team-id').val();
+    var conversationId = $('#Id').val();
     $.ajax({
         method: 'GET',
-        url: '/TeamChat/GetMessages',
+        url: '/PrivateChat/GetMessages',
         data: {
-            teamId: teamId,
-            messageCount: messageCount
+            messageCount: messageCount,
+            conversationId: conversationId
 
         },
         success: function (result) {
@@ -33,11 +34,11 @@ $('#Load-messages-btn').click(function () {
                         img = '<img src="' + result.ImageSource + '"/>';
                     }
                     else {
-                        img = '<img src="~/Content/Images/emptypfp.png" />';
+                        img = '<img src="/Content/Images/emptypfp.png" />';
                     }
                     dom += '<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p class="chat-name">' + result.UserName + '<span class="chat-time"> ' + result.Time + '</span></p><p>'
                         + result.Message + '</p></div></div>';
-                   
+
                 });
                 var firstmsg = $('.chat-msg').first();
                 $(dom).insertBefore(firstmsg);
@@ -47,78 +48,91 @@ $('#Load-messages-btn').click(function () {
         }
     });
 })
-//Inital msg load
+//initial msg load
 function GetMessages() {
-    var teamId = $('#team-id').val();
+    var conversationId = $('#Id').val();
     $.ajax({
         method: 'GET',
-        url: '/TeamChat/GetMessages',
+        url: '/PrivateChat/GetMessages',
         data: {
-            teamId: teamId,
-            messageCount: messageCount
+            messageCount: messageCount,
+            conversationId: conversationId
 
         },
-        success:function (result){
+        success: function (result) {
 
             if (result.length > 0) {
-               
+
                 result.slice().reverse().forEach(function (result) {
                     var img = "";
                     if (result.ImageSource != "") {
                         img = '<img src="' + result.ImageSource + '"/>';
                     }
                     else {
-                        img = '<img src="~/Content/Images/emptypfp.png" />';
+                        img = '<img src="/Content/Images/emptypfp.png" />';
                     }
                     $('#chat').append('<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p class="chat-name">' + result.UserName + '<span class="chat-time"> ' + result.Time + '</span></p><p>'
                         + result.Message + '</p></div></div>');
                 });
                 messageCount += result.length;
             }
-            
+
         }
     })
 }
+
 $(function () {
-    var chat = $.connection.teamChatHub;
-    var teamName = $(".profile-name").html();
-    chat.client.addNewMessageToPage = function (name, message, imgsource, DateTime) {
+    var chat = $.connection.privateChatHub;
+    var recieverName = $("#recieverName").html();
+    chat.client.addNewMessageToPage = function (sender, message, DateTime, conversation) {
+        console.log(true);
         var elem = $('#chat');
         var isScrollBottom = false;
         if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
             isScrollBottom = true;
         }
-        var img = "";
-        if (imgsource != "") {
-            img = '<img src="' + imgsource + '"/>';
-        }
-        else {
-            img = '<img src="~/Content/Images/emptypfp.png" />';
-        }
-        $('#chat').append('<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p class="chat-name">' + name + '<span class="chat-time"> ' + DateTime + '</span></p><p>'
+        var img = $('#recieverImg').clone().show();
+        var img = img[0].outerHTML;
+        
+        $('#chat').append('<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p class="chat-name">' + sender + '<span class="chat-time"> ' + DateTime + '</span></p><p>'
             + message + '</p></div></div>');
         messageCount += 1;
         if (isScrollBottom) {
             $('#chat').animate({ scrollTop: $('#chat')[0].scrollHeight });
         }
-       
+
     };
     $('#message').focus();
     $.connection.hub.start().done(function () {
-        chat.server.joinGroup(teamName);
+        chat.server.joinGroup(myName);
         $('#sendmessage').click(function () {
-            var teamId = $('#team-id').val();
             if ($('#message').val() != "") {
 
                 $.ajax({
                     method: 'POST',
-                    url: '/TeamChat/SendMsg',
+                    url: '/PrivateChat/SendMsg',
                     data: {
                         message: $('#message').val(),
-                        grp: teamName,
-                        teamId: teamId
+                        recieverName: recieverName,
+                        conversationId:$('#Id').val()
                     },
                     success: function (result) {
+                        messageCount += 1;
+                        var img = $('#myImage').clone().show();/*display none issue*/
+                        img = img[0].outerHTML;
+                        var msg = $('#message').val();
+                        var myName = $('#myName').val();
+                        var time = new Date().toLocaleString();
+                        var elem = $('#chat');
+                        var isScrollBottom = false;
+                        if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+                            isScrollBottom = true;
+                        }
+                        $('#chat').append('<div class="chat-msg"><div class="chat-img">' + img + '</div><div class="chat-data"><p class="chat-name">' + myName + '<span class="chat-time"> ' + time + '</span></p><p>'
+                            + msg + '</p></div></div>');
+                        if (isScrollBottom) {
+                            $('#chat').animate({ scrollTop: $('#chat')[0].scrollHeight });
+                        }
                         console.log(result);
                         $('#message').val("");
                     }
@@ -126,7 +140,6 @@ $(function () {
             }
         })
     });
-    
+
 
 });
-
