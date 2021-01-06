@@ -116,8 +116,10 @@
                     <button class="chat-send" id="sendmessage">send</button>
                 </div>
             </div>
-            @Scripts.Render("/signalr/hubs")
-            @Scripts.Render("/Scripts/TeamChat/TeamChat.js")
+            @section scripts{
+             
+                @Scripts.Render("/Scripts/TeamChat/TeamChat.js")
+             }
         </div>
         <div class="profile-content-item" id="Members">
             @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")

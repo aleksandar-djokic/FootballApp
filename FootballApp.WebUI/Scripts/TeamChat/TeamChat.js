@@ -1,7 +1,7 @@
 ﻿//messageCount so we can use lazy loading
 var messageCount = 0;
 //get messages onload
-window.onload = function () {
+$(document).ready(function () {
     GetMessages();
     $('#chat').animate({ scrollTop: $('#chat')[0].scrollHeight });
     //SignalR
@@ -27,7 +27,7 @@ window.onload = function () {
         if (isScrollBottom) {
             $('#chat').animate({ scrollTop: $('#chat')[0].scrollHeight });
         }
-        
+
 
     };
     $('#message').focus();
@@ -55,7 +55,7 @@ window.onload = function () {
     });
 
 
-}
+});
 //read Notifics
 function ReadChatNotifications() {
     var chatButton = $('#Chat-button').first();

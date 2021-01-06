@@ -194,8 +194,7 @@
 })
 
 
-
-$(function () {
+$(document).ready(function () {
     console.log("Hello world");
     
     var notification = $.connection.notificationHub;
