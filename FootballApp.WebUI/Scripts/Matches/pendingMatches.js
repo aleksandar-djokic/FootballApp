@@ -36,6 +36,31 @@
 
                 })
                 $('#pending-matches').html(dom);
+                var Match = $("button[name='Profile-Nav-Matches']").first();
+                var notification = $(Match).siblings(".notification").first();
+                var pending = $('#pending-matches-button').children(".button-notification").first();
+                var teamNotification = $('#team-notification').first();
+                var numberOfPending = parseInt(pending.html());
+                if (pending.length>0 && numberOfPending > 0) {
+
+                    var numberOfnotifications = parseInt(teamNotification.html());
+                    if ($(teamNotification).html != "" && numberOfnotifications > 0) {
+                        numberOfnotifications -= numberOfPending;
+                        if (numberOfnotifications > 0) {
+                            $(teamNotification).html(numberOfnotifications);
+
+                        }
+                        else {
+                            $(teamNotification).html(0);
+                            $(teamNotification).hide();
+                        }
+                    }
+                    $(notification).html(0);
+                    $(notification).hide();
+                    $(pending).html(0);
+                    $(pending).hide();
+                }
+               
             }
             else {
                 $('#pending-matches').html('<p class="pending-match-empty">There are no pending matches.<p>');

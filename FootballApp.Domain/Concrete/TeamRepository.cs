@@ -142,6 +142,14 @@ namespace FootballApp.Domain.Concrete
                         var requestTeam = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == InviteeId && x.TeamId == teamId && x.RequestInitiator == "Team");
                         if (requestUser != null)
                         {
+                            var notification = context.Notifications.OfType<TeamMemberNotification>().Where(x => x.JoinRequestId == requestUser.RequestId).ToList();
+                            if (notification.Count() > 0)
+                            {
+                                foreach (var n in notification)
+                                {
+                                    n.isRead = true;
+                                }
+                            }
                             context.TeamJoinRequests.Remove(requestUser);
                         }
                         if (requestTeam != null)
@@ -151,7 +159,12 @@ namespace FootballApp.Domain.Concrete
                     }
                     else
                     {
-                        context.TeamInvites.Add(new TeamInvite { InviterId = inviter.Id, InviteeId = invitee.Id, TeamId = team.Id, Inviter = inviter, Invitee = invitee, Team = team });
+                        var newInvite = new TeamInvite { InviterId = inviter.Id, InviteeId = invitee.Id, TeamId = team.Id, Inviter = inviter, Invitee = invitee, Team = team };
+                        context.TeamInvites.Add(newInvite);
+                        context.SaveChanges();
+                        var notification = new TeamInviteNotification { isRead = false, RecieverId = InviteeId, TeamId = teamId, TeamInviteId = newInvite.InviteId };
+                        context.Notifications.Add(notification);
+                       
 
                     }
                     context.SaveChanges();
@@ -170,6 +183,12 @@ namespace FootballApp.Domain.Concrete
         public IEnumerable<TeamInvite> GetInvites(string userId)
         {
             var teamInvites = context.TeamInvites.Where(x => x.InviteeId == userId).ToList();
+            var inviteNotifications = context.Notifications.OfType<TeamInviteNotification>().Where(x => x.RecieverId == userId && x.isRead == false);
+            foreach(var i in inviteNotifications)
+            {
+                i.isRead = true;
+            }
+            context.SaveChanges();
             return teamInvites;
         }
 
@@ -259,7 +278,16 @@ namespace FootballApp.Domain.Concrete
                 }
                 else
                 {
-                    context.TeamJoinRequests.Add(new TeamJoinRequests { RequestInitiator = "User", UserId = user.Id, TeamId = team.Id ,User=user,Team=team});
+                    var newRequest = new TeamJoinRequests { RequestInitiator = "User", UserId = user.Id, TeamId = team.Id, User = user, Team = team };
+                    context.TeamJoinRequests.Add(newRequest);
+                    context.SaveChanges();
+                    var admins = context.TeamMembers.Where(x => x.TeamId == teamId && (x.TeamRole.Name == "Admin" || x.TeamRole.Name == "Owner"));
+                    foreach(var a in admins)
+                    {
+                        var newNotification = new TeamMemberNotification { isRead = false, JoinRequestId = newRequest.RequestId, RecieverId = a.UserId, TeamId = teamId   };
+                        context.Notifications.Add(newNotification);
+                    }
+                    
 
                 }
                 context.SaveChanges();
@@ -274,10 +302,25 @@ namespace FootballApp.Domain.Concrete
         public IEnumerable<TeamJoinRequests> UserGetTeamJoinRequests(string userId)
         {
             var result = context.TeamJoinRequests.Where(x => x.UserId == userId).ToList();
+            var requestNotifications = context.Notifications.OfType<TeamRequestNotification>().Where(x => x.RecieverId == userId && x.isRead == false);
+            foreach (var r in requestNotifications)
+            {
+               r.isRead = true;
+            }
+            context.SaveChanges();
             return result;
         }
-        public IEnumerable<TeamJoinRequests> TeamGetTeamJoinRequests(int teamId)
+        public IEnumerable<TeamJoinRequests> TeamGetTeamJoinRequests(int teamId,string userId)
         {
+            var notifications = context.Notifications.OfType<TeamMemberNotification>().Where(x => x.TeamId == teamId && x.isRead == false && x.RecieverId == userId).ToList();
+            if (notifications.Count() > 0)
+            {
+                foreach(var n in notifications)
+                {
+                    n.isRead=true;
+                }
+                context.SaveChanges();
+            }
             var result = context.TeamJoinRequests.Where(x => x.TeamId == teamId).ToList();
             return result;
         }
@@ -330,6 +373,14 @@ namespace FootballApp.Domain.Concrete
             {
                 try
                 {
+                    var notification = context.Notifications.OfType<TeamMemberNotification>().Where(x => x.JoinRequestId == requestId).ToList();
+                    if (notification.Count() > 0)
+                    {
+                        foreach (var n in notification)
+                        {
+                            n.isRead = true;
+                        }
+                    }
                     context.TeamJoinRequests.Remove(request);
                     context.SaveChanges();
                     result = true;
@@ -366,6 +417,14 @@ namespace FootballApp.Domain.Concrete
                 try
                 {
                     AddMember(request.UserId, request.TeamId, roleId);
+                    var notification = context.Notifications.OfType<TeamMemberNotification>().Where(x => x.JoinRequestId == requestId).ToList();
+                    if (notification.Count() > 0)
+                    {
+                        foreach(var n in notification)
+                        {
+                            n.isRead = true;
+                        }
+                    }
                     context.TeamJoinRequests.Remove(request);
                     if (invite != null)
                     {
@@ -413,11 +472,18 @@ namespace FootballApp.Domain.Concrete
         {
             var result = false;
             var member=context.TeamMembers.FirstOrDefault(x => x.TeamId == teamId && x.UserId == MemberId);
+            var notifications = context.Notifications.OfType<TeamNotification>().Where(x => x.isRead == false && x.RecieverId == MemberId && x.TeamId == teamId);
             try
             {
                 context.TeamMembers.Remove(member);
                 context.SaveChanges();
                 result = true;
+                foreach(var n in notifications)
+                {
+                    n.isRead = true;
+
+                }
+                context.SaveChanges();
             }
             catch
             {
@@ -432,6 +498,8 @@ namespace FootballApp.Domain.Concrete
             var result = false;
             var owner = context.TeamMembers.FirstOrDefault(x => x.UserId == OwnerId && x.TeamId==teamId);
             var member = context.TeamMembers.FirstOrDefault(x => x.User.UserName.ToLower() == MemberName.ToLower() && x.TeamId == teamId);
+            var notifications = context.Notifications.OfType<TeamNotification>().Where(x => x.isRead == false && x.RecieverId == OwnerId && x.TeamId == teamId);
+
             if (MemberName == "")
             {
                 msg = "Please enter a name.";
@@ -443,6 +511,12 @@ namespace FootballApp.Domain.Concrete
                 context.TeamMembers.Remove(owner);
                 context.SaveChanges();
                 result = true;
+                foreach (var n in notifications)
+                {
+                    n.isRead = true;
+
+                }
+                context.SaveChanges();
             }
             else
             {
@@ -541,11 +615,23 @@ namespace FootballApp.Domain.Concrete
             var result = false;
             var memberRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId && x.Name == "Member");
             var member = context.TeamMembers.FirstOrDefault(x => x.UserId == userId && x.TeamId == TeamId);
+            var memberNotifics = context.Notifications.OfType<TeamMemberNotification>().Where(x => x.isRead == false && x.TeamId == TeamId && x.RecieverId == userId);
+            var matchesNotifics = context.Notifications.OfType<TeamMatchNotification>().Where(x => x.isRead == false && x.TeamId == TeamId && x.RecieverId == userId && x.Type == "Pending");
             try
             {
                 member.RoleId = memberRole.Id;
                 context.SaveChanges();
                 result = true;
+                foreach(var m in memberNotifics)
+                {
+                    m.isRead = true;
+
+                }
+                foreach(var m in matchesNotifics)
+                {
+                    m.isRead = true;
+                }
+                context.SaveChanges();
             }
             catch
             {

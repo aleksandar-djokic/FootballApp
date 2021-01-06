@@ -4,8 +4,8 @@
     ViewBag.Title = "Index";
 }
 <div class="top-options">
-    <div class="pending-button">
-        <button id="pending-button">Pending Teams</button>
+    <div class="pending-button" >
+        <button id="pending-button"name="Pending-Team-Invites">Pending Teams<span class="button-notification"></span></button>
     </div>
     <div class="create-button">
         @Html.ActionLink("Create New", "Create")
@@ -24,7 +24,7 @@
             {
                 <div class="teamlist-team">
                     <div class="teamlist-data">
-
+                        <input class="teamlist-teamId"type="hidden" value="@item.Id"/>
                         <div class="teamlist-image">
 
                             @if (item.ImageSource != "")
@@ -40,6 +40,7 @@
                         <div class="teamlist-info">
                             <p class="teamlist-name">@Html.DisplayFor(modelItem => item.Name)</p>
                             <p class="teamlist-description">@Html.DisplayFor(modelItem => item.Description)</p>
+                            <div class="team-notification"></div>
 
                         </div>
                     </div>

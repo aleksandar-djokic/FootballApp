@@ -39,6 +39,31 @@ $('#pending-members').click(function () {
 
     })
     $('#modal-pending-requests').show();
+    var Members = $("button[name='Profile-Nav-Members']").first();
+    var notification = $(Members).siblings(".notification").first();
+    var pending = $('#pending-members').children(".button-notification").first();
+    var teamNotification = $('#team-notification').first();
+    var numberOfPending = parseInt(pending.html());
+    if (pending.length > 0 && numberOfPending > 0) {
+
+        var numberOfnotifications = parseInt(teamNotification.html());
+        if ($(teamNotification).html != "" && numberOfnotifications > 0) {
+            numberOfnotifications -= numberOfPending;
+            if (numberOfnotifications > 0) {
+                $(teamNotification).html(numberOfnotifications);
+
+            }
+            else {
+                $(teamNotification).html(0);
+                $(teamNotification).hide();
+            }
+        }
+        $(notification).html(0);
+        $(notification).hide();
+        $(pending).html(0);
+        $(pending).hide();
+
+    }
 
 })
 //Decline request

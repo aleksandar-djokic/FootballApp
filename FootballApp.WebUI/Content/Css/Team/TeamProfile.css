@@ -216,8 +216,14 @@ main{
     min-width:100px;
     text-align:center;
     height:100%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:space-between;
 }
 .profile-nav-item:hover {
+    background-color: rgb(61, 64, 68);
+}
+.profile-nav-item.active {
     background-color: rgb(61, 64, 68);
 }
 .profile-nav-item button {
@@ -226,12 +232,12 @@ main{
     min-width: 100px;
     text-align: center;
     height: 100%;
-    background-color: rgb(41,45,48);
+    background-color: transparent;
     border-style:none;
 }
-.profile-nav-item button:hover {
+/*.profile-nav-item button:hover {
     background-color: rgb(61, 64, 68);
-}
+}*/
 .profilenav-button.active {
     background-color:rgb(61, 64, 68);
 }
@@ -393,15 +399,16 @@ main{
     background-color: rgb(51,54,57);
 }
 /*Pending*/
-.pending-members{
-    margin-left:17rem;
-    margin-top:1rem;
-    padding:5px;
-    background-color:forestgreen;
-    color:white;
-    cursor:pointer;
-    outline:none;
-    border:none;
+.pending-members {
+    margin-left: 17rem;
+    margin-top: 1rem;
+    padding: 5px;
+    background-color: forestgreen;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    height: 26.6px;
 }
 .pending-members:hover{
     background-color:darkgreen;
@@ -414,6 +421,7 @@ main{
     cursor: pointer;
     outline: none;
     border: none;
+    height: 26.6px;
 }
 .freeagent-button:hover {
     background-color: darkgreen;
@@ -753,6 +761,7 @@ select {
     cursor: pointer;
     outline: none;
     border: none;
+    height:26.6px;
 }
 .creatematch-button:hover{
     background-color:darkgreen;
@@ -767,6 +776,7 @@ select {
     cursor: pointer;
     outline: none;
     border: none;
+    height:26.6px;
 }
 .pending-matches-button:hover{
     background-color: darkgreen;
@@ -982,6 +992,31 @@ select {
 }
 .loadmsg-button:hover {
     background-color: rgb(224, 104, 224);
+}
+/*Notifications*/
+.notification {
+    background-color: #ab3e03;
+    color: white;
+    font-size: 1rem;
+    border-radius: 50%;
+    width: 20px;
+    text-align: center;
+    line-height: 20px;
+    height: 20px;
+    display: none;
+    margin-right:5px;
+}
+.button-notification {
+    background-color: #ab3e03;
+    color: white;
+    font-size: 1rem;
+    border-radius: 50%;
+    width: 15px;
+    text-align: center;
+    line-height: 15px;
+    height: 15px;
+    display: none;
+    margin-left: 5px;
 }
 /*custom scrollbar*/
 ::-webkit-scrollbar {

@@ -2,6 +2,7 @@
 using FootballApp.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,17 @@ namespace FootballApp.Domain.Concrete
         {
 
             var result = context.FriendRequests.Where(x => x.RequesterId == id || x.AddresseeId == id).ToList();
+            //read friend notifications
+            var notification = context.Notifications.OfType<FriendRequestNotification>().Where(x => x.isRead == false && x.RecieverId==id).ToList();
+            foreach(var n in notification)
+            {
+                if (ObjectContext.GetObjectType(n.GetType()) == typeof(FriendRequestNotification))
+                {
+                    n.isRead = true;
+                }
+                
+            }
+            context.SaveChanges();
             return result;
         }
         public bool SendFriendRequest(string user1Id, string userName, out string resultmsg)
@@ -68,8 +80,12 @@ namespace FootballApp.Domain.Concrete
                 }
                 else
                 {
-
-                    context.FriendRequests.Add(new FriendshipRequest{RequesterId=user1.Id,AddresseeId=user2.Id,Requester=user1,Addressee=user2});
+                    var fr = new FriendshipRequest { RequesterId = user1.Id, AddresseeId = user2.Id, Requester = user1, Addressee = user2 };
+                    context.FriendRequests.Add(fr);
+                    context.SaveChanges();
+                    var notification = new FriendRequestNotification { RecieverId = user2.Id, isRead = false, FriendRequestId = fr.RequestId };
+                    context.Notifications.Add(notification);
+                    context.SaveChanges();
                     result = true;
                 }
             }

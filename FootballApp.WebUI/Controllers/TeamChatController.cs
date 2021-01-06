@@ -41,6 +41,15 @@ namespace FootballApp.WebUI.Controllers
 
                 }
                 TeamChatHub.Send(user.UserName, message,imagesource,DateTime.Now.ToString(),grp);
+                var members = teamchat.GetTeamMembers(teamId);
+                foreach(var m in members)
+                {
+                    if( m.Id != userId)
+                    {
+
+                        NotificationHub.SendTeamNotification(teamId, m.UserName);
+                    }
+                }
             }
            
             return Json(result);
@@ -62,6 +71,7 @@ namespace FootballApp.WebUI.Controllers
                 result.Add(new TeamChatMessageViewModel { UserName = current.User.UserName, Time = current.Time.ToString(), Message = current.Message, 
                     ImageSource = imagesource });
             }
+            teamchat.readNotifications(User.Identity.GetUserId(), teamid);
             var jsonResult = Json(result, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;

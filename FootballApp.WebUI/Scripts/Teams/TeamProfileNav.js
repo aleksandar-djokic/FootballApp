@@ -1,9 +1,10 @@
 ﻿$('.profilenav-button').click(function (event) {
     $('.profile-content-item').hide();
-    $('.profilenav-button').removeClass("active");
+    $('.profile-nav-item').removeClass("active");
 
     var navName = "#" + $(event.target).html();
-    $(event.target).addClass("active");
+    var navitem = $(event.target).closest(".profile-nav-item").first();
+    $(navitem).addClass("active");
     $(navName).show();
 
 })
@@ -42,6 +43,7 @@ $('#Members-button').click(function () {
             }
 
             $('#member-list').html(dom);
+
         }
     })
 })
@@ -155,6 +157,44 @@ $('#Matches-button').click(function () {
                 /*Add if empty msg*/
             }
             $('#matches-list').html(dom);
+            var Matches = $("button[name='Profile-Nav-Matches']").first();
+            var teamNotification = $('#team-notification').first();
+            var notification = $(Matches).siblings(".notification").first();
+            if (parseInt($(teamNotification).html())>0) {
+
+                if (parseInt($(notification).html()) > 0) {
+                    var numberofteam = parseInt($(teamNotification).html());
+                    var numberofmatches = parseInt($(notification).html());
+                    var pending = $('#pending-matches-button').children(".button-notification").first();
+                    if (pending.length > 0 && parseInt($(pending).html())>0) {
+                        var numberofpending = parseInt($(pending).html());
+                        var numberOfRead = (numberofmatches - numberofpending);
+                        if (numberOfRead > 0) {
+                            numberofmatches -= numberOfRead;
+                            numberofteam -= numberOfRead;
+                            $(teamNotification).html(numberofteam);
+                            $(notification).html(numberofmatches);
+                        }
+                    }
+                    else {
+                        numberofteam -= numberofmatches;
+                        if (numberofteam > 0) {
+                            $(teamNotification).html(numberofteam);
+                            $(notification).html(0);
+                            $(notification).hide();
+                        }
+                        else {
+                            $(teamNotification).html(0);
+                            $(teamNotification).hide();
+                            $(notification).html(0);
+                            $(notification).hide();
+                        }
+                    }
+                }
+            }
+            
+            
+            
         }
     })
 })

@@ -78,6 +78,7 @@
     <Compile Include="Abstract\IFreeAgentRepository.cs" />
     <Compile Include="Abstract\IFriendsRepository.cs" />
     <Compile Include="Abstract\IMatchRepository.cs" />
+    <Compile Include="Abstract\INotificationRepository.cs" />
     <Compile Include="Abstract\IPrivateChatRepository.cs" />
     <Compile Include="Abstract\ITeamChatRepository.cs" />
     <Compile Include="Abstract\ITeamRepository.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Concrete\FreeAgentRepository.cs" />
     <Compile Include="Concrete\FriendsRepository.cs" />
     <Compile Include="Concrete\MatchRepository.cs" />
+    <Compile Include="Concrete\NotificationRepository.cs" />
     <Compile Include="Concrete\PrivateChatRepository.cs" />
     <Compile Include="Concrete\TeamChatRepository.cs" />
     <Compile Include="Concrete\TeamRepository.cs" />
@@ -177,19 +179,52 @@
     <Compile Include="Migrations\202012091501314_privatemessage2.Designer.cs">
       <DependentUpon>202012091501314_privatemessage2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012141306557_Notifications.cs" />
+    <Compile Include="Migrations\202012141306557_Notifications.Designer.cs">
+      <DependentUpon>202012141306557_Notifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012160954560_EditFriendNotification.cs" />
+    <Compile Include="Migrations\202012160954560_EditFriendNotification.Designer.cs">
+      <DependentUpon>202012160954560_EditFriendNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012171512566_EditPrivateNotification.cs" />
+    <Compile Include="Migrations\202012171512566_EditPrivateNotification.Designer.cs">
+      <DependentUpon>202012171512566_EditPrivateNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012221104235_Edit-TeamNotification.cs" />
+    <Compile Include="Migrations\202012221104235_Edit-TeamNotification.Designer.cs">
+      <DependentUpon>202012221104235_Edit-TeamNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012231142247_TeamNotificationsSpecialization.cs" />
+    <Compile Include="Migrations\202012231142247_TeamNotificationsSpecialization.Designer.cs">
+      <DependentUpon>202012231142247_TeamNotificationsSpecialization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012251506413_TeamInviteRequestNotifications.cs" />
+    <Compile Include="Migrations\202012251506413_TeamInviteRequestNotifications.Designer.cs">
+      <DependentUpon>202012251506413_TeamInviteRequestNotifications.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\FreeAgentProfile.cs" />
+    <Compile Include="Models\FriendRequestNotification.cs" />
     <Compile Include="Models\Friendship.cs" />
     <Compile Include="Models\FriendshipRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\PrivateChatNotification.cs" />
     <Compile Include="Models\PrivateMessage.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamChatMessage.cs" />
+    <Compile Include="Models\TeamChatNotification.cs" />
     <Compile Include="Models\TeamInvite.cs" />
+    <Compile Include="Models\TeamInviteNotification.cs" />
     <Compile Include="Models\TeamJoinRequests.cs" />
+    <Compile Include="Models\TeamMatchNotification.cs" />
+    <Compile Include="Models\TeamMemberNotification.cs" />
     <Compile Include="Models\TeamMembers.cs" />
+    <Compile Include="Models\TeamNotification.cs" />
+    <Compile Include="Models\TeamRequestNotification.cs" />
     <Compile Include="Models\TeamRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -263,6 +298,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012091501314_privatemessage2.resx">
       <DependentUpon>202012091501314_privatemessage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012141306557_Notifications.resx">
+      <DependentUpon>202012141306557_Notifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012160954560_EditFriendNotification.resx">
+      <DependentUpon>202012160954560_EditFriendNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012171512566_EditPrivateNotification.resx">
+      <DependentUpon>202012171512566_EditPrivateNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012221104235_Edit-TeamNotification.resx">
+      <DependentUpon>202012221104235_Edit-TeamNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012231142247_TeamNotificationsSpecialization.resx">
+      <DependentUpon>202012231142247_TeamNotificationsSpecialization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012251506413_TeamInviteRequestNotifications.resx">
+      <DependentUpon>202012251506413_TeamInviteRequestNotifications.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

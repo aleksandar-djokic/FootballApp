@@ -10,6 +10,7 @@ namespace FootballApp.WebUI
         {
             app.MapSignalR();
             ConfigureAuth(app);
+
         }
     }
 }

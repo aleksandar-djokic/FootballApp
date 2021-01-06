@@ -80,14 +80,17 @@
             @Html.HiddenFor(m => Model.Id, new { id = "team-id" })
         </div>
         <div class="profile-navigation">
-            <div class="profile-nav-item">
-                <button class="profilenav-button" id="Chat-button">Chat</button>
+            <div class="profile-nav-item active">
+                <button class="profilenav-button" id="Chat-button" name="Profile-Nav-Chat">Chat</button>
+                <span class="notification"></span>
             </div>
             <div class="profile-nav-item">
-                <button class="profilenav-button" id="Members-button">Members</button>
+                <button class="profilenav-button" id="Members-button" name="Profile-Nav-Members">Members</button>
+                <span class="notification"></span>
             </div>
             <div class="profile-nav-item">
-                <button class="profilenav-button" id="Matches-button">Matches</button>
+                <button class="profilenav-button" id="Matches-button" name="Profile-Nav-Matches">Matches</button>
+                <span class="notification"></span>
             </div>
         </div>
     </div>
@@ -119,7 +122,7 @@
         <div class="profile-content-item" id="Members">
             @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
             {
-                <button class="pending-members" id="pending-members">Pending members</button>
+                <button class="pending-members" id="pending-members">Pending members<span class="button-notification"></span></button>
                 <button class="freeagent-button" id="freeagent-button">Free Agents</button>
                 <div class="modal" id="modal-freeagents">
                     <div class="modal-content">
@@ -197,7 +200,7 @@
         <div class="profile-content-item" id="Matches">
             @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
             {
-                <button class="pending-matches-button" id="pending-matches-button">Pending matches</button>
+                <button class="pending-matches-button" id="pending-matches-button">Pending matches<span class="button-notification"></span></button>
                 <button class="creatematch-button" id="creatematch-button">Create</button>
                 <div class="modal" id="modal-create-matches">
                     <div class="modal-content">

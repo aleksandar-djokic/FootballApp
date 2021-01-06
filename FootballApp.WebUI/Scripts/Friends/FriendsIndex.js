@@ -1,10 +1,10 @@
 ﻿//Function for tabular view
 $('.friends-button').click(function (event) {
     $('.friends-content-item').hide();
-    $('.friends-button').removeClass("active");
+    $('.friends-nav-item').removeClass("active");
 
     var navName = "#" + $(event.target).html();
-    $(event.target).addClass("active");
+    $(event.target).closest('.friends-nav-item').addClass("active");
     $(navName).show();
 
 })
@@ -69,6 +69,10 @@ $('#pending-nav').click(function () {
            
         }
     })
+    $('#friends-notification').html("");
+    $('#friends-notification').hide("");
+    $('#pending-friends-notification').html("");
+    $('#pending-friends-notification').hide();
 })
 
 $('#All-nav').click(function () {
