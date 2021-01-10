@@ -442,7 +442,15 @@ namespace FootballApp.WebUI.Controllers
 
             base.Dispose(disposing);
         }
-
+        public JsonResult GetUserName()
+        {
+            var result = "";
+            if (User.Identity.IsAuthenticated)
+            {
+                result = User.Identity.Name;
+            }
+            return Json(result,JsonRequestBehavior.AllowGet);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

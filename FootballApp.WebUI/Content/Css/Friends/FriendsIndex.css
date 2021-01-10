@@ -17,20 +17,27 @@ main{
 }
 .friends-nav-item{
     height:100%;
+    display:flex;
+    flex-flow:row;
+    align-items:center;
+}
+.friends-nav-item:hover {
+    background-color: rgb(61, 64, 68);
+}
+.nav-notification{
+    margin-right:5px;
 }
 .friends-button {
+    display:block;
     color: white;
     font-size: 1.4rem;
     min-width: 100px;
     text-align: center;
     height: 100%;
-    background-color: rgb(41,45,48);
+    background-color: transparent;
     border-style: none;
 }
-.friends-button:hover {
-    background-color: rgb(61, 64, 68);
-}
-.friends-button.active {
+.friends-nav-item.active {
     background-color: rgb(61, 64, 68);
 }
 .friends-content{

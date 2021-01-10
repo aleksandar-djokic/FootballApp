@@ -2,6 +2,7 @@
 using FootballApp.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,8 +49,13 @@ namespace FootballApp.Domain.Concrete
             var result = false;
             try
             {
-                context.PrivateMessages.Add(new PrivateMessage { Message = Message, isRead = false, Time = time, UserId = userId, ConversationId = conversationId });
+                var message = new PrivateMessage { Message = Message, isRead = false, Time = time, UserId = userId, ConversationId = conversationId };
+                context.PrivateMessages.Add(message);
                 context.SaveChanges();
+                var friend = ReturnFriend(userId, conversationId);
+                context.Notifications.Add(new PrivateChatNotification { isRead=false,Reciever=friend,Message=message });
+                context.SaveChanges();
+
                 result = true;
             }
             catch
@@ -133,6 +139,16 @@ namespace FootballApp.Domain.Concrete
             foreach (var m in messagesToRead)
             {
                 m.isRead = true;
+
+            }
+            //read notifications
+            var notification = context.Notifications.OfType<PrivateChatNotification>().Where(x => x.isRead == false && x.RecieverId == userId).ToList();
+            foreach (var n in notification)
+            {
+                if (ObjectContext.GetObjectType(n.GetType()) == typeof(PrivateChatNotification))
+                {
+                    n.isRead = true;
+                }
 
             }
             context.SaveChanges();

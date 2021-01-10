@@ -33,7 +33,7 @@ namespace FootballApp.Domain.Abstract
         bool AcceptRequest(int requestId);
         ApplicationUser GetUserFromRequest(int requestId);
         IEnumerable<TeamJoinRequests> UserGetTeamJoinRequests(string userId);
-        IEnumerable<TeamJoinRequests> TeamGetTeamJoinRequests(int teamId);
+        IEnumerable<TeamJoinRequests> TeamGetTeamJoinRequests(int teamId,string userId);
         bool IsUserAMember(string UserId, int teamId);
         bool IsRequestSent(string UserId, int teamId);
         Team GetTeamFromRequest(int requestId);

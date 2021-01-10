@@ -1,5 +1,6 @@
 ﻿using FootballApp.Domain.Abstract;
 using FootballApp.WebUI.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace FootballApp.WebUI.Controllers
         [HttpGet]
         public JsonResult GetMatches(int teamId)
         {
-            var listOfMatches= matches.getActiveMatches(teamId).ToList();
+            var listOfMatches= matches.getActiveMatches(teamId, User.Identity.GetUserId()).ToList();
             var result = new List<MatchViewModel>();
             for (int i = 0; i < listOfMatches.Count; i++)
             {
@@ -55,7 +56,7 @@ namespace FootballApp.WebUI.Controllers
         {
             var resultmsg = "";
             var resultvalue = false;
-            if (matches.Create(team1Id, team2Name, dateTime, Adress, out resultmsg))
+            if (matches.Create(team1Id, team2Name, dateTime, Adress, out resultmsg,User.Identity.GetUserId()))
             {
                 resultvalue = true;
             }
@@ -65,7 +66,7 @@ namespace FootballApp.WebUI.Controllers
         [HttpGet]
         public JsonResult GetPendingMatches(int teamid)
         {
-            var listOfMatches = matches.getPendingMatches(teamid).ToList();
+            var listOfMatches = matches.getPendingMatches(teamid,User.Identity.GetUserId()).ToList();
             var result = new List<PendingMatchViewModel>();
             
             for(int i = 0; i < listOfMatches.Count(); i++)
@@ -99,7 +100,7 @@ namespace FootballApp.WebUI.Controllers
         [HttpPost]
         public JsonResult Accept(int matchId)
         {
-            var resultvalue = matches.Accept(matchId);
+            var resultvalue = matches.Accept(matchId, User.Identity.GetUserId());
             var resultmsg = resultvalue ? "success" : "Match date already passed.";
             var result = new { resultvalue = resultvalue, resultmsg = resultmsg };
 

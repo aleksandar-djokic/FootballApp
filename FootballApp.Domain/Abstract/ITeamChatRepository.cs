@@ -12,5 +12,8 @@ namespace FootballApp.Domain.Abstract
         ApplicationUser GetUser(string Id);
         bool AddMessage(string userId, int teamId, string Message, DateTime time);
         IEnumerable<TeamChatMessage> GetMessages(int? messageCount,int teamid);
+        void readNotifications(string userId, int teamId);
+        IEnumerable<ApplicationUser> GetTeamMembers(int teamId);
+
     }
 }

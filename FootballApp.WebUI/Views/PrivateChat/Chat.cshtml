@@ -4,7 +4,7 @@
     ViewBag.Title = "Chat";
 }
 @Html.HiddenFor(x => x.myName)
-@Html.HiddenFor(x => x.Id)
+@Html.HiddenFor(x => x.Id, new { @Name = "Chat-conversation-id" })
 @if (Model.myImageSource != "")
 {
     <img id="myImage" style="display:none" src="@Model.myImageSource" />

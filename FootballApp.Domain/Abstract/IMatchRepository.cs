@@ -9,10 +9,10 @@ namespace FootballApp.Domain.Abstract
 {
     public interface IMatchRepository
     {
-        bool Create(int team1Id, string team2Name, DateTime dateTime, string Adress, out string resultmsg);
-        IEnumerable<Match> getPendingMatches(int teamId);
-        IEnumerable<Match> getActiveMatches(int teamId);
-        bool Accept(int matchId);
+        bool Create(int team1Id, string team2Name, DateTime dateTime, string Adress, out string resultmsg,string userId);
+        IEnumerable<Match> getPendingMatches(int teamId,string userId);
+        IEnumerable<Match> getActiveMatches(int teamId,string userId);
+        bool Accept(int matchId, string userId);
         bool Decline(int matchId);
     }
 }

@@ -8,6 +8,8 @@
     @Styles.Render("~/Content/Css/Layout/navigation.css")
     @Scripts.Render("/Scripts/jquery.signalR-2.4.1.js")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("/signalr/hubs")
+    @Scripts.Render("/Scripts/Notifications/Notifications.js")
 
 </head>
 <body>
@@ -25,14 +27,17 @@
             <div class="nav-item">
                 <div class="nav-icon"><img src="~/Content/Images/friends-ico.png"></div>
                 <div class="nav-text">@Html.ActionLink("Friends","Index", "Friends")</div>
+                <div class="nav-notification" id="friends-notification"></div>
             </div>
             <div class="nav-item">
                 <div class="nav-icon"><img src="~/Content/Images/msg-ico.png"></div>
-                <div class="nav-text">@Html.ActionLink("Messages","Index","PrivateChat")</div>
+                <div class="nav-text">@Html.ActionLink("Messages", "Index", "PrivateChat")</div>
+                <div class="nav-notification" id="privatechat-notification"></div>
             </div>
             <div class="nav-item">
                 <div class="nav-icon"><img src="~/Content/Images/teams-ico.png"></div>
                 <div class="nav-text">@Html.ActionLink("Teams", "Index", "Team")</div>
+                <div class="nav-notification" id="team-notification"></div>
             </div>
         </div>
         <div class="navbarbottom">

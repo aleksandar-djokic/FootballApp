@@ -196,6 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\PrivateChatController.cs" />
     <Compile Include="Controllers\TeamChatController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
@@ -203,13 +204,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\NotificationHub.cs" />
     <Compile Include="Hubs\PrivateChatHub.cs" />
     <Compile Include="Hubs\TeamChatHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ChatNotificationViewModel.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
     <Compile Include="Models\ConversationViewModel.cs" />
     <Compile Include="Models\FreeAgentProfileViewModel.cs" />
     <Compile Include="Models\FreeAgentViewModel.cs" />
+    <Compile Include="Models\FriendNotificationViewModel.cs" />
     <Compile Include="Models\FriendRequestViewModel.cs" />
     <Compile Include="Models\FriendViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -217,7 +221,10 @@
     <Compile Include="Models\PendingMatchViewModel.cs" />
     <Compile Include="Models\PrivateChatMessageViewModel.cs" />
     <Compile Include="Models\TeamChatMessageViewModel.cs" />
+    <Compile Include="Models\TeamChatNotificationViewModel.cs" />
     <Compile Include="Models\TeamInviteViewModel.cs" />
+    <Compile Include="Models\TeamMatchNotificationViewModel.cs" />
+    <Compile Include="Models\TeamMemberNotificationViewModel.cs" />
     <Compile Include="Models\TeamMemberViewModel.cs" />
     <Compile Include="Models\TeamRequestViewModel.cs" />
     <Compile Include="Models\TeamsDisplayViewModel.cs" />
@@ -226,6 +233,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Audio\notific.mp3" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -282,6 +290,7 @@
     <Content Include="Scripts\Matches\createMatch.js" />
     <Content Include="Scripts\Matches\pendingMatches.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Notifications\Notifications.js" />
     <Content Include="Scripts\PrivateChat\Chat.js" />
     <Content Include="Scripts\PrivateChat\Conversations.js" />
     <Content Include="Scripts\TeamChat\TeamChat.js" />
@@ -339,6 +348,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Match\" />
+    <Folder Include="Views\Notification\" />
     <Folder Include="Views\TeamChat\" />
   </ItemGroup>
   <ItemGroup>

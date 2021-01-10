@@ -157,6 +157,7 @@ namespace FootballApp.WebUI.Controllers
             var result = chat.AddMessage(userId, conversationId, message, DateTime.Now);
             if (result)
             {
+                NotificationHub.SendChatNotification(conversationId, recieverName);
                 PrivateChatHub.Send(sender.UserName,recieverName, message, DateTime.Now.ToString(), conversationId);
             }
 
@@ -207,6 +208,13 @@ namespace FootballApp.WebUI.Controllers
             var jsonResult = Json(result, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
+        }
+        [HttpPost]
+        public JsonResult ReadMsg(int conversationId)
+        {
+            var userId = User.Identity.GetUserId();
+            chat.readMessages(userId, conversationId);
+            return Json(true);
         }
     }
 }     

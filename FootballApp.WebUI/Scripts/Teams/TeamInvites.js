@@ -49,6 +49,27 @@ $('#pending-button').click(function () {
         }
     })
     $('#modal').show();
+    var pending = $("button[name='Pending-Team-Invites']").first().children(".button-notification").first();
+    var teamNotification = $('#team-notification').first();
+    var numberOfPending = parseInt(pending.html());
+    if (pending.length > 0 && numberOfPending > 0) {
+
+        var numberOfnotifications = parseInt(teamNotification.html());
+        if ($(teamNotification).html != "" && numberOfnotifications > 0) {
+            numberOfnotifications -= numberOfPending;
+            if (numberOfnotifications > 0) {
+                $(teamNotification).html(numberOfnotifications);
+
+            }
+            else {
+                $(teamNotification).html(0);
+                $(teamNotification).hide();
+            }
+        }
+
+        $(pending).html(0);
+        $(pending).hide();
+    }
 })
 //Accept Invite
 function AcceptInvite(element) {
@@ -69,7 +90,7 @@ function AcceptInvite(element) {
                 else {
                     img = '<img src="/Content/Images/emptypfp.png" />';
                 }
-                dom = '<div class="teamlist-team"><div class="teamlist-data"><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Visit profile</a></div></div>';
+                dom = '<div class="teamlist-team"><div class="teamlist-data"><input class="teamlist-teamId"type="hidden" value="@item.Id"/><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Visit profile</a></div></div>';
                 var errorMsg = $('#teamlist').children('.error-msg').html();
                 if (errorMsg != null) {
                     $('#teamlist').html(dom);
@@ -161,7 +182,7 @@ function AcceptRequest(element) {
                 else {
                     img = '<img src="/Content/Images/emptypfp.png" />';
                 }
-                dom = '<div class="teamlist-team"><div class="teamlist-data"><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Visit profile</a></div></div>';
+                dom = '<div class="teamlist-team"><div class="teamlist-data"><input class="teamlist-teamId"type="hidden" value="@item.Id"/><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Visit profile</a></div></div>';
                 var errorMsg = $('#teamlist').children('.error-msg').html();
                 if (errorMsg != null) {
                     $('#teamlist').html(dom);

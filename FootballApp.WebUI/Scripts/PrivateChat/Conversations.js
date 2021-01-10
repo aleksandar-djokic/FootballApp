@@ -51,8 +51,7 @@ $(document).mouseup(function (e) {
         $('.box').hide();
     }
 });
-
-$(function () {
+window.onload = function () {
     var chat = $.connection.privateChatHub;
     chat.client.addNewMessageToPage = function (sender, message, DateTime, conversation) {
         console.log(sender + ' ' + message + ' ' + DateTime + ' ' + conversation);
@@ -75,15 +74,18 @@ $(function () {
             $('#conversations').prepend($('#' + conversation));
         }
         else {
+            if ($(".empty-conversations").length > 0) {
+                $('#conversations').html("");
+            }
             $.ajax({
                 method: 'GET',
                 url: '/PrivateChat/GetConversation',
                 data: {
-                    conversationId:conversation
+                    conversationId: conversation
                 },
                 success: function (result) {
                     if (result != null) {
-                        console.log('Hello there General kenobi');
+                       
                         var img = "";
                         if (result.ImageSource != "") {
                             img = '<img src="' + result.ImageSource + '"/>';
@@ -97,7 +99,7 @@ $(function () {
                             isRead = "unread";
                         }
 
-                        dom = '<a href="/PrivateChat/Chat?conversationId=' + result.Id + '" class="conversation ' + isRead + '" id="' + result.Id + '"><div class="conversation-img">' + img + '</div><div class="Conversation-info"><p>' + result.UserName + ' <span class="time">' + result.Time + '</span></p><p class="conversation-msg">' + result.MessageSender + ':' + result.Message + '</p></div> </a>';
+                        dom = '<a href="/PrivateChat/Chat?conversationId=' + result.Id + '" class="conversation ' + isRead + '" id="' + result.Id + '"><div class="conversation-img">' + img + '</div><div class="Conversation-info"><p>' + result.UserName + ' <span class="time">' + result.Time + '</span></p><p class="conversation-msg">' + result.MessageSender + ':' + result.Message + '</p><p class="conversation-notification" style="display:block">1</p></div> </a>';
                         $('#conversations').prepend($(dom));
                     }
                 }
@@ -110,6 +112,65 @@ $(function () {
         var myName = $('#myName').val();
         chat.server.joinGroup(myName);
     });
+};
+//$(function () {
+//    var chat = $.connection.privateChatHub;
+//    chat.client.addNewMessageToPage = function (sender, message, DateTime, conversation) {
+//        console.log(sender + ' ' + message + ' ' + DateTime + ' ' + conversation);
+//        var element = document.getElementById(conversation);
+//        var proba = $('#' + conversation);
+//        if ($('#' + conversation).length != 0) {
+
+//            if ($('#' + conversation).is('.read')) {
+//                $('#' + conversation).removeClass('read');
+//                $('#' + conversation).addClass('unread');
+//                var conversationInfo = $('#' + conversation).children('.Conversation-info').first();
+//                $(conversationInfo).children('p').children('.time').first().html(DateTime);
+//                $(conversationInfo).children('.conversation-msg').first().html(sender + ':' + message);
+//            }
+//            else {
+//                var conversationInfo = $('#' + conversation).children('.Conversation-info').first();
+//                $(conversationInfo).children('p').children('.time').first().html(DateTime);
+//                $(conversationInfo).children('.conversation-msg').first().html(sender + ':' + message);
+//            }
+//            $('#conversations').prepend($('#' + conversation));
+//        }
+//        else {
+//            $.ajax({
+//                method: 'GET',
+//                url: '/PrivateChat/GetConversation',
+//                data: {
+//                    conversationId:conversation
+//                },
+//                success: function (result) {
+//                    if (result != null) {
+//                        console.log('Hello there General kenobi');
+//                        var img = "";
+//                        if (result.ImageSource != "") {
+//                            img = '<img src="' + result.ImageSource + '"/>';
+//                        } else {
+//                            img = '<img src="/Content/Images/emptypfp.png" />';
+//                        }
+//                        var isRead = "";
+//                        if (result.isRead) {
+//                            isRead = "read";
+//                        } else {
+//                            isRead = "unread";
+//                        }
+
+//                        dom = '<a href="/PrivateChat/Chat?conversationId=' + result.Id + '" class="conversation ' + isRead + '" id="' + result.Id + '"><div class="conversation-img">' + img + '</div><div class="Conversation-info"><p>' + result.UserName + ' <span class="time">' + result.Time + '</span></p><p class="conversation-msg">' + result.MessageSender + ':' + result.Message + '</p><p class="conversation-notification"></p></div> </a>';
+//                        $('#conversations').prepend($(dom));
+//                    }
+//                }
+
+//            })
+//        }
+//    }
+
+//    $.connection.hub.start().done(function () {
+//        var myName = $('#myName').val();
+//        chat.server.joinGroup(myName);
+//    });
 
 
-});
+//});

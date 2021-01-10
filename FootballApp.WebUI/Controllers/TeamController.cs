@@ -293,7 +293,7 @@ namespace FootballApp.WebUI.Controllers
         public JsonResult GetTeamRequests(int teamId)
         {
             List<TeamRequestViewModel> result =new List<TeamRequestViewModel>();
-            var requests = teams.TeamGetTeamJoinRequests(teamId);
+            var requests = teams.TeamGetTeamJoinRequests(teamId,User.Identity.GetUserId());
             foreach (var r in requests)
             {
                 string imagesource = "";

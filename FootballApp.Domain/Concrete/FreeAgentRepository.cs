@@ -159,7 +159,11 @@ namespace FootballApp.Domain.Concrete
            
             try
             {
-                context.TeamJoinRequests.Add(new TeamJoinRequests { TeamId = teamId, UserId = agent.UserId, RequestInitiator = "Team" });
+                var teamJoinRequest = new TeamJoinRequests { TeamId = teamId, UserId = agent.UserId, RequestInitiator = "Team" };
+                context.TeamJoinRequests.Add(teamJoinRequest);
+                context.SaveChanges();
+                var notification = new TeamRequestNotification { isRead = false, RecieverId = agent.UserId, TeamId = teamId, RequestId = teamJoinRequest.RequestId };
+                context.Notifications.Add(notification);
                 context.SaveChanges();
                 result = true;
             }
