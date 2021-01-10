@@ -76,6 +76,11 @@ namespace FootballApp.WebUI.Controllers
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
         }
+        [HttpPost]
+        public void ReadNotifications(int teamId)
+        {
+            teamchat.readNotifications(User.Identity.GetUserId(), teamId);
+        }
 
     }
 }

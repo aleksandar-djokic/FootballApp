@@ -5,10 +5,12 @@ $(document).ready(function () {
     GetMessages();
     $('#chat').animate({ scrollTop: $('#chat')[0].scrollHeight });
     //SignalR
-    var chat = $.connection.teamChatHub;
+    var chatCon = $.hubConnection();
+    var chatHub = chatCon.createHubProxy('teamChatHub');
+
     var teamName = $(".profile-name").html();
     console.log("HERE I AM");
-    chat.client.addNewMessageToPage = function (name, message, imgsource, DateTime) {
+    chatHub.on("addNewMessageToPage" , function (name, message, imgsource, DateTime) {
         var elem = $('#chat');
         var isScrollBottom = false;
         if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
@@ -29,10 +31,10 @@ $(document).ready(function () {
         }
 
 
-    };
+    });
     $('#message').focus();
-    $.connection.hub.start().done(function () {
-        chat.server.joinGroup(teamName);
+    chatCon.start().done(function () {
+        chatHub.invoke('joinGroup',teamName);
         $('#sendmessage').click(function () {
             var teamId = $('#team-id').val();
             if ($('#message').val() != "") {

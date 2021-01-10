@@ -197,8 +197,11 @@
 $(document).ready(function () {
     console.log("Hello world");
     
-    var notification = $.connection.notificationHub;
-    notification.client.addNewTeamNotific = function (teamId) {
+    var notificationCon = $.hubConnection();
+    var notificationHub = notificationCon.createHubProxy('notificationHub');
+    notificationHub.on('addNewTeamNotific', function (teamId) {
+        var audio = new Audio('/Content/Audio/notific.mp3');
+        audio.play();
         var teamNotification = $('#team-notification');
         var teamNotificationNumber = 1;
         if ($(teamNotification).html != "" && parseInt($(teamNotification).html())>0 ) {
@@ -209,21 +212,24 @@ $(document).ready(function () {
         $(teamNotification).html(teamNotificationNumber);
         $(teamNotification).show();
         if ($('.teamlist-team').length != 0) {
-            var data = $(this).children('.teamlist-data').first();
-            var teamid = parseInt($(data).children('.teamlist-teamId').first().val());
-            if (teamId == teamid) {
-                var info = $(data).children('.teamlist-info').first();
-                var notifications = $(info).children('.team-notification').first();
-                var numberofnotifications = 1;
-                if ($(notifications).html() != "") {
-                    numberofnotifications = parseInt($(notifications).html()) + 1;
+            $('.teamlist-team').each(function (i, obj) {
+                var data = $(this).children('.teamlist-data').first();
+                var teamid = parseInt($(data).children('.teamlist-teamId').first().val());
+                if (teamId == teamid) {
+                    var info = $(data).children('.teamlist-info').first();
+                    var notifications = $(info).children('.team-notification').first();
+                    var numberofnotifications = 1;
+                    if ($(notifications).html() != "") {
+                        numberofnotifications = parseInt($(notifications).html()) + 1;
+                    }
+                    $(notifications).html(numberofnotifications);
+                    $(notifications).show();
                 }
-                $(notifications).html(numberofnotifications);
-                $(notifications).show();
-            }
+            });
+           
         }
         var x = $('#team-id');
-        if ($('#team-id') == teamId) {
+        if (parseInt($('#team-id').val()) == teamId) {
             var chat = $("button[name='Profile-Nav-Chat']").first();
             var chatNotification = $(chat).siblings(".notification").first();
             var numberofnotifications = 1;
@@ -235,11 +241,35 @@ $(document).ready(function () {
         }
 
             
-    };
-    notification.client.addNewChatNotific = function (conversationId) {
+    });
+    notificationHub.on("addNewChatNotific", function (conversationId) {
+        var audio = new Audio('/Content/Audio/notific.mp3');
+        audio.play();
+        if (!($("input[name='Chat-conversation-id'").length > 0) || parseInt($("input[name='Chat-conversation-id'").val()) != conversationId) {
 
+            var chatNotification = $('#privatechat-notification');
+            var notificNumber = 1;
+            if ($(chatNotification).html != "" && parseInt($(chatNotification).html()) > 0) {
+                notificNumber = parseInt($(chatNotification).html()) + 1;
+            }
+            $('#privatechat-notification').html(notificNumber);
+            $('#privatechat-notification').show();
+            if ($('#conversations').length != 0) {
 
-    };
+                if ($('#' + conversationId).length != 0) {
+                    var conversationInfo = $('#' + conversationId).children('.Conversation-info').first();
+                    var notification = $(conversationInfo).children('.conversation-notification').first();
+                    var numberofnotifications = 1;
+                    if ($(notification).html() != "") {
+                        numberofnotifications = parseInt($(notification).html()) + 1;
+                    }
+                    $(notification).html(numberofnotifications);
+                    $(notification).show();
+                }
+             }
+        }
+
+    });
     var myname = "";
     $.ajax({
         method: "GET",
@@ -248,11 +278,11 @@ $(document).ready(function () {
             myname = result;
         }
     })
-    $.connection.hub.start().done(function () {
+    notificationCon.start().done(function () {
         
         if (myname != "") {
 
-            notification.server.joinGroup(myname);
+            notificationHub.invoke("joinGroup",myname);
         }
         
     });

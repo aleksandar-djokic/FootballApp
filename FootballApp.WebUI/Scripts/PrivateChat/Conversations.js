@@ -74,6 +74,9 @@ window.onload = function () {
             $('#conversations').prepend($('#' + conversation));
         }
         else {
+            if ($(".empty-conversations").length > 0) {
+                $('#conversations').html("");
+            }
             $.ajax({
                 method: 'GET',
                 url: '/PrivateChat/GetConversation',
@@ -82,7 +85,7 @@ window.onload = function () {
                 },
                 success: function (result) {
                     if (result != null) {
-                        console.log('Hello there General kenobi');
+                       
                         var img = "";
                         if (result.ImageSource != "") {
                             img = '<img src="' + result.ImageSource + '"/>';
@@ -96,7 +99,7 @@ window.onload = function () {
                             isRead = "unread";
                         }
 
-                        dom = '<a href="/PrivateChat/Chat?conversationId=' + result.Id + '" class="conversation ' + isRead + '" id="' + result.Id + '"><div class="conversation-img">' + img + '</div><div class="Conversation-info"><p>' + result.UserName + ' <span class="time">' + result.Time + '</span></p><p class="conversation-msg">' + result.MessageSender + ':' + result.Message + '</p><p class="conversation-notification"></p></div> </a>';
+                        dom = '<a href="/PrivateChat/Chat?conversationId=' + result.Id + '" class="conversation ' + isRead + '" id="' + result.Id + '"><div class="conversation-img">' + img + '</div><div class="Conversation-info"><p>' + result.UserName + ' <span class="time">' + result.Time + '</span></p><p class="conversation-msg">' + result.MessageSender + ':' + result.Message + '</p><p class="conversation-notification" style="display:block">1</p></div> </a>';
                         $('#conversations').prepend($(dom));
                     }
                 }

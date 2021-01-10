@@ -157,8 +157,8 @@ namespace FootballApp.WebUI.Controllers
             var result = chat.AddMessage(userId, conversationId, message, DateTime.Now);
             if (result)
             {
-                PrivateChatHub.Send(sender.UserName,recieverName, message, DateTime.Now.ToString(), conversationId);
                 NotificationHub.SendChatNotification(conversationId, recieverName);
+                PrivateChatHub.Send(sender.UserName,recieverName, message, DateTime.Now.ToString(), conversationId);
             }
 
             return Json(result);

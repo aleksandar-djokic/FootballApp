@@ -32,7 +32,7 @@ window.onload = function () {
                 conversationId: conversation
             }
         })
-
+      
     };
     $('#message').focus();
     $.connection.hub.start().done(function () {

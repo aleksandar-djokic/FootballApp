@@ -283,3 +283,40 @@ $('#transfer-confirm').click(function () {
     })
 
 })
+$(document).click(function () {
+    ReadChatNotification();
+})
+//reading chat notifications
+function ReadChatNotification() {
+    var ChatNav = $("button[name='Profile-Nav-Chat']").closest('.profile-nav-item');
+    if ($(ChatNav).hasClass('active')) {
+
+        var chatButton = $('#Chat-button').first();
+        var chatNotific = $(chatButton).siblings(".notification").first();
+        var teamNotification = $("#team-notification").first();
+        var bl = parseInt($(chatNotific).html());
+        if ($(chatNotific).length > 0 && parseInt($(chatNotific).html()) > 0) {
+            var numofchat = parseInt($(chatNotific).html());
+            var numofteam = parseInt($(teamNotification).html());
+            if ((numofteam - numofchat) > 0) {
+                $(teamNotification).html(numofteam - numofchat);
+                $(chatNotific).html(0);
+                $(chatNotific).hide();
+            }
+            else {
+                $(teamNotification).html(0);
+                $(teamNotification).hide();
+                $(chatNotific).html(0);
+                $(chatNotific).hide();
+            }
+            var teamId = $('#team-id').val();
+            $.ajax({
+                method:"POST",
+                url: "/TeamChat/ReadNotifications",
+                data: {
+                    teamId: teamId
+                }
+            })
+        }
+    }
+}
