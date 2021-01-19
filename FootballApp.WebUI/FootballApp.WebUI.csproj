@@ -196,6 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MatchController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\PrivateChatController.cs" />
     <Compile Include="Controllers\TeamChatController.cs" />
@@ -218,6 +219,9 @@
     <Compile Include="Models\FriendViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MatchViewModel.cs" />
+    <Compile Include="Models\NewsCreateViewModel.cs" />
+    <Compile Include="Models\NewsDisplayViewModel.cs" />
+    <Compile Include="Models\NewsEditViewModel.cs" />
     <Compile Include="Models\PendingMatchViewModel.cs" />
     <Compile Include="Models\PrivateChatMessageViewModel.cs" />
     <Compile Include="Models\TeamChatMessageViewModel.cs" />
@@ -246,6 +250,8 @@
     <Content Include="Content\Css\Manage\ChangePassword.css" />
     <Content Include="Content\Css\Manage\EditProfilePicture.css" />
     <Content Include="Content\Css\Manage\ManageProfile.css" />
+    <Content Include="Content\Css\News\NewsCreate.css" />
+    <Content Include="Content\Css\News\NewsIndex.css" />
     <Content Include="Content\Css\PrivateChat\Chat.css" />
     <Content Include="Content\Css\PrivateChat\Conversation.css" />
     <Content Include="Content\Css\Register\register.css" />
@@ -254,6 +260,8 @@
     <Content Include="Content\Css\Team\TeamProfile.css" />
     <Content Include="Content\Images\arrow-right-ico.svg" />
     <Content Include="Content\Images\background.jpg" />
+    <Content Include="Content\Images\editIco.png" />
+    <Content Include="Content\Images\editIcoWhite.png" />
     <Content Include="Content\Images\emptypfp.png" />
     <Content Include="Content\Images\friends-ico.png" />
     <Content Include="Content\Images\home-ico.png" />
@@ -290,6 +298,7 @@
     <Content Include="Scripts\Matches\createMatch.js" />
     <Content Include="Scripts\Matches\pendingMatches.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\News\NewsIndex.js" />
     <Content Include="Scripts\Notifications\Notifications.js" />
     <Content Include="Scripts\PrivateChat\Chat.js" />
     <Content Include="Scripts\PrivateChat\Conversations.js" />
@@ -344,6 +353,9 @@
     <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
     <Content Include="Views\PrivateChat\Chat.cshtml" />
     <Content Include="Views\PrivateChat\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,162 @@
+﻿body {
+}
+.news-wrap{
+    margin-left:300px;
+    color:white;
+}
+h2{
+    margin-left:1rem;
+}
+.options{
+    margin:1rem;
+
+}
+.options a{
+    padding:5px;
+    color:white;
+    text-decoration:none;
+    background-color:forestgreen;
+    
+}
+.news-list {
+    width:530px;
+    height: 88vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: none;
+    display: block;
+}
+.news-item {
+    padding-left:1rem;
+    padding-right:1rem;
+    color:white;
+    width: 500px;
+    height: 50px;
+    background-color: rgb(45,48, 50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+.news-text{
+    display:none;
+}
+/*Modal*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: rgb(35,39,42);
+    margin: auto;
+    padding: 20px;
+    border: solid gray 1px;
+    width: 60%;
+    height: 600px;
+}
+
+.modal-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-news-wrap{
+    margin-top:2rem;
+    position:relative;
+    height:500px;
+    
+}
+.modal-title{
+    margin:0 auto;
+    text-align:center;
+    color:white;
+    font-size:1.6rem;
+}
+.modal-time{
+    color:rgba(255,255,255,0.7);
+    font-size:1.3rem;
+}
+.modal-text {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 5rem;
+    color: white;
+    font-size: 1.3rem;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.modal-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(21, 23, 24);
+    margin: 0 auto;
+    border-radius: 50%;
+}
+.modal-controls:hover {
+    
+    background-color: rgb(29, 31, 32);
+   
+}
+.modal-controls a {
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    margin: 0 auto;
+    display:block;
+}
+.edit-news-ico {
+    background: url('/Content/Images/editIcoWhite.png');
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+/*custom scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    margin-left: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(45,48, 50);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(28,30, 31);
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgb(24, 26, 27);
+    }
