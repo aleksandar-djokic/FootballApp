@@ -1,0 +1,92 @@
+﻿@model IEnumerable<FootballApp.WebUI.Models.NewsDisplayViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="news-wrap">
+    <h2>News</h2>
+    <div class="options">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+
+    </div>
+    <div class="news-list">
+        @foreach(var item in Model)
+        {
+
+           <div class="news-item">
+               @Html.HiddenFor(modelItem=>item.Id,new { @class="news-Id"})
+               <div class="news-title">
+                   @Html.DisplayFor(modelItem => item.Title)
+               </div>
+               <div class="news-text">
+                   @Html.DisplayFor(modelItem => item.Text)
+               </div>
+               <div class="news-time">
+                   @Html.DisplayFor(modelItem => item.Time)
+               </div>
+
+           </div>
+        }
+
+    </div>
+
+</div>
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <div class="modal-news-wrap">
+            <div class="modal-time">
+
+            </div>
+            <div class="modal-title">
+
+            </div>
+            <div class="modal-text">
+
+            </div>
+            <div class="modal-controls">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@Styles.Render("~/Content/Css/News/NewsIndex.css")
+@Scripts.Render("~/Scripts/News/NewsIndex.js")
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

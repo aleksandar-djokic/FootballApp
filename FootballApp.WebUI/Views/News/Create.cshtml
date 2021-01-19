@@ -1,0 +1,43 @@
+﻿@model FootballApp.WebUI.Models.NewsCreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-wrap">
+        <h1>Create News</h1>
+        <div class="form-field">
+            <div class="form-label">
+                Title
+            </div>
+            <div class="form-input">
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-error" })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-field">
+            <div class="form-label">
+                Text
+            </div>
+            <div class="form-input">
+                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-error" })
+                @Html.TextAreaFor(model => model.Text, 5, 50, new { maxlength = 250, @class = "form-control" })
+            </div>
+        </div>
+        <div class="button-field">
+
+            <input type="submit" value="Create" class="create-button" />
+
+        </div>
+    </div>
+ }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    @Styles.Render("~/Content/Css/News/NewsCreate.css")
