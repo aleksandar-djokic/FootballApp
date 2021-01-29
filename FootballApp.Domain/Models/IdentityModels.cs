@@ -35,6 +35,8 @@ namespace FootballApp.Domain.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<TicketMessage> TicketMessages { get; set; }
+        public DbSet<SupportTicket> Tickets { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<PrivateMessage> PrivateMessages { get; set; }

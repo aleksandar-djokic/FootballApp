@@ -1,0 +1,109 @@
+﻿@model IEnumerable<FootballApp.WebUI.Models.TicketUserViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="header">
+    <h1>Support</h1>
+    <h2>If you are having issues with using the app, open a ticket bellow and admin will assist you.</h2>
+
+</div>
+<button class="open-ticket" id="open-ticket">Open ticket</button>
+@if (Model.Count() > 0)
+{
+    <div class="ticket-list">
+        @foreach (var item in Model)
+        {
+
+            <a class="ticket-item" href="/Support/ViewTicket/@item.Id">
+                <div class="ticket-id">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </div>
+                <div class="ticket-title">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </div>
+                <div class="ticket-status">
+                    @if (item.Status)
+                    {<div>
+                            Opened
+                        </div>
+                        <div class="ticket-opened"></div>
+                    }
+                    else
+                    {
+                        <div>
+                            Closed
+                        </div>
+                        <div class="ticket-closed"></div>
+                    }
+                </div>
+            </a>
+        }
+    </div>
+}
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <div class="modal-ticket-wrap">
+            @using (Html.BeginForm("Create","Support",FormMethod.Post,new {@Id="ticket-form" })) {
+
+                <div class="form-field">
+                    <div class="form-label">
+                        Title
+                    </div>
+                    <div class="error-label">
+                        
+                    </div>
+                    <div class="form-input">
+                        <input type="text" id="Ticket-Title" placeholder="Enter Title..." name="Title"/>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <div class="form-label">
+                        Topic
+                    </div>
+                    <div class="form-input">
+                        <select id="Ticket-Topic" name="Topic">
+                            <option>Other</option>
+                            <option>Friends</option>
+                            <option>Teams</option>
+                            <option>Matches</option>
+                            <option>FreeAgent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <div class="form-label">
+                        Message
+                    </div>
+                    <div class="error-label">
+                        
+                    </div>
+                    <div class="form-input">
+                        <textarea id="Ticket-Message" placeholder="Enter Message..." name="Message"></textarea>
+                    </div>
+                </div>
+                <div class="button-field">
+                    <input type="submit" value="Create" id="create-button"/>
+                </div>
+
+            }
+            <div class="modal-time">
+
+            </div>
+            <div class="modal-title">
+
+            </div>
+            <div class="modal-text">
+
+            </div>
+            <div class="modal-controls">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@Styles.Render("~/Content/Css/Support/UserIndex.css")
+@Scripts.Render("~/Scripts/Support/UserIndex.js")
+
