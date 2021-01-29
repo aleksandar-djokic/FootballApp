@@ -1,0 +1,53 @@
+﻿@model FootballApp.WebUI.Models.TicketViewModel
+@{
+    ViewBag.Title = "ViewTicket";
+}
+<div class="header">
+
+    <h2>Ticket: <span id="ticket-id"> @Model.Id</span> </h2>
+    <h2>Title:@Model.Title</h2>
+    <h3>Topic:@Model.Topic</h3>
+    <h3>
+        Sender: @Model.UserSender Time:@Model.Time.ToString() Status:@if (Model.isOpened)
+        {<span>Opened</span>}
+        else
+        { <span>Closed</span>}
+    </h3>
+    <a href="/Support" style="text-decoration:none;color:white;display:block;">< Back</a>
+    @if (Model.isOpened)
+    {
+        <button class="close-ticket-button" id="close-button">Close ticket</button>
+    }
+</div>
+<div class="messages">
+
+    @foreach (var m in Model.messages)
+    {
+        if (m.UserName == "Administrator")
+        {
+            <div class="message-admin">
+                <p>@m.UserName</p>
+                <p>@m.Time</p>
+                <p>@m.Message</p>
+            </div>
+        }
+        else
+        {
+            <div class="message">
+                <p>@m.UserName</p>
+                <p>@m.Time</p>
+                <p>@m.Message</p>
+            </div>
+        }
+    }
+</div>
+@if (Model.isOpened)
+{
+    <div class="message-input">
+        <input id="message" type="text" />
+        <button id="send-button">Send</button>
+    </div>
+
+}
+@Styles.Render("~/Content/Css/Support/Ticket.css")
+@Scripts.Render("~/Scripts/Support/Ticket.js")

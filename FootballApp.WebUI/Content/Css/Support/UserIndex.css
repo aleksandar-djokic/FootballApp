@@ -1,0 +1,200 @@
+﻿.header{
+    color:white;
+    margin:1rem;
+}
+.open-ticket{
+    margin-left:1rem;
+    color:white;
+    background-color:forestgreen;
+    outline:none;
+    border:none;
+    padding:5px;
+}
+.open-ticket:hover{
+    background-color:darkgreen;
+
+}
+.ticket-list {
+    width: 530px;
+    height: 80vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: none;
+    display: block;
+}
+.ticket-item {
+    text-decoration:none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: white;
+    width: 500px;
+    height: 50px;
+    background-color: rgb(45,48, 50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+.ticket-item:hover {
+    background-color: rgb(49,54, 57);
+}
+.ticket-status{
+    display:flex;
+    align-items:center;
+}
+.ticket-opened{
+    height:20px;
+    width:20px;
+    border-radius:50%;
+    background-color:green;
+    display:inline-block;
+    margin-left:1rem;
+}
+.ticket-closed {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: red;
+    display: inline-block;
+    margin-left: 1rem;
+}
+/*Modal*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: rgb(35,39,42);
+    margin: auto;
+    padding: 20px;
+    border: solid gray 1px;
+    width: 60%;
+    height: 600px;
+}
+
+.modal-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*Form*/
+form{
+    width:400px;
+    margin:0 auto;
+    padding-top:5rem;
+}
+.form-label {
+    color: #B9BBBE;
+    font-size: 1.2rem;
+    margin: 0.2rem auto;
+    padding-left: 5px;
+    text-transform: uppercase;
+}
+.error-label {
+    color: red;
+    font-size: 1rem;
+    margin: 0.2rem auto;
+    padding-left: 5px;
+    text-transform: uppercase;
+}
+.form-input {
+    text-align: left;
+}
+
+.form-input input {
+    display: block;
+    height: 35px;
+    width: 400px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #B9BBBE;
+    padding: 10px;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+.form-input select {
+    background-color: rgb(35,39,42);
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 400px;
+    height: 40px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+.form-input textarea {
+    display: block;
+    width: 400px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    color: #B9BBBE;
+    padding: 10px;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+    resize: none;
+}
+.button-field{
+    margin:0 auto;
+    width:100px;
+}
+.button-field input{
+    width:100px;
+    height:30px;
+    background-color:forestgreen;
+    border:none;
+    outline:none;
+    color:white;
+    cursor:pointer;
+}
+.button-field input:hover{
+    background-color:green;
+}
+
+/*custom scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    margin-left: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: rgb(45,48, 50);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(28,30, 31);
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgb(24, 26, 27);
+    }

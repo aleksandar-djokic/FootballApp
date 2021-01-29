@@ -81,6 +81,7 @@
     <Compile Include="Abstract\INewsRepository.cs" />
     <Compile Include="Abstract\INotificationRepository.cs" />
     <Compile Include="Abstract\IPrivateChatRepository.cs" />
+    <Compile Include="Abstract\ISupportRepository.cs" />
     <Compile Include="Abstract\ITeamChatRepository.cs" />
     <Compile Include="Abstract\ITeamRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Concrete\NewsRepository.cs" />
     <Compile Include="Concrete\NotificationRepository.cs" />
     <Compile Include="Concrete\PrivateChatRepository.cs" />
+    <Compile Include="Concrete\SupportRepository.cs" />
     <Compile Include="Concrete\TeamChatRepository.cs" />
     <Compile Include="Concrete\TeamRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
@@ -209,6 +211,14 @@
     <Compile Include="Migrations\202101101427479_News.Designer.cs">
       <DependentUpon>202101101427479_News.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101201112247_SupportTickets.cs" />
+    <Compile Include="Migrations\202101201112247_SupportTickets.Designer.cs">
+      <DependentUpon>202101201112247_SupportTickets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101271505407_TicketMessage2.0.cs" />
+    <Compile Include="Migrations\202101271505407_TicketMessage2.0.Designer.cs">
+      <DependentUpon>202101271505407_TicketMessage2.0.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\FreeAgentProfile.cs" />
@@ -221,6 +231,7 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\PrivateChatNotification.cs" />
     <Compile Include="Models\PrivateMessage.cs" />
+    <Compile Include="Models\SupportTicket.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamChatMessage.cs" />
     <Compile Include="Models\TeamChatNotification.cs" />
@@ -233,6 +244,7 @@
     <Compile Include="Models\TeamNotification.cs" />
     <Compile Include="Models\TeamRequestNotification.cs" />
     <Compile Include="Models\TeamRole.cs" />
+    <Compile Include="Models\TicketMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -326,6 +338,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101101427479_News.resx">
       <DependentUpon>202101101427479_News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101201112247_SupportTickets.resx">
+      <DependentUpon>202101201112247_SupportTickets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101271505407_TicketMessage2.0.resx">
+      <DependentUpon>202101271505407_TicketMessage2.0.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
