@@ -95,7 +95,7 @@
     cursor: pointer;
 }
 /*Form*/
-form{
+#ticket-form{
     width:400px;
     margin:0 auto;
     padding-top:5rem;

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace FootballApp.WebUI.Controllers
 {
+    [Authorize]
     public class NotificationController : Controller
     {
         public INotificationRepository notifications;

@@ -2,8 +2,15 @@
 
 @{
     ViewBag.Title = "Error";
+    Layout = "";
 }
+<div class="error-wrap">
+    <div class="error">
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+        <img src="~/Content/Images/logo-pink.png" />
+        <h1 class="text-danger">Ooops...Something went wrong..</h1>
+        <a href="/Home/">Click here to return to Home page.</a>
+    </div>
+</div>
 
+@Styles.Render("~/Content/Css/Error/Error.css")

@@ -1,0 +1,22 @@
+﻿@model List<FootballApp.WebUI.Models.TournamentViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of active tournaments</h2>
+<a class="create-button" href="/Tournament/Create">Create new</a>
+<div class="tournament-list">
+    @foreach (var t in Model)
+    {
+    <div class="tournament-item">
+        <div>Name:@t.Name</div>
+        <div>Round @t.CurrentRound/@t.NumberOfRounds</div>
+        <div>Participants:@t.CurrentNumberParticipants/@t.NumberOfParticipants  </div>
+        <div>
+            <a href="/Tournament/TournamentProfile/@t.Id"class="view-tournament-button">View</a>
+        </div>
+    </div>
+    }
+
+</div>
+@Styles.Render("/Content/Css/Tournament/TournamentIndex.css")

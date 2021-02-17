@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace FootballApp.WebUI.Controllers
 {
+    [Authorize(Roles ="User")]
     public class FreeAgentController : Controller
     {
         public IFreeAgentRepository agents;

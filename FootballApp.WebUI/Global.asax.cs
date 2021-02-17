@@ -20,6 +20,7 @@ namespace FootballApp.WebUI
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             //RegisterDependency
+            builder.RegisterType<TournamentRepository>().As<ITournamentRepository>();
             builder.RegisterType<SupportRepository>().As<ISupportRepository>();
             builder.RegisterType<NewsRepository>().As<INewsRepository>();
             builder.RegisterType<NotificationRepository>().As<INotificationRepository>();

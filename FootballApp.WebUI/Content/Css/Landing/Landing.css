@@ -1,0 +1,204 @@
+﻿*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-family: sans-serif;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(224, 224, 224);
+}
+
+header {
+    background-color: #fff;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+}
+
+.nav-bar {
+    background-color: rgb(35,39,42);
+    width: 100%;
+    height: 75px;
+    position: sticky;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
+
+.nav-brand {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.nav-brand img {
+    height: 40px;
+    margin-right: 2rem;
+}
+@font-face {
+    font-family: 'PermanentMarker';
+    src: url('/fonts/PermanentMarker-Regular.ttf');
+}
+
+.nav-brand-name {
+    font-family: 'PermanentMarker';
+    color: rgb(226, 23, 141);
+    font-size: 2.5rem;
+}
+
+.nav-links {
+    display: flex;
+    flex-flow: row;
+    color: white;
+    font-size: 1.8rem;
+    align-items: center;
+}
+
+.nav-link {
+    width: 100px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.nav-link:hover {
+    color: rgb(226, 23, 141);
+}
+
+.nav-link a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.9);
+}
+.nav-link a:hover {
+    color: rgb(226, 23, 141);
+}
+
+.hero {
+    height: 100vh;
+    background-color: blue;
+    background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),url(/Content/Images/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 300px;
+}
+
+.hero-text {
+    width: 700px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+    padding: 50px;
+    color: rgb(204, 204, 204);
+    margin: 0 auto;
+    background-color: rgba(0,0,0,.6);
+    border: 5px white solid;
+}
+
+.hero-text h1 {
+    color: rgb(226, 23, 141);
+}
+
+.login-register {
+    font-size: 1.7rem;
+    color: white;
+    display: flex;
+    flex-flow: row;
+    margin: 2rem auto;
+    width: 250px;
+    justify-content: space-between;
+}
+.login-register a{
+    text-decoration:none;
+    color:white;
+}
+
+.register-button {
+    background-color: rgb(226, 23, 141);
+    display: block;
+    padding: 5px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: rgb(248, 29, 157);
+}
+
+.login-button {
+    background-color: green;
+    display: block;
+    padding: 5px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: forestgreen;
+}
+
+.About {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    padding-top: 100px;
+}
+
+.About h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 3rem;
+    color: rgba(0,0,0,.7);
+}
+
+.About hr {
+    border-top: 2px solid rgb(248, 29, 157);
+    width: 400px;
+    margin: 0 auto;
+}
+
+.about-item {
+    width: 500px;
+    margin: 3rem auto;
+    text-align: center;
+    font-size: 1.7rem;
+    color: rgba(0,0,0,.7);
+}
+
+.about-item h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.Contact {
+    padding-top: 100px;
+    background-color: rgb(42,46,50);
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.location-img {
+    margin-top: 1rem;
+    width: 500px;
+}
+
+.contact-item {
+    width: 500px;
+    margin: 3rem auto;
+    text-align: left;
+}
