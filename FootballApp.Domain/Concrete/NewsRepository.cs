@@ -31,6 +31,11 @@ namespace FootballApp.Domain.Concrete
             }
         }
 
+        public IEnumerable<News> GetLastFive()
+        {
+            return context.News.Select(x=>x).OrderByDescending(x=>x.Time).Take(5);
+        }
+
         public IEnumerable<News> GetNews()
         {
             return context.News;

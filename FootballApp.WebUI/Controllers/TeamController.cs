@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace FootballApp.WebUI.Controllers
 {
+    [Authorize(Roles = "User")]
     public class TeamController : Controller
     {
         public ITeamRepository teams;
@@ -71,7 +72,7 @@ namespace FootballApp.WebUI.Controllers
                 }
                 var userid = User.Identity.GetUserId();
                 teams.Create(team.TeamName, team.Description, imageData, userid);
-                return View();
+                return RedirectToAction("Index");
             }
 
             return View();

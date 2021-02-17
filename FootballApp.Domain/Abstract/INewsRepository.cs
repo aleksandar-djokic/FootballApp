@@ -13,5 +13,6 @@ namespace FootballApp.Domain.Abstract
         void Create(string Title, string Text);
         News GetNewsById(int id);
         void Edit(int Id, string Title, string Text);
+        IEnumerable<News> GetLastFive();
     }
 }

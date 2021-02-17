@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace FootballApp.WebUI.Controllers
 {
+    [Authorize]
     public class NewsController : Controller
     {
         public INewsRepository news;

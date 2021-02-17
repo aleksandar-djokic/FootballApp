@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace FootballApp.WebUI.Controllers
 {
+    [Authorize]
     public class SupportController : Controller
     {
         private ISupportRepository supportRepo;
@@ -25,11 +26,13 @@ namespace FootballApp.WebUI.Controllers
             {
                 var adminTicketList = new List<TicketAdminViewModel>();
                 var adminTickets = supportRepo.GetAdminTickets().ToList();
-                foreach(var t in adminTickets)
+                foreach (var t in adminTickets)
                 {
-                    var newAdminTicketVM = new TicketAdminViewModel() { Id = t.Id, User = t.User.UserName, Title = t.Title, Status = t.IsOpened };
+                    var userName = t.User.UserName;
+                    TicketAdminViewModel newAdminTicketVM = new TicketAdminViewModel { Id = t.Id, User = userName, Title = t.Title, Status = t.IsOpened };
                     adminTicketList.Add(newAdminTicketVM);
                 }
+              
                 return View("AdminIndex",adminTicketList);
             }
             var ticketList = new List<TicketUserViewModel>();
@@ -39,13 +42,9 @@ namespace FootballApp.WebUI.Controllers
                 var currentTicket = new TicketUserViewModel { Id = t.Id, Status = t.IsOpened, Title = t.Title };
                 ticketList.Add(currentTicket);
              }
-            //ticketList.Add(new TicketUserViewModel { Id = 1, Title = "First ticket", Status = true });
-            //ticketList.Add(new TicketUserViewModel { Id = 2, Title = "Second ticket", Status = true });
-            //ticketList.Add(new TicketUserViewModel { Id = 3, Title = "Third ticket", Status = false });
-            //ticketList.Add(new TicketUserViewModel { Id = 4, Title = "Fourth ticket", Status = false });
-
             
-            return View("Index",ticketList);
+            
+            return View("Index", ticketList.OrderByDescending(x => x.Status));
         }
         public ActionResult Create(string Title,string Topic,string Message)
         {

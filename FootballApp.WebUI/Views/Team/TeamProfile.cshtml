@@ -92,6 +92,9 @@
                 <button class="profilenav-button" id="Matches-button" name="Profile-Nav-Matches">Matches</button>
                 <span class="notification"></span>
             </div>
+            <div class="profile-nav-item">
+                <button class="profilenav-button" id="Tournaments-button" name="Profile-Nav-Tournaments">Tournaments</button>
+            </div>
         </div>
     </div>
     <div class="profile-content">
@@ -238,6 +241,71 @@
             <div class="matches-list" id="matches-list">
 
             </div>
+        </div>
+        <div class="profile-content-item" id="Tournaments">
+            <button class="previous-tournaments" id="previous-tournaments">Previous</button>
+            @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
+            {
+
+                <button class="join-tournament" id="join-tournament">Join</button>
+            }
+            <div class="tournament-list">
+                @*<div class="tournament-item">
+                <div>Name:Tournament1</div>
+                <div>Round 0/10</div>
+                <div>Participants:2/12  </div>
+                <div>
+                    <button style="border-radius:50%;height:40px;width:40px; outline:none;border:none; background-color:hotpink;color:white;">View</button>
+                </div>
+            </div>*@
+
+            </div>
+            @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
+            {
+
+                <div class="modal" id="modal-join-tournaments">
+                    <div class="modal-content">
+                        <span class="modal-close" id="jointournaments-modal-close">&times</span>
+                        <div class="available-tournaments" id="available-tournaments">
+                            @*<div class="available-tournaments-item">
+                            <div>Name:Tournament1</div>
+                            <div>Round 0/10</div>
+                            <div>Participants:2/12  </div>
+                            <div>
+                                <button style="border-radius:50%;height:40px;width:40px; outline:none;border:none; background-color:green;color:white;">Join</button>
+                            </div>
+                        </div>*@
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+            <div class="modal" id="modal-previous-tournaments">
+                <div class="modal-content">
+                    <span class="modal-close" id="previoustournaments-modal-close">&times</span>
+                    <div class="previous-tournaments-list" id="previous-tournaments-list">
+                        @*<div class="previous-tournaments-item">
+                        <div>Name:Tournament1</div>
+                        <div>Round 0/10</div>
+                        <div>Participants:2/12  </div>
+                        <div>
+                            <button style="border-radius:50%;height:40px;width:40px; outline:none;border:none; background-color:hotpink;color:white;">View</button>
+                        </div>
+                    </div>*@
+                    </div>
+
+                </div>
+
+            </div>
+            @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
+            {
+                @Scripts.Render("~/Scripts/Tournaments/JoinTournament.js")
+
+            }
+            @Scripts.Render("~/Scripts/Tournaments/ListParticipatingTournaments.js")
+
+            @Scripts.Render("~/Scripts/Tournaments/ListPreviousTournaments.js")
         </div>
 
     </div>

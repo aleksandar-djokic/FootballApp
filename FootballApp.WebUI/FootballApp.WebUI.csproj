@@ -191,6 +191,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FreeAgentController.cs" />
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="Controllers\TeamChatController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Controllers\TournamentController.cs" />
     <Compile Include="CustomValidation\ValidateImage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +215,7 @@
     <Compile Include="Models\ChatNotificationViewModel.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
     <Compile Include="Models\ConversationViewModel.cs" />
+    <Compile Include="Models\CreateTournamentViewModel.cs" />
     <Compile Include="Models\FreeAgentProfileViewModel.cs" />
     <Compile Include="Models\FreeAgentViewModel.cs" />
     <Compile Include="Models\FriendNotificationViewModel.cs" />
@@ -238,6 +241,11 @@
     <Compile Include="Models\TicketMessageViewModel.cs" />
     <Compile Include="Models\TicketUserViewModel.cs" />
     <Compile Include="Models\TicketViewModel.cs" />
+    <Compile Include="Models\TournamentMatchScoreViewModel.cs" />
+    <Compile Include="Models\TournamentMatchViewModel.cs" />
+    <Compile Include="Models\TournamentProifleViewModel.cs" />
+    <Compile Include="Models\TournamentRound.cs" />
+    <Compile Include="Models\TournamentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -247,9 +255,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Css\Error\Error.css" />
     <Content Include="Content\Css\FreeAgent\Create.css" />
     <Content Include="Content\Css\FreeAgent\Edit.css" />
     <Content Include="Content\Css\Friends\FriendsIndex.css" />
+    <Content Include="Content\Css\Home\Home.css" />
+    <Content Include="Content\Css\Landing\Landing.css" />
     <Content Include="Content\Css\Layout\navigation.css" />
     <Content Include="Content\Css\Login\login.css" />
     <Content Include="Content\Css\Manage\ChangePassword.css" />
@@ -265,6 +276,9 @@
     <Content Include="Content\Css\Team\TeamCreate.css" />
     <Content Include="Content\Css\Team\TeamIndex.css" />
     <Content Include="Content\Css\Team\TeamProfile.css" />
+    <Content Include="Content\Css\Tournament\CreateTournament.css" />
+    <Content Include="Content\Css\Tournament\TournamentIndex.css" />
+    <Content Include="Content\Css\Tournament\TournamentProfile.css" />
     <Content Include="Content\Images\arrow-right-ico.svg" />
     <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\editIco.png" />
@@ -273,14 +287,19 @@
     <Content Include="Content\Images\friends-ico.png" />
     <Content Include="Content\Images\home-ico.png" />
     <Content Include="Content\Images\infoIcon.png" />
+    <Content Include="Content\Images\Location-contact.png" />
     <Content Include="Content\Images\logo-horizontal.png" />
+    <Content Include="Content\Images\logo-pink.png" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\logout-ico.png" />
     <Content Include="Content\Images\message-ico.png" />
     <Content Include="Content\Images\msg-ico.png" />
+    <Content Include="Content\Images\news-ico.png" />
     <Content Include="Content\Images\request-accept-ico.png" />
     <Content Include="Content\Images\request-decline-ico.png" />
     <Content Include="Content\Images\settings-ico.png" />
     <Content Include="Content\Images\teams-ico.png" />
+    <Content Include="Content\Images\tournament-ico.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -292,6 +311,7 @@
     <Content Include="Scripts\FreeAgent\create.js" />
     <Content Include="Scripts\FreeAgent\edit.js" />
     <Content Include="Scripts\Friends\FriendsIndex.js" />
+    <Content Include="Scripts\Home\Home.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -319,6 +339,12 @@
     <Content Include="Scripts\Teams\searchteam.js" />
     <Content Include="Scripts\Teams\TeamInvites.js" />
     <Content Include="Scripts\Teams\TeamProfileNav.js" />
+    <Content Include="Scripts\Tournaments\ConcludeMatch.js" />
+    <Content Include="Scripts\Tournaments\createTournament.js" />
+    <Content Include="Scripts\Tournaments\JoinTournament.js" />
+    <Content Include="Scripts\Tournaments\ListParticipatingTournaments.js" />
+    <Content Include="Scripts\Tournaments\ListPreviousTournaments.js" />
+    <Content Include="Scripts\Tournaments\TournamentProfile.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -330,8 +356,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -369,9 +393,14 @@
     <Content Include="Views\Support\Index.cshtml" />
     <Content Include="Views\Support\AdminIndex.cshtml" />
     <Content Include="Views\Support\ViewTicket.cshtml" />
+    <Content Include="Views\Tournament\Index.cshtml" />
+    <Content Include="Views\Tournament\Create.cshtml" />
+    <Content Include="Views\Tournament\TournamentProfile.cshtml" />
+    <Content Include="Views\Home\Landing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Error\" />
     <Folder Include="Views\Match\" />
     <Folder Include="Views\Notification\" />
     <Folder Include="Views\TeamChat\" />

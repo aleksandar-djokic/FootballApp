@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FootballApp.Domain.Abstract;
+using FootballApp.WebUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +10,25 @@ namespace FootballApp.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        public INewsRepository newsRepo;
+        public HomeController(INewsRepository news)
+        {
+            this.newsRepo = news;
+        }
+
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View("Landing");
+            }
+            var news  = newsRepo.GetLastFive().ToList();
+            var newsVM = new List<NewsDisplayViewModel>();
+            foreach(var n in news)
+            {
+                newsVM.Add(new NewsDisplayViewModel { Id = n.Id, Time = n.Time.ToString(), Title = n.Title, Text = n.Text });
+            }
+            return View("Index",newsVM);
         }
     }
 }

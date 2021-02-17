@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace FootballApp.WebUI.Controllers
 {
+    [Authorize(Roles ="User")]
     public class TeamChatController : Controller
     {
         public ITeamChatRepository teamchat;

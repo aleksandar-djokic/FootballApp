@@ -1,0 +1,229 @@
+﻿@model FootballApp.WebUI.Models.TournamentProifleViewModel
+
+@{
+    ViewBag.Title = "TournamentProfile";
+}
+
+@if (Model.Tournamnet.CurrentRound > 0)
+{
+
+    <div class="header">
+        <div class="profile-data-wrap">
+
+            <div class="profile-data">
+                <div>
+                    Name:@Model.Tournamnet.Name
+                </div>
+                <div>
+                    Rounds:@Model.Tournamnet.CurrentRound/@Model.Tournamnet.NumberOfRounds
+                </div>
+                <div>
+                    Participants:@Model.Tournamnet.CurrentNumberParticipants/@Model.Tournamnet.NumberOfParticipants
+                </div>
+
+                @if (!Model.Tournamnet.isActive)
+                {
+                    <div>
+                        Winner:@Model.Tournamnet.Winner
+                    </div>
+                    <div>
+                        Runner-up:@Model.Tournamnet.RunnerUp
+                    </div>
+                }
+            </div>
+            <div class="profile-navigation">
+                @for (int i = 0; i < Model.Rounds.Count; i++)
+                {
+                    <div class="profile-nav-item">
+                        <button class="profile-nav-button">Round@(i + 1)</button>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+    <div class="profile-content">
+        @for (int i = 0; i < Model.Rounds.Count; i++)
+        {
+            <div class="profile-content-item" id="Round@(i + 1)">
+                <div class="match-list">
+                    @for (int j = 0; j < Model.Rounds[i].matches.Count; j++)
+                    {
+
+                        var temp = Model.Rounds[i].matches[j];
+                        if (temp.isConcluded)
+                        {
+                            <div class="match-item" id="Match@(temp.Id)">
+                                <div class="match-teams">
+                                    @if (temp.Winner == temp.Participant1)
+                                    {
+                                        <div class="match-team winner">
+                                            <div class="match-name">@temp.Participant1</div>
+                                            <div class="match-score">
+                                                @if (temp.ScoreP1 != null)
+                                                {@temp.ScoreP1
+                                            }
+                                            else
+                                            {@: -
+                                            }
+                                            </div>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="match-team ">
+                                            <div class="match-name">@temp.Participant1</div>
+                                            <div class="match-score">
+                                                @if (temp.ScoreP1 != null)
+                                                {@temp.ScoreP1
+                                            }
+                                            else
+                                            {@: -
+                                            }
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <hr style="height:1px; background-color:#45494c; border:none;" />
+                                    @if (temp.Winner == temp.Participant2)
+                                    {
+
+                                        <div class="match-team winner">
+                                            <div class="match-name">@temp.Participant2</div>
+                                            <div class="match-score">
+                                                @if (temp.ScoreP2 != null)
+                                                {@temp.ScoreP2
+                                            }
+                                            else
+                                            {@: -
+                                            }
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="match-team ">
+                                            <div class="match-name">@temp.Participant2</div>
+                                            <div class="match-score">
+                                                @if (temp.ScoreP2 != null)
+                                                {@temp.ScoreP2
+                                            }
+                                            else
+                                            {@: -
+                                            }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                          
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="match-item" id="Match@(temp.Id)">
+                                <div class="match-teams">
+                                    <div class="match-team">
+                                        <div class="match-name">@temp.Participant1</div>
+                                        <div class="match-score">
+                                            @if (temp.ScoreP1 != null)
+                                            {@temp.ScoreP1
+                                        }
+                                        else
+                                        {@: -
+                                        }
+                                        </div>
+                                    </div>
+                                    <hr style="height:1px; background-color:#45494c; border:none;" />
+                                    <div class="match-team">
+                                        <div class="match-name">@temp.Participant2</div>
+                                        <div class="match-score">
+                                            @if (temp.ScoreP2 != null)
+                                            {@temp.ScoreP2
+                                        }
+                                        else
+                                        {@: -
+                                        }
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (User.IsInRole("Admin"))
+                                {
+
+                                    <div>
+                                        <button value="@temp.Id" class="conclude-match-button">Conclude</button>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+        }
+         @if(User.IsInRole("Admin")){
+            <div class="modal" id="modal-concludematch">
+                <div class="modal-content">
+                    <span class="modal-close" id="concludematch-modal-close">&times</span>
+                    <div class="match-details-input">
+                        <input type="hidden" id="match-id" />
+                        <div class="match-detail-team">
+                            <input type="hidden" id="Team1Id" />
+                            <div>
+                                <label class="input-teamname" id="Team1Name">Score Team1</label>
+                            </div>
+                            <div>
+                                <input class="input-score" id="team1score" type="number" min="0" step="1" value="0" />
+                            </div>
+                            <div>
+
+                                <input type="radio" id="Team1Winner" name="Winner" title="Winner" />
+                            </div>
+                        </div>
+                        <div>
+                            VS
+                        </div>
+                        <div class="match-detail-team">
+                            <input type="hidden" id="Team2Id" />
+                            <div>
+                                <label class="input-teamname" id="Team2Name">Score Team2</label>
+                            </div>
+                            <div>
+                                <input class="input-score" id="team2score" type="number" min="0" step="1" value="0" />
+                            </div>
+                            <div>
+
+                                <input type="radio" id="Team2Winner" name="Winner" class="winner-input" title="Winner" />
+                            </div>
+                        </div>
+                    </div>
+                        <p id="error" class="error" >Error</p>
+                        <button class="match-score-submit">Submit</button>
+                </div>
+            </div>
+          }
+    </div>
+     if (User.IsInRole("Admin"))
+     {
+         @Scripts.Render("~/Scripts/Tournaments/ConcludeMatch.js")
+     }
+     @Scripts.Render("/Scripts/Tournaments/TournamentProfile.js")
+}
+else
+{
+
+<div class="not-started-tournament">
+    <p>
+        Name:@Model.Tournamnet.Name
+    </p>
+    <p>
+        Rounds:@Model.Tournamnet.CurrentRound/@Model.Tournamnet.NumberOfRounds
+    </p>
+    <p>
+        Participants:@Model.Tournamnet.CurrentNumberParticipants/@Model.Tournamnet.NumberOfParticipants
+    </p>
+    <p>Status: Tournament is still in the forming phase. </p>
+</div>
+}
+     @Styles.Render("/Content/Css/Tournament/TournamentProfile.css")
