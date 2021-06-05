@@ -84,6 +84,7 @@ header {
 
 .hero {
     height: 100vh;
+    min-height: 600px;
     background-color: blue;
     background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),url(/Content/Images/background.jpg);
     background-size: cover;
@@ -147,7 +148,7 @@ header {
 }
 
 .About {
-    height: 100vh;
+    min-height: 600px;
     width: 100%;
     display: flex;
     flex-flow: column;
@@ -184,8 +185,9 @@ header {
 
 .Contact {
     padding-top: 100px;
+    padding-bottom:100px;
     background-color: rgb(42,46,50);
-    height: 100vh;
+    min-height: 600px;
     width: 100%;
     text-align: center;
     font-size: 1.5rem;

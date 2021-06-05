@@ -91,7 +91,7 @@ $('#All-nav').click(function () {
                     else {
                         img = '<img class="friends-image" src="/Content/Images/emptypfp.png" />';
                     }
-                    dom += '<div class="friends-item" id="friend-' + result.Id + '"> <div class="friends-info">' + img + '<p>' + result.Name + '</p></div><div class="friends-options"> <button class="friends-options-msg"><span class="friends-msg-ico"></span></button><button class="friends-options-dropdown" onclick="OpenDropdown(this)" value="' + result.Id + '"></button></div></div>'
+                    dom += '<div class="friends-item" id="friend-' + result.Id + '"> <div class="friends-info">' + img + '<p>' + result.Name + '</p></div><div class="friends-options"> <a href="/PrivateChat/GetChat?id=' + result.Id + '"class="friends-options-msg"><span class="friends-msg-ico"></span></a><button class="friends-options-dropdown" onclick="OpenDropdown(this)" value="' + result.Id + '"></button></div></div>'
                 })
             }
             else {
