@@ -22,24 +22,24 @@
             </div>
             <div class="nav-item">
                 <div class="nav-icon"><img src="~/Content/Images/home-ico.png"></div>
-                <div class="nav-text">@Html.ActionLink("Home", "Index", "Home")</div>
+                <div class="nav-text">@Html.ActionLink("Početna", "Index", "Home")</div>
             </div>
             @if (User.IsInRole("User"))
             {
 
                 <div class="nav-item">
                     <div class="nav-icon"><img src="~/Content/Images/friends-ico.png"></div>
-                    <div class="nav-text">@Html.ActionLink("Friends", "Index", "Friends")</div>
+                    <div class="nav-text">@Html.ActionLink("Prijatelji", "Index", "Friends")</div>
                     <div class="nav-notification" id="friends-notification"></div>
                 </div>
                 <div class="nav-item">
                     <div class="nav-icon"><img src="~/Content/Images/msg-ico.png"></div>
-                    <div class="nav-text">@Html.ActionLink("Messages", "Index", "PrivateChat")</div>
+                    <div class="nav-text">@Html.ActionLink("Poruke", "Index", "PrivateChat")</div>
                     <div class="nav-notification" id="privatechat-notification"></div>
                 </div>
                 <div class="nav-item">
                     <div class="nav-icon"><img src="~/Content/Images/teams-ico.png"></div>
-                    <div class="nav-text">@Html.ActionLink("Teams", "Index", "Team")</div>
+                    <div class="nav-text">@Html.ActionLink("Timovi", "Index", "Team")</div>
                     <div class="nav-notification" id="team-notification"></div>
                 </div>
             }
@@ -48,12 +48,12 @@
 
                 <div class="nav-item">
                     <div class="nav-icon"><img style="width:2rem;" src="~/Content/Images/tournament-ico.png"></div>
-                    <div class="nav-text">@Html.ActionLink("Tournaments", "Index", "Tournament")</div>
+                    <div class="nav-text">@Html.ActionLink("Turniri", "Index", "Tournament")</div>
 
                 </div>
                 <div class="nav-item">
                     <div class="nav-icon"><img src="~/Content/Images/news-ico.png"></div>
-                    <div class="nav-text">@Html.ActionLink("News", "Index", "News")</div>
+                    <div class="nav-text">@Html.ActionLink("Novosti", "Index", "News")</div>
 
                 </div>
             }
@@ -63,11 +63,11 @@
         <div class="navbarbottom">
             <div class="nav-item">
                 <div class="nav-icon"><img src="~/Content/Images/infoIcon.png"></div>
-                <div class="nav-text">@Html.ActionLink("Support", "Index", "Support")</div>
+                <div class="nav-text">@Html.ActionLink("Podrška", "Index", "Support")</div>
             </div>
             <div class="nav-item">
                 <div class="nav-icon"><img src="~/Content/Images/settings-ico.png"></div>
-                <div class="nav-text">@Html.ActionLink("Settings","Index","Manage")</div>
+                <div class="nav-text">@Html.ActionLink("Podešavanja","Index","Manage")</div>
             </div>
             <div class="nav-item">
                 <div class="nav-icon"><img src="~/Content/Images/logout-ico.png"></div>
@@ -76,7 +76,7 @@
                     {
                     @Html.AntiForgeryToken()
 
-                       <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                       <a href="javascript:document.getElementById('logoutForm').submit()">Odjavi se</a>
                     
                     }
                 </div>

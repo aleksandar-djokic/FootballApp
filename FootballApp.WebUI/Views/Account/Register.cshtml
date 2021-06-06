@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <title>Login</title>
+    <title>Register</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="~/Content/Css/Register/register.css">
 </head>
@@ -19,8 +19,8 @@
                 </div>
                 <div class="register-form">
                     <div class="register-welcomemsg">
-                        <h1>Register</h1>
-                        <p>Please enter required credentials.</p>
+                        <h1>Registruj se</h1>
+                        <p>Molimo vas unesite validne podatke.</p>
 
                     </div>
                     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new
@@ -44,7 +44,7 @@
                         
                         <div class="register-field">
                             <div class="register-label">
-                                <label for="Password">Image</label>
+                                <label for="Password">Slika</label>
                             </div>
                             <div class="register-fileinput">
                                 <input type="file" name="File" id="File" accept="image/*">
@@ -75,14 +75,14 @@
                             </div>
                         </div>
                         <input type="checkbox">
-                        <label>Accept terms</label>
+                        <label>Prihvatam uslove</label>
                         <div class="register-button-wrap">
-                            <input class="register-button" type="submit" value="Register">
+                            <input class="register-button" type="submit" value="Registruj se">
                         </div>
                     }
                     <div class="register-msg">
                         <p>
-                            @Html.ActionLink("Already have an account?", "Login")
+                            @Html.ActionLink("Već imate nalog?", "Login")
                         </p>
                     </div>
 

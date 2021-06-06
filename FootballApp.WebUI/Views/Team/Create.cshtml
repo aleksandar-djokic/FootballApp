@@ -15,13 +15,13 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-wrap">
-        <h1>CREATE YOUR OWN TEAM</h1>
+        <h1>NAPRAVI SVOJ TIM</h1>
 
         @Html.ValidationSummary(true, "", new { @class = "text-error" })
 
         <div class="form-field">
             <div class="form-label">
-                Name
+                Ime
             </div>
             <div class="form-input">
                 @Html.ValidationMessageFor(model => model.TeamName, "", new { @class = "text-error" })
@@ -30,7 +30,7 @@
         </div>
         <div class="form-field">
             <div class="form-label">
-                Description
+                Opis
             </div>
             <div class="form-input">
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-error" })
@@ -39,8 +39,9 @@
         </div>
         <div class="form-file-field">
             <div class="form-label">
-                Image
+                SLIKA
             </div>
+            @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-error" })
             <div class="form-file-input">
                 <input type="file" name="Picture" id="Picture" accept="image/*" />
             </div>
@@ -52,7 +53,7 @@
   }
         @Styles.Render("~/Content/Css/Team/TeamCreate.css")
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("< Nazad na listu", "Index","Team",new { @class = "back-link" })
         </div>
 
         @section Scripts {

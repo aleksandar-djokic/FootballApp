@@ -17,8 +17,8 @@
             <div class="login">
                 <div class="login-form">
                     <div class="login-msg">
-                        <h1>Welcome!</h1>
-                        <p>Please enter credentials to login.</p>
+                        <h1>Dobrodošli!</h1>
+                        <p>Molimo vas unesite kredincijale da bi se prijavili.</p>
 
                     </div>
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -61,7 +61,7 @@
                     }
                     <div class="register-msg">
                     <p>
-                        @Html.ActionLink("Register as a new user", "Register")
+                        @Html.ActionLink("Registruj se", "Register")
                     </p>  
                     </div>
                    

@@ -52,7 +52,7 @@ namespace FootballApp.WebUI.Controllers
             byte[] imageData = null;
             if (teams.isNameTaken(team.TeamName))
             {
-                ModelState.AddModelError("TeamName", "There is already team with that name.");
+                ModelState.AddModelError("TeamName", "Ime tima je već zauzeto.");
 
             }
             if (ModelState.IsValid)

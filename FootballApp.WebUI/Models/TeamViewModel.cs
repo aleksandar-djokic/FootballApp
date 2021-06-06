@@ -10,18 +10,18 @@ namespace FootballApp.WebUI.Models
     public class TeamViewModel
     {
         public int Id { get; set; }
-        [Required]
-        [MaxLength(50, ErrorMessage = "Name must be under 50 characters long.")]
-        [Display(Name = "Name")]
+        [Required(ErrorMessage ="{0} je obavezno.")]
+        [MaxLength(50, ErrorMessage = "Ime mora biti kraće od 50 karaktera.")]
+        [Display(Name = "Ime")]
         public string TeamName { get; set; }
         
-        [Required]
-        [MaxLength(250, ErrorMessage = "Description must be under 250 characters long.")]
-        [Display(Name = "Description")]
+        [Required(ErrorMessage = "{0} je obavezno.")]
+        [MaxLength(250, ErrorMessage = "Opis mora biti kraći od 250 karaktera.")]
+        [Display(Name = "Opis")]
         public string Description { get; set; }
 
-        [ValidateImage(ErrorMessage = "Please select a PNG or JPEG image smaller than 4MB")]
-        [Display(Name = "Picture")]
+        [ValidateImage(ErrorMessage = "Molimo vas izaberite PNG or JPEG sliku manju od 4MB")]
+        [Display(Name = "Slika")]
         public HttpPostedFileBase Picture { get; set; }
     }
 }

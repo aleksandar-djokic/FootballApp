@@ -10,10 +10,10 @@
     @Html.AntiForgeryToken()
 
     <div class="form-wrap">
-        <h1>Create News</h1>
+        <h1>Kreiraj novost.</h1>
         <div class="form-field">
             <div class="form-label">
-                Title
+                Naslov
             </div>
             <div class="form-input">
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-error" })
@@ -22,7 +22,7 @@
         </div>
         <div class="form-field">
             <div class="form-label">
-                Text
+                Tekst
             </div>
             <div class="form-input">
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-error" })
@@ -31,13 +31,13 @@
         </div>
         <div class="button-field">
 
-            <input type="submit" value="Create" class="create-button" />
+            <input type="submit" value="Kreiraj" class="create-button" />
 
         </div>
     </div>
  }
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("< Nazad na listu", "Index","News",new { @class = "back-link" })
     </div>
     @Styles.Render("~/Content/Css/News/NewsCreate.css")

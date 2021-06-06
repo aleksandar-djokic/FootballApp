@@ -26,12 +26,12 @@ else
             <img id="recieverImg" src="@Model.ImageSource" />
         }
     </div>
-    <p class="user-info">You are now chatting with <span id="recieverName">@Model.UserName</span> .</p>
+    <p class="user-info">Trenutno ćaskaš sa <span id="recieverName">@Model.UserName</span> .</p>
 </div>
 
 <div class="chat-wrap">
     <div class="chat" id="chat">
-        <button id="Load-messages-btn" class="loadmsg-button">Load more</button>
+        <button id="Load-messages-btn" class="loadmsg-button">Učitaj više</button>
         @*<div class="chat-msg">
 
                 <div class="chat-img">
@@ -47,14 +47,14 @@ else
     @if (Model.areFriends)
     {
         <div class="chat-controlls">
-            <input class="chat-input" id="message" type="text" maxlength="250" autocomplete="off" placeholder="Enter message..." />
-            <button class="chat-send" id="sendmessage">send</button>
+            <input class="chat-input" id="message" type="text" maxlength="250" autocomplete="off" placeholder="Unesi poruku..." />
+            <button class="chat-send" id="sendmessage">Pošalji</button>
         </div>
     }
     else
     {
         <div class="chat-information">
-            You are not friends with this person anymore,so you cant chat.
+            Više nisi prijatelj sa ovim korisnikom, i ne možeš da šalješ poruke.
         </div>
     }
     @Styles.Render("/Content/Css/PrivateChat/Chat.css")

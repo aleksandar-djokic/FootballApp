@@ -50,44 +50,44 @@ namespace FootballApp.WebUI.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "UserName")]
+        [Required(ErrorMessage="{0} je obavezno.")]
+        [Display(Name = "Korisničko ime")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} je obavezna.")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Šifra")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Upamti me?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {   
-        [Required]
-        [MaxLength(50,ErrorMessage ="Username must be under 50 characters long.")]
-        [Display(Name = "UserName")]
+        [Required(ErrorMessage ="{0} je obavezno.")]
+        [MaxLength(50,ErrorMessage ="Korisničko ime mora biti kraće od 50 karaktera.")]
+        [Display(Name = "Korisničko ime")]
         public string UserName { get; set; }
        
 
-        [ValidateImage(ErrorMessage = "Please select a PNG or JPEG image smaller than 4MB")]
+        [ValidateImage(ErrorMessage = "Molimo vas odaberite  PNG ili JPEG sliku manju od 4MB")]
         public HttpPostedFileBase File { get; set; }
 
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "{0} je obavezno.")]
+        [EmailAddress(ErrorMessage ="Email nije validnog formata.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "{0} je obavezna.")]
+        [StringLength(100, ErrorMessage = "{0} mora biti najmanje {2} karaktera dugačka.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Šifra")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Potvrdi šifru")]
+        [Compare("Password", ErrorMessage = "Šifra i potvrda se ne poklapaju.")]
         public string ConfirmPassword { get; set; }
     }
 

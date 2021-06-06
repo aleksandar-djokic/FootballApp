@@ -135,3 +135,10 @@ main {
     height: 1.5rem;
     background-color: rgb(35,39,42);
 }
+
+.back-link{
+    text-decoration:none;
+    color:white;
+    display:block;
+    margin-top:10px !important;
+}
