@@ -58,13 +58,13 @@ namespace FootballApp.Domain.Concrete
               
                 if (user2 == null)
                 {
-                    resultmsg = "User with entered username not found.";
+                    resultmsg = "Korisnik sa unetim imenom nije pronađen.";
                     return result;
                    
                 }
                 else if (user2.Id == user1.Id)
                 {
-                    resultmsg = "You cant add yourself as friend.";
+                    resultmsg = "Ne možeš dodati sebe za prijatelja.";
                     return result;
 
                 }
@@ -72,11 +72,11 @@ namespace FootballApp.Domain.Concrete
                 var friendrequest = context.FriendRequests.Where(x => (x.RequesterId == user1.Id && x.AddresseeId == user2.Id) || (x.RequesterId == user2.Id && x.AddresseeId == user1.Id)).FirstOrDefault();
                 if (friendship != null)
                 {
-                    resultmsg = "You are already friends with that person.";
+                    resultmsg = "Već si prijatelj sa tom osobom.";
                 }
                 else if(friendrequest != null)
                 {
-                    resultmsg = "Friend request already exists check Pending tab.";
+                    resultmsg = "Već postoji zahtev za prijateljstvo.Pogledaj tab Zahtevi.";
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace FootballApp.Domain.Concrete
             }
             catch (Exception)
             {
-                resultmsg = "Something went wrong";
+                resultmsg = "Nešto nije uredu";
                 result = false;
             }
             finally

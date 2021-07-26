@@ -82,6 +82,7 @@ $('.match-score-submit').click(function () {
                 $(matchteam[0]).children('.match-score').html(score1);
                 $(matchteam[1]).children('.match-score').html(score2);
                 $('#modal-concludematch').hide();
+                $("#Conclude" + matchId).hide();
             }
 
         })

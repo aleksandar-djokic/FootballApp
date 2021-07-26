@@ -5,45 +5,48 @@
 }
 <div class="freeagent-wrap">
 
-    <h2>Edit</h2>
+    <h2>Izmeni</h2>
 
     @using (Html.BeginForm("Edit", "FreeAgent", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Free Agent Profile</h4>
+            <h4>Profil slobodnog agenta</h4>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label>Zemlja</label>
                 <div class="col-md-10">
                     @Html.HiddenFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
                     <select id="country-select">
-                        <option disabled selected>Select Country</option>
-                        <option value="Serbia">Serbia</option>
-                        <option value="Russia">Russia</option>
-                        <option value="England">England</option>
-                        <option value="Germany">Germany</option>
+                        <option disabled selected>Izaberi zemlju</option>
+                        <option value="Srbija">Srbija</option>
+                        <option value="Rusija">Rusija</option>
+                        <option value="Engleska">Engleska</option>
+                        <option value="Nemačka">Nemačka</option>
                     </select>
                     @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label>Grad</label>
                 <div class="col-md-10">
                     @Html.HiddenFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
                     <select id="city-select" disabled>
-                        <option disabled selected>Select City</option>
+                        <option disabled selected>Izaberi grad</option>
                     </select>
                     @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label>Aktivan</label>
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Active)
@@ -54,7 +57,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="edit-button" />
+                    <input type="submit" value="Sačuvaj" class="edit-button" />
                 </div>
             </div>
         </div>

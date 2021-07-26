@@ -1,17 +1,17 @@
-@model IEnumerable<FootballApp.WebUI.Models.TeamsDisplayViewModel>
+﻿@model IEnumerable<FootballApp.WebUI.Models.TeamsDisplayViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 <div class="top-options">
     <div class="pending-button" >
-        <button id="pending-button"name="Pending-Team-Invites">Pending Teams<span class="button-notification"></span></button>
+        <button id="pending-button"name="Pending-Team-Invites">Zahtevi<span class="button-notification"></span></button>
     </div>
     <div class="create-button">
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Novi", "Create")
     </div>
     <div class="freeagent-button">
-        @Html.ActionLink("Free Agent", "Index", "FreeAgent", null, null)
+        @Html.ActionLink("Slobodni agent", "Index", "FreeAgent", null, null)
     </div>
 </div>
 <div class="teamindex-wrap">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="teamlist-button-wrap">
-                        <a class="teamlist-button" href="/Team/TeamProfile?teamId=@item.Id">Visit profile</a>
+                        <a class="teamlist-button" href="/Team/TeamProfile?teamId=@item.Id">Poseti</a>
                     </div>
 
 
@@ -54,13 +54,13 @@
         }
         else
         {
-            <p class="error-msg"> You are not part of any team.</p>
+            <p class="error-msg">Niste član nijednog tima.</p>
         }
     </div>
     <div class="search-list-wrap">
         <div class="search-bar">
-            <input type="text" id="search-bar" placeholder="Find a team" />
-            <button id="search-button">Search</button>
+            <input type="text" id="search-bar" placeholder="Pronađi tim..." />
+            <button id="search-button">Pretraži</button>
         </div>
         <div class="search-list">
 

@@ -8,12 +8,12 @@
         },
         success: function (result) {
             if (result == true) {
-                $('#nonmember-msg').html('You have successfully sent join request.');
+                $('#nonmember-msg').html('Uspešno ste poslali zahtev.');
                 $('#request-button').prop('disabled', true);
             }
             else {
 
-                $('#nonmember-msg').html('Your request failed');
+                $('#nonmember-msg').html('Došlo je do greške pri slanju zahteva');
             }
         }
     })

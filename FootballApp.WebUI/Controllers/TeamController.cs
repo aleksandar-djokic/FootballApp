@@ -81,6 +81,7 @@ namespace FootballApp.WebUI.Controllers
         [HttpGet]
         public ActionResult Edit(int TeamId)
         {
+
             var Team = teams.Teams.First(x => x.Id == TeamId);
             TeamViewModel teamForEdit = new TeamViewModel()
             {
@@ -94,8 +95,12 @@ namespace FootballApp.WebUI.Controllers
         public ActionResult Edit(TeamViewModel team)
         {
             byte[] imageData = null;
-            
-            
+            if (teams.isNameTaken(team.TeamName,team.Id))
+            {
+                ModelState.AddModelError("TeamName", "Ime tima je već zauzeto.");
+
+            }
+
             if (ModelState.IsValid)
             {
                 if (team.Picture != null)

@@ -121,10 +121,10 @@ namespace FootballApp.Domain.Concrete
         {
             List<FreeAgentProfile> agents = context.FreeAgents.ToList();
             List<FreeAgentProfile> toRemove = new List<FreeAgentProfile>();
-            if (Country != "All")
+            if (Country != "Svi")
             {
                 
-                if (City != "" && City!="Any")
+                if (City != "" && City!="Svi")
                 {
                     agents = agents.Where(x => x.Country == Country && x.City == City).ToList();
                 }

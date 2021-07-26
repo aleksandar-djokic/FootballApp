@@ -5,29 +5,29 @@
     var dom = "";
     var cityList = [];
     switch (country) {
-        case "Serbia":
-            cityList = ["Beograd", "Novi Sad", "Nis","Jakovo", "Other"];
+        case "Srbija":
+            cityList = ["Beograd", "Novi Sad", "Niš", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "Russia":
-            cityList = ["Moscow", "St. Petersburg", "Sochi", "Other"];
+        case "Rusija":
+            cityList = ["Moskva", "Sankt Peterburg", "Soči", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "England":
-            cityList = ["London", "Manchester", "Birmingham", "Other"];
+        case "Engleska":
+            cityList = ["London", "Mančester", "Birmingen", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "Germany":
-            cityList = ["Munich", "Frankfurt", "Berlin", "Other"];
+        case "Nemačka":
+            cityList = ["Minhen", "Frankfurt", "Berlin", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
@@ -51,32 +51,32 @@ $('#country-select').change(function () {
     var value = $('#country-select').val();
     $('#city-select').html("");
     $('#error-msg').text("");
-    var dom = "<option disabled selected value>Select City</option>";
+    var dom = "<option disabled selected value>Izaberi grad</option>";
     var cityList = [];
     switch (value) {
-        case "Serbia":
-            cityList = ["Beograd", "Novi Sad", "Nis", "Other"];
+        case "Srbija":
+            cityList = ["Beograd", "Novi Sad", "Niš", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "Russia":
-            cityList = ["Moscow", "St. Petersburg", "Sochi", "Other"];
+        case "Rusija":
+            cityList = ["Moskva", "Sankt Peterburg", "Soči", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "England":
-            cityList = ["London", "Manchester", "Birmingham", "Other"];
+        case "Engleska":
+            cityList = ["London", "Mančester", "Birmingen", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "Germany":
-            cityList = ["Munich", "Frankfurt", "Berlin", "Other"];
+        case "Nemačka":
+            cityList = ["Minhen", "Frankfurt", "Berlin", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 

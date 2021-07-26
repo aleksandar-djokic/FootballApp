@@ -22,7 +22,7 @@ $('#add-friend-button').click(function () {
         },
         success: function (result) {
             if (result.resultvalue == true) {
-                $('.addfriends-success').html('Your friend request is successfully sent.')  ;
+                $('.addfriends-success').html('Zahtev za prijateljstvo uspešno poslat')  ;
             }
             else {
                 $('.addfriends-fail').html(result.resultmsg);
@@ -63,7 +63,7 @@ $('#pending-nav').click(function () {
                 })
             }
             else {
-                dom = '<div class="pendingfriends-msg">It appears that you dont have any pending requests.</div>';
+                dom = '<div class="pendingfriends-msg">Trenutno nemate zahteve za prijateljstvo.</div>';
             }
             $('#Pending-requests').html(dom);
            
@@ -119,7 +119,7 @@ function AddFriend (element) {
                 $('#' + id).remove();
             }
             if (!($('#Pending-requests').children().length > 0)) {
-                $('#Pending-requests').html('<div class="pendingfriends-msg">It appears that you dont have any pending requests.</div>');
+                $('#Pending-requests').html('<div class="pendingfriends-msg">Trenutno nemate zahteve za prijateljstvo.</div>');
 
             }
         }
@@ -141,7 +141,7 @@ function DeclineFriendRequest(element) {
                 $('#' + id).remove();
             }
             if (!($('#Pending-requests').children().length > 0)) {
-                $('#Pending-requests').html('<div class="pendingfriends-msg">It appears that you dont have any pending requests.</div>');
+                $('#Pending-requests').html('<div class="pendingfriends-msg">Trenutno nemate zahteve za prijateljstvo.</div>');
 
             }
         }
@@ -162,7 +162,7 @@ function CancelFriendRequest(element) {
                 $('#' + id).remove();
             }
             if (!($('#Pending-requests').children().length > 0)) {
-                $('#Pending-requests').html('<div class="pendingfriends-msg">It appears that you dont have any pending requests.</div>');
+                $('#Pending-requests').html('<div class="pendingfriends-msg">Trenutno nemate zahteve za prijateljstvo.</div>');
             
             }
         }
@@ -208,7 +208,7 @@ function RemoveFriend(element) {
                 $('#dropdown').hide();
             }
             if (!($('#allfriends').children().length > 0)) {
-                $('#allfriends').html('<div class="allfriends-msg">It appears that you have no friends.To add some click on AddFriends above.</div>');
+                $('#allfriends').html('<div class="allfriends-msg">Trenutno nemaš prijatelja.Kako bi dodao prijatelja klikni na "Dodaj".</div>');
 
             }
         }
@@ -242,11 +242,11 @@ $(document).ready(function () {
                     else {
                         img = '<img src="/Content/Images/emptypfp.png" />';
                     }
-                    dom += '<div class="invite-modal-item"><div class="inviteteam-data"><div class="inviteteam-image">' + img + '</div><div class="inviteteam-info"><p class="inviteteam-name">' + result.Name + '</p><p class="inviteteam-description>"' + result.Description + '</p></div></div><div class="inviteteam-button-wrap"><a class="inviteteam-button" onclick="Invite(this,' + result.Id + ')">Invite</a></div></div>'
+                    dom += '<div class="invite-modal-item"><div class="inviteteam-data"><div class="inviteteam-image">' + img + '</div><div class="inviteteam-info"><p class="inviteteam-name">' + result.Name + '</p><p class="inviteteam-description>"' + result.Description + '</p></div></div><div class="inviteteam-button-wrap"><a class="inviteteam-button" onclick="Invite(this,' + result.Id + ')">Pozovi</a></div></div>'
                 })
             }
             else {
-                dom = '<p class="teaminvite-msg">You have no teams</p>';
+                dom = '<p class="teaminvite-msg">Nisi član ni jednog tima</p>';
             }
             modalitems.html(dom);
         }
@@ -267,7 +267,7 @@ function Invite(element,teamid) {
         },
         success: function (result) {
             if (result.value) {
-                $('#invite-result-msgsuccess').html("Invitation successfully sent.");
+                $('#invite-result-msgsuccess').html("Zahtev uspešno poslat.");
             }
             else {
                 $('#invite-result-msgerror').html(result.msg);

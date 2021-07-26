@@ -12,22 +12,22 @@
 
             <div class="profile-data">
                 <div>
-                    Name:@Model.Tournamnet.Name
+                    Naziv:@Model.Tournamnet.Name
                 </div>
                 <div>
-                    Rounds:@Model.Tournamnet.CurrentRound/@Model.Tournamnet.NumberOfRounds
+                    Runda:@Model.Tournamnet.CurrentRound/@Model.Tournamnet.NumberOfRounds
                 </div>
                 <div>
-                    Participants:@Model.Tournamnet.CurrentNumberParticipants/@Model.Tournamnet.NumberOfParticipants
+                    Učesnici:@Model.Tournamnet.CurrentNumberParticipants/@Model.Tournamnet.NumberOfParticipants
                 </div>
 
                 @if (!Model.Tournamnet.isActive)
                 {
                     <div>
-                        Winner:@Model.Tournamnet.Winner
+                        Pobednik:@Model.Tournamnet.Winner
                     </div>
                     <div>
-                        Runner-up:@Model.Tournamnet.RunnerUp
+                        Drugo mesto:@Model.Tournamnet.RunnerUp
                     </div>
                 }
             </div>
@@ -35,7 +35,7 @@
                 @for (int i = 0; i < Model.Rounds.Count; i++)
                 {
                     <div class="profile-nav-item">
-                        <button class="profile-nav-button">Round@(i + 1)</button>
+                        <button class="profile-nav-button">Runda@(i + 1)</button>
                     </div>
 
                 }
@@ -45,7 +45,7 @@
     <div class="profile-content">
         @for (int i = 0; i < Model.Rounds.Count; i++)
         {
-            <div class="profile-content-item" id="Round@(i + 1)">
+            <div class="profile-content-item" id="Runda@(i + 1)">
                 <div class="match-list">
                     @for (int j = 0; j < Model.Rounds[i].matches.Count; j++)
                     {
@@ -152,7 +152,7 @@
                                 {
 
                                     <div>
-                                        <button value="@temp.Id" class="conclude-match-button">Conclude</button>
+                                        <button value="@temp.Id" class="conclude-match-button" id="Conclude@(temp.Id)">Zaključi</button>
                                     </div>
                                 }
                             </div>
@@ -171,7 +171,7 @@
                         <div class="match-detail-team">
                             <input type="hidden" id="Team1Id" />
                             <div>
-                                <label class="input-teamname" id="Team1Name">Score Team1</label>
+                                <label class="input-teamname" id="Team1Name">Skor Tim 1</label>
                             </div>
                             <div>
                                 <input class="input-score" id="team1score" type="number" min="0" step="1" value="0" />
@@ -187,7 +187,7 @@
                         <div class="match-detail-team">
                             <input type="hidden" id="Team2Id" />
                             <div>
-                                <label class="input-teamname" id="Team2Name">Score Team2</label>
+                                <label class="input-teamname" id="Team2Name">Skor Tim 2</label>
                             </div>
                             <div>
                                 <input class="input-score" id="team2score" type="number" min="0" step="1" value="0" />
@@ -199,7 +199,7 @@
                         </div>
                     </div>
                         <p id="error" class="error" >Error</p>
-                        <button class="match-score-submit">Submit</button>
+                        <button class="match-score-submit">Zaključi</button>
                 </div>
             </div>
           }
@@ -215,15 +215,15 @@ else
 
 <div class="not-started-tournament">
     <p>
-        Name:@Model.Tournamnet.Name
+        Naziv:@Model.Tournamnet.Name
     </p>
     <p>
-        Rounds:@Model.Tournamnet.CurrentRound/@Model.Tournamnet.NumberOfRounds
+        Runde:@Model.Tournamnet.CurrentRound/@Model.Tournamnet.NumberOfRounds
     </p>
     <p>
-        Participants:@Model.Tournamnet.CurrentNumberParticipants/@Model.Tournamnet.NumberOfParticipants
+        Učesnici:@Model.Tournamnet.CurrentNumberParticipants/@Model.Tournamnet.NumberOfParticipants
     </p>
-    <p>Status: Tournament is still in the forming phase. </p>
+    <p>Status: Turnir je idalje u fazi formiranja. </p>
 </div>
 }
      @Styles.Render("/Content/Css/Tournament/TournamentProfile.css")

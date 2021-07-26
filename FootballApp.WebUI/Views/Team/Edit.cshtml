@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
     <div class="form-wrap">
-        <h1>EDIT YOUR TEAM</h1>
+        <h1>IZMENI TIM</h1>
 
 
         @using (Html.BeginForm("Edit", "Team", FormMethod.Post, new
@@ -23,7 +23,7 @@
 
             <div class="form-field">
                 <div class="form-label">
-                    Name
+                    IME
                 </div>
                 <div class="form-input">
                     @Html.ValidationMessageFor(model => model.TeamName, "", new { @class = "text-error" })
@@ -32,7 +32,7 @@
             </div>
             <div class="form-field">
                 <div class="form-label">
-                    Description
+                    OPIS
                 </div>
                 <div class="form-input">
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-error" })
@@ -41,20 +41,20 @@
             </div>
             <div class="form-file-field">
                 <div class="form-label">
-                    Image
+                    SLIKA
                 </div>
                 <div class="form-file-input">
                     <input type="file" name="Picture" id="Picture" accept="image/*" />
                 </div>
             </div>
             <div class="button-field">
-                <input class="create-button" type="submit" value="Edit" name="Edit">
+                <input class="create-button" type="submit" value="Izmeni" name="Edit">
             </div>
 
          }
     </div>
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("< Nazad na listu", "Index", "Team", new { @class = "back-link" })
         </div>
 
         @Styles.Render("~/Content/Css/Team/TeamCreate.css")

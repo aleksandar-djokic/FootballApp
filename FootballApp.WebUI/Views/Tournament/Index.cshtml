@@ -3,17 +3,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>List of active tournaments</h2>
-<a class="create-button" href="/Tournament/Create">Create new</a>
+<h2 style="color:white">Lista aktivnih turnira</h2>
+<a class="create-button" href="/Tournament/Create">Nov</a>
 <div class="tournament-list">
     @foreach (var t in Model)
     {
     <div class="tournament-item">
-        <div>Name:@t.Name</div>
-        <div>Round @t.CurrentRound/@t.NumberOfRounds</div>
-        <div>Participants:@t.CurrentNumberParticipants/@t.NumberOfParticipants  </div>
+        <div>Nayiv:@t.Name</div>
+        <div>Runda @t.CurrentRound/@t.NumberOfRounds</div>
+        <div>Učesnici:@t.CurrentNumberParticipants/@t.NumberOfParticipants  </div>
         <div>
-            <a href="/Tournament/TournamentProfile/@t.Id"class="view-tournament-button">View</a>
+            <a href="/Tournament/TournamentProfile/@t.Id"class="view-tournament-button">Poseti</a>
         </div>
     </div>
     }

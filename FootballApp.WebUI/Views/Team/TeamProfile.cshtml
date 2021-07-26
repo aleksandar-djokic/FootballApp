@@ -29,20 +29,20 @@
                 @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
                 {
 
-                    <a href="/Team/Edit?teamId=@Model.Id" class="profile-edit">Edit</a>
+                    <a href="/Team/Edit?teamId=@Model.Id" class="profile-edit">Izmeni</a>
                 }
 
 
                 @if (ViewBag.UserRole == "Owner")
                 {
-                    <button class="team-leave" id="OwnerLeaveButton">Leave</button>
+                    <button class="team-leave" id="OwnerLeaveButton">Napusti</button>
                     <div class="modal" id="leave-modal">
                         <div class="modal-content">
                             <span class="modal-close" id="leave-modal-close">&times</span>
                             <div class="leave-wrap">
-                                <p>Team cant exist without the owner. Do you want to disabandon team or transfer ownership?</p>
-                                <button id="disabandon-team" class="disabandon-team">Disabandon</button>
-                                <button id="transfer-team-ownership" class="transfer-team-ownership">Transfer ownership</button>
+                                <p>Tim ne može da postoji bez vlasnika. Da li želite da raspustite tim ili da predate vlasništvo saigraču?</p>
+                                <button id="disabandon-team" class="disabandon-team">Raspusti</button>
+                                <button id="transfer-team-ownership" class="transfer-team-ownership">Predaj vlasništvo</button>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="modal-content">
                             <span class="modal-close" id="disabandon-modal-close">&times</span>
                             <div class="disabandon-wrap">
-                                <p> Disbandoning team is permanent.Are you sure you want to disbandon team?.</p>
+                                <p> Raspuštanje tima je zauvek. Da li ste sigurni da želite da raspustite tim?</p>
                                 <button id="disabandon-yes">Yes</button>
                                 <button id="disabandon-no">No</button>
                             </div>
@@ -60,19 +60,19 @@
                         <div class="modal-content">
                             <span class="modal-close" id="transfer-ownership-close">&times</span>
                             <div class="transfer-ownership-wrap">
-                                <p>This step is permanent.Team needs a strong leader,so make a right choice.</p>
-                                <p>Enter the name of team member below.</p>
+                                <p>Ovaj korak je premanentan.</p>
+                                <p>Unesi ime člana tima.</p>
                                 <p class="ownership-transfer-error" id="ownership-transfer-error"></p>
-                                <input type="text" class="transfer-membername" id="transfer-membername" placeholder="Members name" />
-                                <button class="transfer-confirm" id="transfer-confirm">Transfer & leave</button>
-                                <button id="transfer-cancel" class="transfer-cancel">Cancel</button>
+                                <input type="text" class="transfer-membername" id="transfer-membername" placeholder="Ime člana" />
+                                <button class="transfer-confirm" id="transfer-confirm">Predaj i napusti</button>
+                                <button id="transfer-cancel" class="transfer-cancel">Odustani</button>
                             </div>
                         </div>
                     </div>
                 }
                 else
                 {
-                    <button class="team-leave" id="MemberLeaveButton" value="@Model.Id">Leave</button>
+                    <button class="team-leave" id="MemberLeaveButton" value="@Model.Id">Napusti</button>
                 }
 
             </div>
@@ -81,27 +81,27 @@
         </div>
         <div class="profile-navigation">
             <div class="profile-nav-item active">
-                <button class="profilenav-button" id="Chat-button" name="Profile-Nav-Chat">Chat</button>
+                <button class="profilenav-button" id="Chat-button" name="Profile-Nav-Chat">Ćaskanje</button>
                 <span class="notification"></span>
             </div>
             <div class="profile-nav-item">
-                <button class="profilenav-button" id="Members-button" name="Profile-Nav-Members">Members</button>
+                <button class="profilenav-button" id="Members-button" name="Profile-Nav-Members">Članovi</button>
                 <span class="notification"></span>
             </div>
             <div class="profile-nav-item">
-                <button class="profilenav-button" id="Matches-button" name="Profile-Nav-Matches">Matches</button>
+                <button class="profilenav-button" id="Matches-button" name="Profile-Nav-Matches">Mečevi</button>
                 <span class="notification"></span>
             </div>
             <div class="profile-nav-item">
-                <button class="profilenav-button" id="Tournaments-button" name="Profile-Nav-Tournaments">Tournaments</button>
+                <button class="profilenav-button" id="Tournaments-button" name="Profile-Nav-Tournaments">Turniri</button>
             </div>
         </div>
     </div>
     <div class="profile-content">
-        <div class="profile-content-item" id="Chat" style="display:block;">
+        <div class="profile-content-item" id="Ćaskanje" style="display:block;">
             <div class="chat-wrap">
                 <div class="chat" id="chat">
-                    <button id="Load-messages-btn" class="loadmsg-button">Load more</button>
+                    <button id="Load-messages-btn" class="loadmsg-button">Učitaj više</button>
                     @*<div class="chat-msg">
 
                     <div class="chat-img">
@@ -115,8 +115,8 @@
 
                 </div>
                 <div class="chat-controlls">
-                    <input class="chat-input" id="message" type="text" maxlength="250" autocomplete="off" placeholder="Enter message..." />
-                    <button class="chat-send" id="sendmessage">send</button>
+                    <input class="chat-input" id="message" type="text" maxlength="250" autocomplete="off" placeholder="Unesi poruku..." />
+                    <button class="chat-send" id="sendmessage">Pošalji</button>
                 </div>
             </div>
             @section scripts{
@@ -124,25 +124,25 @@
                 @Scripts.Render("/Scripts/TeamChat/TeamChat.js")
              }
         </div>
-        <div class="profile-content-item" id="Members">
+        <div class="profile-content-item" id="Članovi">
             @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
             {
-                <button class="pending-members" id="pending-members">Pending members<span class="button-notification"></span></button>
-                <button class="freeagent-button" id="freeagent-button">Free Agents</button>
+                <button class="pending-members" id="pending-members">Zahtevi<span class="button-notification"></span></button>
+                <button class="freeagent-button" id="freeagent-button">Slobodni agenti</button>
                 <div class="modal" id="modal-freeagents">
                     <div class="modal-content">
                         <span class="modal-close" id="freeagent-modal-close">&times</span>
                         <div class="freeagent-search" style="margin-left:43px; margin-bottom:5px;">
                             <select id="country-select">
-                                <option disabled selected>Select Country</option>
-                                <option value="All">All</option>
-                                <option value="Serbia">Serbia</option>
-                                <option value="Russia">Russia</option>
-                                <option value="England">England</option>
-                                <option value="Germany">Germany</option>
+                                <option disabled selected>Izaberi zemlju</option>
+                                <option value="Svi">Svi</option>
+                                <option value="Srbija">Srbija</option>
+                                <option value="Rusija">Rusija</option>
+                                <option value="Engleska">Engleska</option>
+                                <option value="Nemačka">Nemačka</option>
                             </select>
                             <select id="city-select" disabled>
-                                <option disabled selected>Select City</option>
+                                <option disabled selected>Izaberi grad</option>
                             </select>
                         </div>
                         <div class="freeagent-items" id="freeagent-items">
@@ -202,24 +202,24 @@
 
             </div>
         </div>
-        <div class="profile-content-item" id="Matches">
+        <div class="profile-content-item" id="Mečevi">
             @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
             {
-                <button class="pending-matches-button" id="pending-matches-button">Pending matches<span class="button-notification"></span></button>
-                <button class="creatematch-button" id="creatematch-button">Create</button>
+                <button class="pending-matches-button" id="pending-matches-button">Zahtevi<span class="button-notification"></span></button>
+                <button class="creatematch-button" id="creatematch-button">Novi</button>
                 <div class="modal" id="modal-create-matches">
                     <div class="modal-content">
                         <span class="modal-close" id="creatematches-modal-close">&times</span>
                         <div class="create-match-inputs">
-                            <h1>Create match</h1>
+                            <h1>Napravi meč</h1>
                             <div class="creatematch-errors" id="creatematch-errors">
 
                             </div>
                             <p class="error-msg" id="creatematch-error"></p>
-                            <input type="text" id="creatematch-TeamName" placeholder="Team Name" />
-                            <input type="text" id="creatematch-Adress" placeholder="Adress" />
+                            <input type="text" id="creatematch-TeamName" placeholder="Naziv tima" />
+                            <input type="text" id="creatematch-Adress" placeholder="Adresa" />
                             <input type="datetime-local" id="creatematch-DateTime" />
-                            <button id="create-match-button">Create</button>
+                            <button id="create-match-button">Napravi</button>
                         </div>
                     </div>
 
@@ -242,12 +242,12 @@
 
             </div>
         </div>
-        <div class="profile-content-item" id="Tournaments">
-            <button class="previous-tournaments" id="previous-tournaments">Previous</button>
+        <div class="profile-content-item" id="Turniri">
+            <button class="previous-tournaments" id="previous-tournaments">Prethodni</button>
             @if (ViewBag.UserRole == "Owner" || ViewBag.UserRole == "Admin")
             {
 
-                <button class="join-tournament" id="join-tournament">Join</button>
+                <button class="join-tournament" id="join-tournament">Priključi se</button>
             }
             <div class="tournament-list">
                 @*<div class="tournament-item">
@@ -332,7 +332,7 @@ else
         @if (ViewBag.isRequestSent)
         {
             <div class="nonmember-msg" id="nonmember-msg">
-                <p>You have already requested to join this team</p>
+                <p>Već ste poslali zahtev za pridruženje timu</p>
             </div>
             <!--Button-->
             <div class="request-join">
@@ -343,11 +343,11 @@ else
         {
 
             <div class="nonmember-msg" id="nonmember-msg">
-                <p>You are not part of this team.Request to join below.</p>
+                <p>Niste član ovog tima. Zahtevajte ispod da se pridružite.</p>
             </div>
             <!--Button-->
             <div class="request-join">
-                <button class="request-button" id="request-button" onclick="RequestJoin(this)" value="@Model.Id">Request join</button>
+                <button class="request-button" id="request-button" onclick="RequestJoin(this)" value="@Model.Id">Pridruži se</button>
             </div>
         }
     </div>

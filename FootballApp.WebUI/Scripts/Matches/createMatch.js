@@ -47,19 +47,19 @@ function validate(teamid, teamname, adress, dateString) {
         
     }
     if (teamname == "") {
-        $('#creatematch-errors').append('<p class="creatematch-error">Team name empty.</p>');
+        $('#creatematch-errors').append('<p class="creatematch-error">Naziv tima mora biti popunjen.</p>');
         result = false;
     }
     if (adress == "") {
-        $('#creatematch-errors').append('<p class="creatematch-error">Adress empty.</p>');
+        $('#creatematch-errors').append('<p class="creatematch-error">Adresa mora biti popunjena.</p>');
         result = false;
     }
     if (dateString == "") {
-        $('#creatematch-errors').append('<p class="creatematch-error">Date empty.</p>');
+        $('#creatematch-errors').append('<p class="creatematch-error">Datum nije izabran.</p>');
         result = false;
     }
     if (Date.now() > dateTime.getTime()) {
-        $('#creatematch-errors').append('<p class="creatematch-error">Please pick a time in future.</p>');
+        $('#creatematch-errors').append('<p class="creatematch-error">Molimo vas izaberite vreme u budućnosti.</p>');
         result = false;
     }
     return result;

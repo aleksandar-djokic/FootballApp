@@ -63,10 +63,10 @@ function OpenMemberOptionDropdown(element) {
         success: function (result) {
             var controls = ""
             if (result == "Admin") {
-                controls = '<button class="member-dropdown-item" value="' + id + '" onclick="PromoteToOwner(this)">Promote to Leader</button><button class="member-dropdown-item" value="' + id +'" onclick="DemoteToMember(this)">Demote to Member</button>'
+                controls = '<button class="member-dropdown-item" value="' + id + '" onclick="PromoteToOwner(this)">Unapredi u vlasnika</button><button class="member-dropdown-item" value="' + id +'" onclick="DemoteToMember(this)">Unazadi u člana</button>'
             }
             else if (result == "Member") {
-                controls = '<button class="member-dropdown-item" value="' + id + '" onclick="PromoteToOwner(this)">Promote to Leader</button><button class="member-dropdown-item" value="' + id + '" onclick="PromoteToAdmin(this)">Promote to Administrator</button>'
+                controls = '<button class="member-dropdown-item" value="' + id + '" onclick="PromoteToOwner(this)">Unapredi u vlasnika</button><button class="member-dropdown-item" value="' + id + '" onclick="PromoteToAdmin(this)">Unapredi u administratora</button>'
             }
             $('#member-dropdown').html(controls);
         }
@@ -147,7 +147,7 @@ $('#Matches-button').click(function () {
                     var team1img = (result.Team1Image != "") ? '<img class="match-team-image" src="' + result.Team1Image + '"/>' : '<img class="match-team-image" src="/Content/Images/emptypfp.png" />';
                     var team2img = (result.Team2Image != "") ? '<img class="match-team-image" src="' + result.Team2Image + '"/>' : '<img class="match-team-image" src="/Content/Images/emptypfp.png" />';
 
-                    dom += '<div class="match-item"><input class="matchId" type="hidden" value="' + result.Id + '"><div class="match-team1">' + team1img + '<p class="match-team-name">' + result.Team1Name + '</p></div><div class="match-info">VS <p class="match-date-location">Date:' + result.Time + ' Location:' + result.Location + '</p></div><div class="match-team2"><p class="match-team-name">' + result.Team2Name + '</p>' + team2img + '</div></div>';
+                    dom += '<div class="match-item"><input class="matchId" type="hidden" value="' + result.Id + '"><div class="match-team1">' + team1img + '<p class="match-team-name">' + result.Team1Name + '</p></div><div class="match-info">VS <p class="match-date-location">Vreme:' + result.Time + ' Mesto:' + result.Location + '</p></div><div class="match-team2"><p class="match-team-name">' + result.Team2Name + '</p>' + team2img + '</div></div>';
 
 
                 })

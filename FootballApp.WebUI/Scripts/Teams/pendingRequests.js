@@ -21,18 +21,18 @@ $('#pending-members').click(function () {
                     var teammsg = "";
                     var controls = "";
                     if (result.Requestor == "Team") {
-                        teammsg = "You have invited "+result.Username+" to join.";
+                        teammsg = "Pozvali ste "+result.Username+" da se pridruži timu.";
                         controls = '<div class="request-controls"><button class="decline-request" onclick="DeclineRequest(this)" value="' + result.RequestId + '"><span class="decline-request-ico"></span></button></div>';
                     }
                     else {
-                        teammsg = result.Username + " requested to join.";
+                        teammsg = result.Username + " zahteva da se pridruži timu.";
                         controls = '<div class="request-controls"><button class="accept-request" onclick="AcceptRequest(this)" value="' + result.RequestId + '"><span class="accept-request-ico"></span></button><button class="decline-request" onclick="DeclineRequest(this)" value="' + result.RequestId + '"><span class="decline-request-ico"></span></button></div>';
                     }
                     dom += '<div class="request-item"><div class="request-data"><div class="request-image">' + img + '</div><div class="request-info"><p class="teamrequest-msg">' + teammsg + '</p></div></div>' + controls + '</div>';
                 })
             }
             if (!result.length > 0 ) {
-                dom = '<p class="pending-members-empty">Currently you have no pending members.</p>';
+                dom = '<p class="pending-members-empty">Trenutno nema zahteva.</p>';
             }
             $('#request-items').html(dom);
         }
@@ -82,7 +82,7 @@ function DeclineRequest(element) {
             var requests = $('#request-items').children('.request-item');
             var msg = "";
             if (!requests.length > 0) {
-                msg = '<p class="pending-members-empty">Currently you have no pending members.</p>';
+                msg = '<p class="pending-members-empty">Trenutno nema zahteva.</p>';
                 $('#request-items').append(msg);
             }
         }
@@ -115,7 +115,7 @@ function AcceptRequest(element) {
                 var requests = $('#request-items').children('.requestitem');
                 var msg = "";
                 if (!requests.length > 0) {
-                    msg = '<p class="pending-members-empty">Currently you have no pending members.</p>';
+                    msg = '<p class="pending-members-empty">Trenutno nema zahteva.</p>';
                     $('#request-items').append(msg);
                 }
                 

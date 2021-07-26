@@ -23,7 +23,7 @@ namespace FootballApp.WebUI.Models
     {
         public string Id { get; set; }
         public string ImageDisplay { get; set; }
-        [ValidateImage(ErrorMessage = "Please select a PNG or JPEG image smaller than 4MB")]
+        [ValidateImage(ErrorMessage = "Molimo vas izaberite PNG ili JPEG sliku manju od 4MB")]
         [Display(Name = "ProfilePicture")]
         public HttpPostedFileBase ProfilePicture { get; set; }
     }
@@ -55,20 +55,20 @@ namespace FootballApp.WebUI.Models
 
     public class ChangePasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Molimo vas unesite trenutnu šifru")]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
         public string OldPassword { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required (ErrorMessage ="Molimo vas unesite novu šifru")]
+        [StringLength(100, ErrorMessage = "Šifra mora biti najmanje 6 karaktera dugačka.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "Šifre se ne poklapaju.")]
         public string ConfirmPassword { get; set; }
     }
 

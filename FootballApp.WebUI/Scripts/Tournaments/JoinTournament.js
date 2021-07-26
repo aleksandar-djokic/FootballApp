@@ -10,11 +10,11 @@
             var dom = "";
             if (Tournaments.length > 0) {
                 $.each(Tournaments, function (i, t) {
-                    dom += '<div class="available-tournaments-item"><div>Name:' + t.Name + '</div><div>Round ' + t.CurrentRound + '/' + t.NumberOfRounds + '</div><div>Participants:' + t.CurrentNumberParticipants + '/' + t.NumberOfParticipants + '</div><div><button onclick="JoinTournament(this)" value="' + t.Id + '"style = "border-radius:50%;height:40px;width:40px; outline:none;border:none; background-color:green;color:white;"> Join</button ></div></div>';
+                    dom += '<div class="available-tournaments-item"><div>Naziv:' + t.Name + '</div><div>Runda ' + t.CurrentRound + '/' + t.NumberOfRounds + '</div><div>Učesnici:' + t.CurrentNumberParticipants + '/' + t.NumberOfParticipants + '</div><div><button onclick="JoinTournament(this)" value="' + t.Id + '"style = "padding:5px; outline:none;border:none; background-color:green;color:white;">Učestvuj</button ></div></div>';
                 })
             }
             else {
-                dom = '<p class="available-tournaments-empty">There are currently no active tournaments for you.<p>';
+                dom = '<p class="available-tournaments-empty">Nema aktivnih turnira.<p>';
             }
             $('#available-tournaments').html(dom);
         }
@@ -41,10 +41,10 @@ function JoinTournament(element) {
                 var dom = "";
                 if (result.tournament != null) {
                     var t = result.tournament;
-                    dom += '<div class="tournament-item"><div>Name:' + t.Name + '</div><div>Round ' + t.CurrentRound + '/' + t.NumberOfRounds + '</div><div>Participants:' + t.CurrentNumberParticipants + '/' + t.NumberOfParticipants + '</div><div><button style="border-radius:50%;height:40px;width:40px; outline:none;border:none; background-color:hotpink;color:white;">View</button></div>';
+                    dom += '<div class="tournament-item"><div>Naziv:' + t.Name + '</div><div>Runda ' + t.CurrentRound + '/' + t.NumberOfRounds + '</div><div>Učesnici:' + t.CurrentNumberParticipants + '/' + t.NumberOfParticipants + '</div><div><button class="view-tournament-button">Poseti</button></div>';
                     
                 }
-                $('.tournament-list').html(dom);
+                $('.tournament-list').append(dom);
             }
         }
     })

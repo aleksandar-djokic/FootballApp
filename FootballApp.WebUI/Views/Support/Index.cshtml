@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<FootballApp.WebUI.Models.TicketUserViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Korisnička Podrška";
 }
 <div class="header">
-    <h1>Support</h1>
-    <h2>If you are having issues with using the app, open a ticket bellow and admin will assist you.</h2>
+    <h1>Korisnička Podrška</h1>
+    <h2>Ako imate poteškoća sa korišćenjem aplikacije, otvorite tiket ispod i administrator će vas ubrzo kontaktirati.</h2>
 
 </div>
-<button class="open-ticket" id="open-ticket">Open ticket</button>
+<button class="open-ticket" id="open-ticket">Otvori tiket</button>
 @if (Model.Count() > 0)
 {
     <div class="ticket-list">
@@ -24,14 +24,14 @@
                 <div class="ticket-status">
                     @if (item.Status)
                     {<div>
-                            Opened
+                            Otvoren
                         </div>
                         <div class="ticket-opened"></div>
                     }
                     else
                     {
                         <div>
-                            Closed
+                            Zatvoren
                         </div>
                         <div class="ticket-closed"></div>
                     }
@@ -48,7 +48,7 @@
 
                 <div class="form-field">
                     <div class="form-label">
-                        Title
+                        Naslov
                     </div>
                     <div class="error-label">
                         
@@ -59,31 +59,31 @@
                 </div>
                 <div class="form-field">
                     <div class="form-label">
-                        Topic
+                        Tema
                     </div>
                     <div class="form-input">
                         <select id="Ticket-Topic" name="Topic">
-                            <option>Other</option>
-                            <option>Friends</option>
-                            <option>Teams</option>
-                            <option>Matches</option>
-                            <option>FreeAgent</option>
+                            <option>Drugo</option>
+                            <option>Prijatelji</option>
+                            <option>Timovi</option>
+                            <option>Mečevi</option>
+                            <option>Slobodan agent</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-field">
                     <div class="form-label">
-                        Message
+                        Poruka
                     </div>
                     <div class="error-label">
                         
                     </div>
                     <div class="form-input">
-                        <textarea id="Ticket-Message" placeholder="Enter Message..." name="Message"></textarea>
+                        <textarea id="Ticket-Message" placeholder="Unesi poruku..." name="Message"></textarea>
                     </div>
                 </div>
                 <div class="button-field">
-                    <input type="submit" value="Create" id="create-button"/>
+                    <input type="submit" value="Napravi" id="create-button"/>
                 </div>
 
             }

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<FootballApp.WebUI.Models.TicketAdminViewModel>
     @{
-        ViewBag.Title = "AdminIndex";
+        ViewBag.Title = "Podrška Admin";
     }
     <div class="header">
 
-        <h1>Support Tickets</h1>
+        <h1>Zahtevi za podršku</h1>
         
     </div>
     @if (Model.Count() > 0)
@@ -44,7 +44,7 @@
     }
     else
     {
-        <h2 style="margin-top:5rem;color:white;">It seems there are currently no opened tickets. </h2>
+        <h2 style="margin-top:5rem;color:white;">Izgleda da nema više otvorenih tiketa </h2>
     }
 
     @Styles.Render("~/Content/Css/Support/UserIndex.css")

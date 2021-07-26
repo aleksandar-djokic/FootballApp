@@ -18,14 +18,14 @@
                     else {
                         img = '<img src="/Content/Images/emptypfp.png" />';
                     }
-                    var controls = '<div class="freeagent-controls"><button class="freeagent-invite" value="'+result.FreeAgentId+'" onclick="Request(this)">Invite</button></div>';
+                    var controls = '<div class="freeagent-controls"><button class="freeagent-invite" value="'+result.FreeAgentId+'" onclick="Request(this)">Pozovi</button></div>';
                     
 
                     dom += '<div class="freeagent-item"><div class="freeagent-data"><div class="freeagent-image">' + img + '</div><div class="freeagent-info"><p class="freeagent-name">' + result.Name + '</p><p class="freeagent-location">' + result.Country +','+result.City + '</p></div></div>' + controls + '</div>';
                 })
             }
             if (!result.length > 0) {
-                dom = '<p class="freeagent-emptymsg">Currently there are no more free agents.</p>';
+                dom = '<p class="freeagent-emptymsg">Trenutno nema slobodnih agenata.</p>';
             }
             $('#freeagent-items').html(dom);
         }
@@ -54,7 +54,7 @@ function Request(element) {
             var requests = $('#freeagent-items').children('.freeagent-item');
             var msg = "";
             if (!requests.length > 0) {
-                msg = '<p class="agents-emptymsg">Currently you have no invites.</p>'
+                msg = '<p class="freeagent-emptymsg">Trenutno nema slobodnih agenata.</p>'
                 $('#freeagent-items').append(msg);
             }
             $("#Members-button").trigger("click");
@@ -69,36 +69,36 @@ $('#country-select').change(function () {
     var dom = '<option disabled selected value="">Select City</option>';
     var cityList = [];
     switch (value) {
-        case "Serbia":
-            cityList = ["Any","Beograd", "Novi Sad", "Nis", "Other"];
+        case "Srbija":
+            cityList = ["Svi", "Beograd", "Novi Sad", "Niš", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "Russia":
-            cityList = ["Any","Moscow", "St. Petersburg", "Sochi", "Other"];
+        case "Rusija":
+            cityList = ["Svi", "Moskva", "Sankt Peterburg", "Soči", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "England":
-            cityList = ["Any","London", "Manchester", "Birmingham", "Other"];
+        case "Engleska":
+            cityList = ["Svi", "London", "Mančester", "Birmingen", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
-        case "Germany":
-            cityList = ["Any","Munich", "Frankfurt", "Berlin", "Other"];
+        case "Nemačka":
+            cityList = ["Svi","Minhen", "Frankfurt", "Berlin", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
 
             }
             break;
     }
-    if (value != "All") {   
+    if (value != "Svi") {   
 
         $('#city-select').append(dom);
         $('#city-select').removeAttr('disabled');
@@ -136,14 +136,14 @@ function SearchAgents() {
                     else {
                         img = '<img src="/Content/Images/emptypfp.png" />';
                     }
-                    var controls = '<div class="freeagent-controls"><button class="freeagent-invite" value="' + result.FreeAgentId + '" onclick="Request(this)">Invite</button></div>';
+                    var controls = '<div class="freeagent-controls"><button class="freeagent-invite" value="' + result.FreeAgentId + '" onclick="Request(this)">Pozovi</button></div>';
 
 
                     dom += '<div class="freeagent-item"><div class="freeagent-data"><div class="freeagent-image">' + img + '</div><div class="freeagent-info"><p class="freeagent-name">' + result.Name + '</p><p class="freeagent-location">' + result.Country + ',' + result.City + '</p></div></div>' + controls + '</div>';
                 })
             }
             if (!result.length > 0) {
-                dom = '<p class="freeagent-emptymsg">There are no free agents for that location.</p>';
+                dom = '<p class="freeagent-emptymsg">Nema slobodnih igrača za odabranu lokaciju.</p>';
             }
             $('#freeagent-items').html(dom);
         }

@@ -16,7 +16,7 @@ $('#pending-button').click(function () {
                     else {
                         img = '<img src="/Content/Images/emptypfp.png" />';
                     }
-                    dom += '<div class="invite-item"><div class="invite-data"><div class="invite-image">' + img + '</div><div class="invite-info"><p class="teaminvite-msg">' + result.FriendName + ' has invited you to join ' + result.TeamName + '</p></div></div><div class="invite-controls"><button class="accept-invite" onclick="AcceptInvite(this)" value="' + result.InviteId + '"><span class="accept-invite-ico"></span></button><button class="decline-invite" onclick="DeclineInvite(this)" value="' + result.InviteId + '"><span class="decline-invite-ico"></span></button></div></div>';
+                    dom += '<div class="invite-item"><div class="invite-data"><div class="invite-image">' + img + '</div><div class="invite-info"><p class="teaminvite-msg">' + result.FriendName + ' te je pozvao da se pridružiš' + result.TeamName + '</p></div></div><div class="invite-controls"><button class="accept-invite" onclick="AcceptInvite(this)" value="' + result.InviteId + '"><span class="accept-invite-ico"></span></button><button class="decline-invite" onclick="DeclineInvite(this)" value="' + result.InviteId + '"><span class="decline-invite-ico"></span></button></div></div>';
                 })
             }
             if (result.resultRequests.length > 0) {
@@ -31,18 +31,18 @@ $('#pending-button').click(function () {
                     var teammsg = "";
                     var controls = "";
                     if (result.Requestor == "User") {
-                        teammsg = "You have requested to join " + result.TeamName;
+                        teammsg = "Zahtevaš da se pridružiš " + result.TeamName;
                         controls = '<div class="request-controls"><button class="decline-request" onclick="DeclineRequest(this)" value="' + result.RequestId + '"><span class="decline-request-ico"></span></button></div>';
                     }
                     else {
-                        teammsg = result.TeamName + " invited you to join them";
+                        teammsg = result.TeamName + " te poziva da im se pridružiš";
                         controls = '<div class="request-controls"><button class="accept-request" onclick="AcceptRequest(this)" value="' + result.RequestId + '"><span class="accept-request-ico"></span></button><button class="decline-request" onclick="DeclineRequest(this)" value="' + result.RequestId + '"><span class="decline-request-ico"></span></button></div>';
                     }
                     dom += '<div class="request-item"><div class="request-data"><div class="request-image">' + img + '</div><div class="request-info"><p class="teamrequest-msg">' + teammsg + '</p></div></div>' + controls + '</div>';
                 })
             }
             if (!result.resultRequests.length > 0 && !result.resultInvites.length > 0) {
-                dom = '<p class="invite-emptymsg">Currently you have no invites.</p>';
+                dom = '<p class="invite-emptymsg">Trenutno nemate zahteva.</p>';
             }
             $('#invite-items').html(dom);
 
@@ -107,7 +107,7 @@ function AcceptInvite(element) {
                 var requests = $('#invite-items').children('.request-item');
                 var invitemsg = "";
                 if (!invites.length > 0 && !requests.length>0) {
-                    invitemsg = '<p class="invite-emptymsg">Currently you have no requests.</p>'
+                    invitemsg = '<p class="invite-emptymsg">Trenutno nemate zahteva.</p>'
                     $('#invite-items').append(invitemsg);
                 }
 
@@ -133,7 +133,7 @@ function DeclineInvite(element) {
             var requests = $('#invite-items').children('.request-item');
             var invitemsg = "";
             if (!invites.length > 0 && !requests.length > 0) {
-                invitemsg = '<p class="invite-emptymsg">Currently you have no requests.</p>'
+                invitemsg = '<p class="invite-emptymsg">Trenutno nemate zahteva.</p>'
                 $('#invite-items').append(invitemsg);
             }
             
@@ -157,7 +157,7 @@ function DeclineRequest(element) {
             var requests = $('#invite-items').children('.request-item');
             var invitemsg = "";
             if (!invites.length > 0 && !requests.length > 0) {
-                invitemsg = '<p class="invite-emptymsg">Currently you have no invites.</p>'
+                invitemsg = '<p class="invite-emptymsg">Trenutno nemate zahteva.</p>'
                 $('#invite-items').append(invitemsg);
             }
 
@@ -197,7 +197,7 @@ function AcceptRequest(element) {
                 var requests = $('#invite-items').children('.request-item');
                 var invitemsg = "";
                 if (!invites.length > 0 && !requests.length > 0) {
-                    invitemsg = '<p class="invite-emptymsg">Currently you have no requests.</p>'
+                    invitemsg = '<p class="invite-emptymsg">Trenutno nemate zahteva.</p>'
                     $('#invite-items').append(invitemsg);
                 }
 

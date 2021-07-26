@@ -18,27 +18,27 @@
             }
         </div>
         <div class="profile-data">
-            <label>Name</label>
+            <label>Ime</label>
             <p>@Model.UserName</p>
             <label>Email</label>
             <p>@Model.Email</p>
         </div>
         <div class="profile-manage">
 
-            <h4>Change your account settings</h4>
-            <p>Password:</p>
+            <h4>Promeni podešavanja naloga</h4>
+            <p>Šifra:</p>
                 [
                 @if (Model.HasPassword)
                 {
-                    @Html.ActionLink("Change your password", "ChangePassword")
+                    @Html.ActionLink("Promeni šifru ", "ChangePassword")
                 }
                 else
                 {
                     @Html.ActionLink("Create", "SetPassword")
                 }
                 ]
-            <p>Profile Picture:</p>
-            @Html.ActionLink("Change your Profile picture", "ChangeProfilePicture")
+            <p>Profilna slika:</p>
+            @Html.ActionLink("Promeni svoju profilnu sliku", "ChangeProfilePicture")
         </div>
     </div>
     @Styles.Render("/Content/Css/Manage/ManageProfile.css")

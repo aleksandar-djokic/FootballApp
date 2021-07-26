@@ -126,11 +126,11 @@ namespace FootballApp.Domain.Concrete
             {
                 if (membership != null)
                 {
-                    msg = "User is already in that team.";
+                    msg = "Korisnik je već u tom timu.";
                 }
                 else if (invitation != null)
                 {
-                    msg = "User is already invited in that team";
+                    msg = "Korisnik je već pozvan da se priključi timu";
                 }
                 else
                 {
@@ -173,7 +173,7 @@ namespace FootballApp.Domain.Concrete
             }
             catch (Exception)
             {
-                msg = "Something went wrong.";
+                msg = "Nešto nije uredu.";
                 result = false;
             }
 
@@ -467,6 +467,24 @@ namespace FootballApp.Domain.Concrete
                 return false;
             }
         }
+        public bool isNameTaken(string Name,int teamId)
+        {   
+      
+            var team = context.Teams.FirstOrDefault(x => x.Name.ToLower().Equals(Name.ToLower()));
+            if (team != null)
+            {
+                if (team.Id == teamId)
+                {
+                    return false;
+                }
+                else return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public bool LeaveTeamMember(string MemberId, int teamId)
         {
@@ -502,7 +520,7 @@ namespace FootballApp.Domain.Concrete
 
             if (MemberName == "")
             {
-                msg = "Please enter a name.";
+                msg = "Unesite ime člana.";
                 return false;
             }
             if (member != null)
@@ -520,7 +538,7 @@ namespace FootballApp.Domain.Concrete
             }
             else
             {
-                msg = "No member with that name found.";
+                msg = "Ne postoji član sa tim imenom.";
                 result = false;
             }
             return result;

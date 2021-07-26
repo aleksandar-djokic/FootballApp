@@ -10,7 +10,7 @@
             var dom = "";
             if (Tournaments.length > 0) {
                 $.each(Tournaments, function (i, t) {
-                    dom += '<div class="tournament-item"><div>Name:' + t.Name + '</div><div>Round ' + t.CurrentRound + '/' + t.NumberOfRounds + '</div><div>Participants:' + t.CurrentNumberParticipants + '/' + t.NumberOfParticipants + '</div><div><a href="/Tournament/TournamentProfile/'+t.Id+'"class="view-tournament-button">View</a></div></div>';
+                    dom += '<div class="tournament-item"><div>Naziv:' + t.Name + '</div><div>Runda ' + t.CurrentRound + '/' + t.NumberOfRounds + '</div><div>Učesnici:' + t.CurrentNumberParticipants + '/' + t.NumberOfParticipants + '</div><div><a href="/Tournament/TournamentProfile/'+t.Id+'"class="view-tournament-button">Poseti</a></div></div>';
                 })
             }
             $('.tournament-list').html(dom);

@@ -9,11 +9,11 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-wrap">
-        <h1>CREATE NEW TOURNAMENT</h1>
+        <h1>Napravi nov turnir</h1>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-field">
             <div class="form-label">
-                Tournament name
+                Naziv turnira
             </div>
             <div class="form-input">
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-error" })
@@ -23,7 +23,7 @@
 
         <div class="form-field">
             <div class="form-label">
-                Number of participants
+                Broj učesnika
             </div>
             <div class="form-select">
                 <input type="hidden" name="NumberOfParticipants" id="NumberOfParticipants" value="4" />
@@ -37,12 +37,12 @@
         </div>
 
         <div class="button-field">
-            <input class="create-button" type="submit" value="Create" name="Create">
+            <input class="create-button" type="submit" value="Napravi" name="Create">
         </div>
     </div>
 }
 @Scripts.Render("~/Scripts/Tournaments/createTournament.js")
 @Styles.Render("~/Content/Css/Tournament/CreateTournament.css")
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("< Nazad na listu", "Index")
 </div>

@@ -5,7 +5,7 @@
 }
 
 <div class="form-wrap">
-    <h1>Edit News</h1>
+    <h1>Izmeni novost</h1>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -15,7 +15,7 @@
 
         <div class="form-field">
             <div class="form-label">
-                Title
+                Naslov
             </div>
             <div class="form-input">
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-error" })
@@ -24,7 +24,7 @@
         </div>
         <div class="form-field">
             <div class="form-label">
-                Text
+                Tekst
             </div>
             <div class="form-input">
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-error" })
@@ -33,7 +33,7 @@
         </div>
         <div class="form-field">
             <div class="form-label">
-                Time
+                Vreme
             </div>
             <div class="form-input">
                 @Html.DisplayFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="button-field">
-            <input class="create-button" type="submit" value="Save" name="Save">
+            <input class="create-button" type="submit" value="Sačuvaj" name="Save">
         </div>
 
 
@@ -86,6 +86,6 @@
 </div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("< Nazad na listu", "Index")
 </div>
 @Styles.Render("~/Content/Css/News/NewsCreate.css")

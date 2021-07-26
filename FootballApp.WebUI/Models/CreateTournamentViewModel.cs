@@ -8,7 +8,7 @@ namespace FootballApp.WebUI.Models
 {
     public class CreateTournamentViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Naziv je obavezno uneti")]
         [MaxLength(50)]
         public string Name { get; set; }
         public int NumberOfParticipants { get; set; }

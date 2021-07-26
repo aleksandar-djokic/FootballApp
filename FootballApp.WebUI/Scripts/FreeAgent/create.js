@@ -5,29 +5,29 @@
     var dom = "<option disabled selected value>Select City</option>";
     var cityList = [];
     switch (value) {
-        case "Serbia":
-            cityList = ["Beograd", "Novi Sad", "Nis", "Other"];
+        case "Srbija":
+            cityList = ["Beograd", "Novi Sad", "Niš", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
                
             }
             break;
-        case "Russia":
-            cityList = ["Moscow", "St. Petersburg", "Sochi", "Other"];
+        case "Rusija":
+            cityList = ["Moskva", "Sankt Peterburg", "Soči", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
                 
             }
             break;
-        case "England":
-            cityList = ["London", "Manchester", "Birmingham", "Other"];
+        case "Engleska":
+            cityList = ["London", "Mančester", "Birmingen", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
                 
             }
             break;
-        case "Germany":
-            cityList = ["Munich", "Frankfurt", "Berlin", "Other"];
+        case "Nemačka":
+            cityList = ["Minhen", "Frankfurt", "Berlin", "Drugo"];
             for (var i = 0; i < cityList.length; i++) {
                 dom += '<option value="' + cityList[i] + '">' + cityList[i] + '</option>';
                 
@@ -47,7 +47,7 @@ $('#create-button').click(function () {
     var msg = "";
     if (cityVal == null) {
 
-        msg = "You must select City.";
+        msg = "Morate izabrati grad.";
         $('#error-msg').text(msg);
     }
     else {
@@ -64,7 +64,7 @@ $('#create-button').click(function () {
                     location.replace("https://localhost:44300/FreeAgent");
                 }
                 else {
-                    $('#error-msg').text('It appears that some kind of error occurred,try again later.');
+                    $('#error-msg').text('Izgleda da je došlo do neke greške,molimo pokušajte ponovo.');
                 }
             }
         });

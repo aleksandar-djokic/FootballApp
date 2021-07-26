@@ -76,25 +76,25 @@ namespace FootballApp.Domain.Concrete
 
                             }
                         }
-                        resultmsg = "Successfully created a match.";
+                        resultmsg = "Uspešno napravljen meč.";
                         result = true;
                     }
                     catch
                     {
-                        resultmsg = "An error occured,unable to create match.";
+                        resultmsg = "Došlo je do greške, nije moguće napraviti meč.";
                         result = false;
                     }
                     context.SaveChanges();
                 }
                 else{
-                    resultmsg = "Your team cant challange itself to a match.";
+                    resultmsg = "Tim ne može izazvati sam sebe na meč.";
                     result = false;
                 }
                 
             }
             else
             {
-                resultmsg = "No team with that name found.";
+                resultmsg = "Nema tima sa unesenim imenom.";
                 result = false;
             }
             return result;

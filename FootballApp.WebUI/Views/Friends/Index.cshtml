@@ -7,18 +7,18 @@
 
 <div class="friends-navigation">
     <div class="friends-nav-item active">
-        <button class="friends-button" id="All-nav">All</button>
+        <button class="friends-button" id="All-nav">Svi</button>
     </div>
     <div class="friends-nav-item">
-        <button class="friends-button" id="pending-nav">Pending</button>
+        <button class="friends-button" id="pending-nav">Zahtevi</button>
         <div class="nav-notification" id="pending-friends-notification"></div>
     </div>
     <div class="friends-nav-item">
-        <button class="friends-button">AddFriends</button>
+        <button class="friends-button">Dodaj</button>
     </div>
 </div>
 <div class="friends-content">
-    <div class="friends-content-item" style="display:block;" id="All">
+    <div class="friends-content-item" style="display:block;" id="Svi">
         <div class="allfriends"id="allfriends">
             @if(Model != null && Model.Count() > 0)
             {
@@ -49,17 +49,17 @@
             }
             else
             {
-                <div class="allfriends-msg">It appears that you have no friends.To add some click on AddFriends above.</div>
+                <div class="allfriends-msg">Trenutno nemaš prijatelja.Kako bi dodao prijatelja klikni na "Dodaj".</div>
             }
         </div>
             <div class="dropdown-options" id="dropdown">
-                <button class="dropdown-option" id="remove-friend" onclick="RemoveFriend(this)">Remove</button>
-                <button class="dropdown-option" id="invite-friend" onclick="OpenInviteModal(this)">Invite</button>
+                <button class="dropdown-option" id="remove-friend" onclick="RemoveFriend(this)">Ukloni</button>
+                <button class="dropdown-option" id="invite-friend" onclick="OpenInviteModal(this)">Pozovi</button>
             </div>
             <div class="invite-modal" id="invite-modal">
                 <div class="invite-modal-content" id="invite-modal-content">
                     <span class="invite-modal-close" id="invite-modal-close" onclick="CloseModal()">&times;</span>
-                    <h1>Invite friends to a Team</h1>
+                    <h1>Pozovi prijatelja u tim</h1>
                     <p class="invite-modal-msgsuccess" id="invite-result-msgsuccess"></p>
                     <p class="invite-modal-msgerror" id="invite-result-msgerror"></p>
                     <div class="invite-modal-items" id="invite-modal-items">                       
@@ -68,18 +68,18 @@
                 </div>
             </div>
     </div>
-    <div class="friends-content-item" id="Pending">
+    <div class="friends-content-item" id="Zahtevi">
         <div class="requests" id="Pending-requests">
         </div>
     </div>
-    <div class="friends-content-item" id="AddFriends">
+    <div class="friends-content-item" id="Dodaj">
         <div class="add-friends-form">
-            <h1>Add a friend</h1>
-            <p class="add-friends-form-message">You can add a friend using their username.Names are not case sensitive.</p>
+            <h1>Dodaj prijatelja</h1>
+            <p class="add-friends-form-message">Možete dodati prijatelja putem njihovog korisničkog imena.Imena nisu osetljiva na velika i mala slova.</p>
             <p class="addfriends-success"></p>
             <p class="addfriends-fail"></p>
-            <input type="text" id="Add-friend-input" placeholder="Username" autocomplete="off" />
-            <button id="add-friend-button">Send friend request</button>
+            <input type="text" id="Add-friend-input" placeholder="Korisničko ime" autocomplete="off" />
+            <button id="add-friend-button">Pošalji zahtev</button>
         </div>
     </div>
 </div>
