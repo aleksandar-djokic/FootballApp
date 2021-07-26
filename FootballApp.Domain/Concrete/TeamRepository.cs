@@ -38,8 +38,6 @@ namespace FootballApp.Domain.Concrete
             TeamRole newRole = new TeamRole
             {
                 Name = Name,
-                TeamId = TeamId,
-                Team = Team,
                 AdminPrivilege = admin
             };
             context.TeamRoles.Add(newRole);
@@ -58,10 +56,7 @@ namespace FootballApp.Domain.Concrete
             };
             context.Teams.Add(team);
             context.SaveChanges();
-            AddRole("Owner", team.Id, true);
-            AddRole("Admin", team.Id, true);
-            AddRole("Member", team.Id, false);
-            AddMember(user, team.Id, GetOwnerRoleId(team.Id));
+            AddMember(user, team.Id, GetOwnerRoleId());
         }
 
         public void Edit(int TeamId, string Name, string Description, byte[] Image)
@@ -76,9 +71,9 @@ namespace FootballApp.Domain.Concrete
             context.SaveChanges();
         }
 
-        public int GetOwnerRoleId(int TeamId)
+        public int GetOwnerRoleId()
         {
-            TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId);
+            TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.Name == "Owner");
             return TeamRole.Id;
         }
 
@@ -136,7 +131,7 @@ namespace FootballApp.Domain.Concrete
                 {
                     if (requested != null)
                     {
-                        var role = context.TeamRoles.FirstOrDefault(x => x.Name == "Member" && x.TeamId == teamId);
+                        var role = context.TeamRoles.FirstOrDefault(x => x.Name == "Member");
                         context.TeamMembers.Add(new TeamMembers { TeamId = teamId, UserId = InviteeId, RoleId = role.Id });
                         var requestUser = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == InviteeId && x.TeamId == teamId && x.RequestInitiator == "User");
                         var requestTeam = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == InviteeId && x.TeamId == teamId && x.RequestInitiator == "Team");
@@ -211,9 +206,9 @@ namespace FootballApp.Domain.Concrete
             }
             return result;
         }
-        public int GetRoleId(string roleName, int teamId)
+        public int GetRoleId(string roleName)
         {
-            TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == teamId && x.Name == roleName);
+            TeamRole TeamRole = context.TeamRoles.FirstOrDefault(x =>x.Name == roleName);
             return TeamRole.Id;
 
         }
@@ -225,7 +220,7 @@ namespace FootballApp.Domain.Concrete
 
             if (invite != null)
             {
-                var roleId = GetRoleId("Member", invite.TeamId);
+                var roleId = GetRoleId("Member");
                 try
                 {
                     AddMember(invite.InviteeId, invite.TeamId, roleId);
@@ -264,7 +259,7 @@ namespace FootballApp.Domain.Concrete
             {
                 if (TeamRequest != null || invite!=null)
                 {
-                    var role = context.TeamRoles.FirstOrDefault(x => x.TeamId == teamId && x.Name == "Member");
+                    var role = context.TeamRoles.FirstOrDefault(x =>x.Name == "Member");
                     context.TeamMembers.Add(new TeamMembers { TeamId = teamId, UserId = userId, RoleId = role.Id });
                     if (TeamRequest != null)
                     {
@@ -413,7 +408,7 @@ namespace FootballApp.Domain.Concrete
             var invite = context.TeamInvites.FirstOrDefault(x => x.TeamId == request.TeamId && x.InviteeId == request.UserId);
             if (request != null)
             {
-                var roleId = GetRoleId("Member", request.TeamId);
+                var roleId = GetRoleId("Member");
                 try
                 {
                     AddMember(request.UserId, request.TeamId, roleId);
@@ -589,7 +584,7 @@ namespace FootballApp.Domain.Concrete
         public bool PromoteUserToAdmin(string userId, int TeamId)
         {
             var result = false;
-            var adminRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId && x.Name == "Admin");
+            var adminRole = context.TeamRoles.FirstOrDefault(x => x.Name == "Admin");
             var member = context.TeamMembers.FirstOrDefault(x => x.UserId == userId && x.TeamId == TeamId);
             try
             {
@@ -609,9 +604,9 @@ namespace FootballApp.Domain.Concrete
         {
             var result = false;
             var member = context.TeamMembers.FirstOrDefault(x => x.UserId == userId && x.TeamId == TeamId);
-            var ownerRoleId = GetOwnerRoleId(TeamId);
+            var ownerRoleId = GetOwnerRoleId();
             var owner = context.TeamMembers.FirstOrDefault(x => x.TeamId == TeamId && x.RoleId == ownerRoleId);
-            var adminRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId && x.Name == "Admin");
+            var adminRole = context.TeamRoles.FirstOrDefault(x =>x.Name == "Admin");
             try
             {
                 member.RoleId = ownerRoleId;
@@ -631,7 +626,7 @@ namespace FootballApp.Domain.Concrete
         public bool DemoteUserToMember(string userId, int TeamId)
         {
             var result = false;
-            var memberRole = context.TeamRoles.FirstOrDefault(x => x.TeamId == TeamId && x.Name == "Member");
+            var memberRole = context.TeamRoles.FirstOrDefault(x => x.Name == "Member");
             var member = context.TeamMembers.FirstOrDefault(x => x.UserId == userId && x.TeamId == TeamId);
             var memberNotifics = context.Notifications.OfType<TeamMemberNotification>().Where(x => x.isRead == false && x.TeamId == TeamId && x.RecieverId == userId);
             var matchesNotifics = context.Notifications.OfType<TeamMatchNotification>().Where(x => x.isRead == false && x.TeamId == TeamId && x.RecieverId == userId && x.Type == "Pending");

@@ -17,7 +17,7 @@ namespace FootballApp.Domain.Concrete
             var result = false;
             var agent = context.FreeAgents.FirstOrDefault(x => x.Id == agentId);
             var request = context.TeamJoinRequests.FirstOrDefault(x => x.UserId == agent.UserId && x.TeamId == teamId && x.RequestInitiator == "User");
-            var role = context.TeamRoles.FirstOrDefault(x => x.Name == "Member" && x.TeamId == teamId);
+            var role = context.TeamRoles.FirstOrDefault(x => x.Name == "Member");
             try
             {
                 context.TeamMembers.Add(new TeamMembers { TeamId = teamId, UserId = agent.UserId, RoleId = role.Id });

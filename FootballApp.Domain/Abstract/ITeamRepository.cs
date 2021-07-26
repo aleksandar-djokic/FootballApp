@@ -17,8 +17,8 @@ namespace FootballApp.Domain.Abstract
         void AddRole(string Name, int TeamId, bool admin = false);
         string UserInRole(string userId,int teamId);
         string GetMemberRole(string userId, int teamId);
-        int GetOwnerRoleId(int TeamId);
-        int GetRoleId(string roleName, int teamId);
+        int GetOwnerRoleId();
+        int GetRoleId(string roleName);
         IEnumerable<Team> GetTeamsByMember(string UserId);
         IEnumerable<ApplicationUser> GetTeamMembers(int teamId);
         IEnumerable<Team> SearchTeam(string Name);

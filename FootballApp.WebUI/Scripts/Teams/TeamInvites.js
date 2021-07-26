@@ -90,7 +90,7 @@ function AcceptInvite(element) {
                 else {
                     img = '<img src="/Content/Images/emptypfp.png" />';
                 }
-                dom = '<div class="teamlist-team"><div class="teamlist-data"><input class="teamlist-teamId"type="hidden" value="@item.Id"/><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Visit profile</a></div></div>';
+                dom = '<div class="teamlist-team"><div class="teamlist-data"><input class="teamlist-teamId"type="hidden" value="@item.Id"/><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Poseti</a></div></div>';
                 var errorMsg = $('#teamlist').children('.error-msg').html();
                 if (errorMsg != null) {
                     $('#teamlist').html(dom);
@@ -182,7 +182,7 @@ function AcceptRequest(element) {
                 else {
                     img = '<img src="/Content/Images/emptypfp.png" />';
                 }
-                dom = '<div class="teamlist-team"><div class="teamlist-data"><input class="teamlist-teamId"type="hidden" value="@item.Id"/><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Visit profile</a></div></div>';
+                dom = '<div class="teamlist-team"><div class="teamlist-data"><input class="teamlist-teamId"type="hidden" value="@item.Id"/><div class="teamlist-image">' + img + '</div><div class="teamlist-info"><p class="teamlist-name">' + result.team.Name + '</p><p class="teamlist-description">' + result.team.Description + '</p></div></div><div class="teamlist-button-wrap"> <a class="teamlist-button" href="/Team/TeamProfile?teamId=' + result.team.Id + '">Poseti</a></div></div>';
                 var errorMsg = $('#teamlist').children('.error-msg').html();
                 if (errorMsg != null) {
                     $('#teamlist').html(dom);

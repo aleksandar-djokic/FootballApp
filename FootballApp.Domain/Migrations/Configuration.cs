@@ -10,7 +10,6 @@ namespace FootballApp.Domain.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "FootballApp.Domain.Models.ApplicationDbContext";
         }
 
         protected override void Seed(FootballApp.Domain.Models.ApplicationDbContext context)
@@ -27,6 +26,13 @@ namespace FootballApp.Domain.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+           
+            context.TeamRoles.AddOrUpdate(
+                x => x.Id,
+                new Models.TeamRole() { Id = 1, Name = "Owner", AdminPrivilege = true },
+                new Models.TeamRole() { Id = 2, Name = "Admin", AdminPrivilege = true },
+                new Models.TeamRole() { Id = 3, Name = "Member", AdminPrivilege = false }
+                );
         }
     }
 }

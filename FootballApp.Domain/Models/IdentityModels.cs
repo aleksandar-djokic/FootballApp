@@ -75,15 +75,8 @@ namespace FootballApp.Domain.Models
                 .HasColumnAnnotation(
                     IndexAnnotation.AnnotationName,
                     new IndexAnnotation(
-                        new IndexAttribute("RoleName_TeamId", 1) { IsUnique = true }));
-            modelBuilder
-                .Entity<TeamRole>()
-                .Property(t => t.TeamId)
-                .IsRequired()
-                .HasColumnAnnotation(
-                    IndexAnnotation.AnnotationName,
-                    new IndexAnnotation(
-                        new IndexAttribute("RoleName_TeamId", 2) { IsUnique = true }));
+                        new IndexAttribute("IX_RoleName") { IsUnique = true }));
+            
             modelBuilder
                 .Entity<Friendship>().HasKey(f => new { f.User1Id, f.User2Id });
             modelBuilder

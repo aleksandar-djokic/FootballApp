@@ -15,8 +15,5 @@ namespace FootballApp.Domain.Models
         public string Name { get; set; }
         public bool AdminPrivilege { get; set; }
 
-        [ForeignKey("Team")]
-        public int TeamId { get; set; }
-        public Team Team { get; set; }
     }
 }
