@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.WebUI", "Footba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Domain", "FootballApp.Domain\FootballApp.Domain.csproj", "{EAE96AC4-31C0-4654-A5A4-0D584E3BA85D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballAppTests", "FootballAppTests\FootballAppTests.csproj", "{1250882E-5BBF-4965-8081-CF39BD7238A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EAE96AC4-31C0-4654-A5A4-0D584E3BA85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAE96AC4-31C0-4654-A5A4-0D584E3BA85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAE96AC4-31C0-4654-A5A4-0D584E3BA85D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1250882E-5BBF-4965-8081-CF39BD7238A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1250882E-5BBF-4965-8081-CF39BD7238A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1250882E-5BBF-4965-8081-CF39BD7238A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1250882E-5BBF-4965-8081-CF39BD7238A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
