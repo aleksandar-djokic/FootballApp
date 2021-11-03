@@ -58,7 +58,7 @@ namespace FootballApp.Domain.Concrete
             var tournament = context.Tournaments.First(x => x.Id == tournamentId);
             var lastMatch = context.TournamentMatches.First(x => x.TournamentId == tournament.Id && x.Round == tournament.CurrentRound);
             tournament.WinnerId = lastMatch.WinnerId;
-            tournament.RunnerUpId= lastMatch.WinnerId == lastMatch.Participant1Id ? lastMatch.Participant1Id : lastMatch.Participant2Id;
+            tournament.RunnerUpId= lastMatch.WinnerId == lastMatch.Participant1Id ? lastMatch.Participant2Id : lastMatch.Participant1Id;
             tournament.isActive = false;
             context.SaveChanges();
 

@@ -23,7 +23,7 @@
                     })
                 }
                 else {
-                    dom += '<p>No results found</p>';
+                    dom += '<p>Nema rezultata</p>';
                 }
                 $('#search-results').append(dom);
                 $('.triangle').show();
@@ -31,7 +31,7 @@
             }
         })
     } else {
-        var dom = '<p>No results found</p>';
+        var dom = '<p>Nema rezultata</p>';
         $('#search-results').append(dom);
     }
     

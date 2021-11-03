@@ -41,7 +41,7 @@ function JoinTournament(element) {
                 var dom = "";
                 if (result.tournament != null) {
                     var t = result.tournament;
-                    dom += '<div class="tournament-item"><div>Naziv:' + t.Name + '</div><div>Runda ' + t.CurrentRound + '/' + t.NumberOfRounds + '</div><div>Učesnici:' + t.CurrentNumberParticipants + '/' + t.NumberOfParticipants + '</div><div><button class="view-tournament-button">Poseti</button></div>';
+                    dom += '<div class="tournament-item"><div>Naziv:' + t.Name + '</div><div>Runda ' + t.CurrentRound + '/' + t.NumberOfRounds + '</div><div>Učesnici:' + t.CurrentNumberParticipants + '/' + t.NumberOfParticipants + '</div><div><a href="/Tournament/TournamentProfile/'+t.Id+'" class="view-tournament-button">Poseti</a></div>';
                     
                 }
                 $('.tournament-list').append(dom);

@@ -88,7 +88,7 @@ $('.match-score-submit').click(function () {
         })
     }
     else {
-        $('#error').html('Please select winner.');  
+        $('#error').html('Morate izabrati pobednika.');  
     }
 
 })

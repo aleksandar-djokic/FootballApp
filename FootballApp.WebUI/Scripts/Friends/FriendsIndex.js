@@ -5,6 +5,8 @@ $('.friends-button').click(function (event) {
 
     var navName = "#" + $(event.target).html();
     $(event.target).closest('.friends-nav-item').addClass("active");
+    $('.addfriends-success').html('');
+    $('.addfriends-fail').html('');
     $(navName).show();
 
 })
@@ -52,11 +54,11 @@ $('#pending-nav').click(function () {
                         img = '<img class="request-image" src="/Content/Images/emptypfp.png" />';
                     }
                     if (result.Direction == "Incoming") {
-                        msg = "Incoming friend request."
+                        msg = "Dolazni zahtev za prijateljstvo."
                         controls = '<div class="request-options-incoming"><button onclick="AddFriend(this)" value="' + result.Id + '" title = "Accept request!" class="request-accept" > <span class="request-accept-ico"></span></button > <button onclick="DeclineFriendRequest(this)" value="' + result.Id + '"title="Decline request!" class="request-decline"><span class="request-decline-ico"></span></button></div > ';
                     }
                     else {
-                        msg = "Outgoing friend request."
+                        msg = "Odlazni zahtev za prijateljstvo"
                         controls = '<div class="request-options-outgoing"><button onclick="CancelFriendRequest(this)" value="' + result.Id + '"title="Cancel request!"class="request-cancel"><span class="request-decline-ico"></span></button></div>';
                     }
                     dom += '<div class="request" id="' + result.Id + '"><div class="request-info">' + img + '<div class="request-data"><div class="request-data-name">' + result.Name + '</div><div class="request-data-direction">' + msg + '</div></div></div>' + controls + '</div>';
@@ -95,7 +97,7 @@ $('#All-nav').click(function () {
                 })
             }
             else {
-                dom = '<div class="allfriends-msg">It appears that you have no friends.To add some click on AddFriends above.</div>';
+                dom = '<div class="allfriends-msg">Trenutno nemaš prijatelja.Kako bi dodao prijatelja klikni na "Dodaj".</div>';
             }
             $('#allfriends').html(dom);
         }

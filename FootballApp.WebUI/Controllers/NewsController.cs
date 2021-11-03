@@ -40,7 +40,7 @@ namespace FootballApp.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 news.Create(ViewModel.Title, ViewModel.Text);
-                return View();
+                return RedirectToAction("Index");
             }
             return View();
         }
